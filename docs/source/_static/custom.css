@@ -1,0 +1,16 @@
+/* Keep the wide fixed-width summary blocks readable rather than wrapped. */
+div.highlight pre,
+div.cell_output pre {
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+/* The summary tables are 74 columns; give them room before scrolling. */
+div.cell_output {
+  overflow-x: auto;
+}
+
+table.docutils td,
+table.docutils th {
+  font-size: 0.85rem;
+}

@@ -1,0 +1,21 @@
+name: bayesplain
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - jupyter                         # necessary to run notebooks
+  - jupyterlab                      # necessary to run notebooks
+  - pandas >=1.0                    # generate markdown tables
+  - numpy
+  - scipy
+  - pingouin
+  # docs
+  - sphinx
+  - myst-nb
+  - sphinxcontrib-bibtex
+  - sphinx-copybutton
+  - sphinx-immaterial
+  - numpydoc
+  - matplotlib
+  - pytest-xdist
+  - pytest-cov

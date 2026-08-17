@@ -1,0 +1,27 @@
+name: bayesplain-docs
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - pytest
+  - pytest-cov
+  - hypothesis
+  - ruff
+  # docs
+  - sphinx
+  - myst-nb
+  - numpydoc
+  - sphinxcontrib-bibtex
+  - sphinx-copybutton
+  - sphinx-immaterial
+  - ipykernel
+  - jupyter
+  - packaging
+  # validation only
+  - pip
+  - pip:
+      - pingouin

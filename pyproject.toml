@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=77.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+fallback_version = "0.1.dev0"
+
+[project]
+name = "bayesplain"
+dynamic = ["version"]
+authors = [{ name = "Eli Knaap", email = "ek@knaaptime.com" }]
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+description = "Bayesian answers to the questions frequentist tests are usually asked"
+readme = "README.md"
+keywords = [
+    "bayesian statistics",
+    "statistics education",
+    "urban planning",
+    "public policy",
+    "conjugate priors",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+requires-python = ">=3.10"
+
+# Deliberately minimal: no sampler anywhere in the required chain, so that
+# `pip install bayesplain` in a Colab cell finishes in seconds with no
+# compiler, no MCMC backend, and no convergence warnings, ever.
+dependencies = ["numpy", "scipy"]
+
+[project.urls]
+Home = "https://github.com/knaaptime/bayesplain"
+Repository = "https://github.com/knaaptime/bayesplain"
+
+[project.optional-dependencies]
+plot = ["matplotlib"]
+data = ["pandas"]
+tests = ["pytest", "pytest-cov", "hypothesis", "matplotlib", "pandas"]
+# Cross-validation against independent implementations of the same integrals.
+validate = ["pingouin"]
+docs = [
+    "sphinx",
+    "myst-nb",
+    "sphinxcontrib-bibtex",
+    "sphinx-copybutton",
+    "sphinx-immaterial",
+    "numpydoc",
+    "ipykernel",
+    "matplotlib",
+    "pandas",
+    "packaging",
+]
+
+[tool.setuptools.packages.find]
+include = ["bayesplain", "bayesplain.*"]
+
+[tool.setuptools.package-data]
+bayesplain = ["data/*.csv.gz"]
+
+[tool.pytest.ini_options]
+# Docstring examples are collected too: every number printed in the docs is an
+# assertion, so documentation cannot drift away from behaviour.
+testpaths = ["bayesplain"]
+addopts = "-m 'not slow' --doctest-modules"
+markers = [
+    "slow: marks slow tests (large Monte Carlo validation runs)",
+    "validation: marks tests that cross-check against R BayesFactor / pingouin reference values",
+    "pedagogy: marks tests that pin numbers a lecture depends on",
+]
+
+[tool.coverage.run]
+source = ["bayesplain"]
+omit = ["bayesplain/tests/*"]
+
+[tool.coverage.report]
+omit = ["bayesplain/tests/*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+extend-exclude = ["docs/_build", "bayesplain.egg-info"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "D", "UP"]
+ignore = ["D105", "D107", "D203", "D213"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"bayesplain/tests/*" = ["D"]
