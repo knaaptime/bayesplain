@@ -82,6 +82,29 @@ Usable on their own when you only want the classical answer.
    one_way_anova
 
 
+Teaching tools
+--------------
+
+.. currentmodule:: bayesplain.teach
+
+Pedagogy-only helpers that show a mechanism the analysis functions deliberately
+hide. Nothing here belongs in a research package; all of it belongs in a first
+course.
+
+.. autosummary::
+   :toctree: generated/
+
+   natural_frequencies
+   grid_posterior
+   binomial_likelihood
+   sequential
+   precision_planning
+   NaturalFrequencies
+   GridPosterior
+   SequentialUpdate
+   PrecisionPlan
+
+
 Datasets
 --------
 

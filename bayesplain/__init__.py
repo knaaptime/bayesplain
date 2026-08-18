@@ -43,7 +43,7 @@ bayesplain.core : The mathematics, as pure functions.
 
 from __future__ import annotations
 
-from . import core, datasets, frequentist, priors
+from . import core, datasets, frequentist, priors, teach
 from ._config import (
     DEFAULT_DRAWS,
     DEFAULT_SEED,
@@ -85,6 +85,7 @@ __all__ = [
     "frequentist",
     "core",
     "datasets",
+    "teach",
     # configuration
     "get_seed",
     "set_seed",
