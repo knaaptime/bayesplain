@@ -1,0 +1,6 @@
+﻿bayesplain.core.beta\_binomial.log\_marginal\_likelihood
+========================================================
+
+.. currentmodule:: bayesplain.core.beta_binomial
+
+.. autofunction:: log_marginal_likelihood

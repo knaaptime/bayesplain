@@ -1,0 +1,6 @@
+﻿bayesplain.core.normal\_t.pooled\_difference\_posterior
+=======================================================
+
+.. currentmodule:: bayesplain.core.normal_t
+
+.. autofunction:: pooled_difference_posterior

@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.chi\_square\_independence
+================================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: chi_square_independence

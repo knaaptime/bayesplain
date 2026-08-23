@@ -1,0 +1,6 @@
+﻿bayesplain.priors.from\_previous\_study
+=======================================
+
+.. currentmodule:: bayesplain.priors
+
+.. autofunction:: from_previous_study

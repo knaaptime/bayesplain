@@ -1,0 +1,5323 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="user-guide/datasets.html">
+      
+      
+        <link rel="next" href="generated/bayesplain.proportion.html">
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>API reference - bayesplain</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+        <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+        <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f4867036" />
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-analyses" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="bayesplain" class="md-header__button md-logo" aria-label="bayesplain" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            bayesplain
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/knaaptime/bayesplain/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    knaaptime/bayesplain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="bayesplain" class="md-nav__button md-logo" aria-label="bayesplain" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    bayesplain
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/knaaptime/bayesplain/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    knaaptime/bayesplain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Getting started</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Getting started</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Installation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="user-guide/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Quickstart</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Guides</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Guides</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="user-guide/priors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Priors, and how much they matter</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="user-guide/frequentist-twins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>The frequentist twin</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="user-guide/datasets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>The bundled datasets</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Reference</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Reference</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__current-nested md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>API reference</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>API reference</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#the-analyses" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>The analyses</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>The analyses</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.proportion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>proportion</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.compare_proportions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>compare_<wbr>proportions</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.contingency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>contingency</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.compare_means.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>compare_<wbr>means</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.correlation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>correlation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.compare_groups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>compare_<wbr>groups</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#the-result-object" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>The result object</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>The result object</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.Result.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>Result</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.Decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>Decision</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.BayesFactor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>Bayes<wbr>Factor</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#priors" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Priors</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Priors</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.BetaPrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Beta<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.ConcentrationPrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Concentration<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.EffectSizePrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Effect<wbr>Size<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.CorrelationPrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Correlation<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.resolve_proportion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>proportion</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.resolve_table.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>table</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.resolve_effect_size.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>effect_<wbr>size</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.resolve_correlation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>correlation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.from_previous_study.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>study</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.describe.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>describe</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.priors.available.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>available</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#frequentist-twins" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Frequentist twins</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Frequentist twins</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.FrequentistTwin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>Frequentist<wbr>Twin</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.one_proportion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>proportion</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.two_proportions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>two_<wbr>proportions</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.chi_square_independence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>chi_<wbr>square_<wbr>independence</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.one_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.two_means.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>two_<wbr>means</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.correlation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>correlation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.frequentist.one_way_anova.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>way_<wbr>anova</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#teaching-tools" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Teaching tools</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Teaching tools</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.natural_frequencies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>natural_<wbr>frequencies</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.grid_posterior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>grid_<wbr>posterior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.binomial_likelihood.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>binomial_<wbr>likelihood</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.sequential.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>sequential</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.precision_planning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>Natural<wbr>Frequencies</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.GridPosterior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>Grid<wbr>Posterior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.SequentialUpdate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>Sequential<wbr>Update</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.teach.PrecisionPlan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>Precision<wbr>Plan</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#datasets" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Datasets</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Datasets</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.available.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>available</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.describe.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>describe</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.load.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>load</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.load_collisions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>collisions</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.load_tracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>tracts</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.load_blockgroups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>blockgroups</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.datasets.load_parcels.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>parcels</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#configuration" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Configuration</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1_7" id="__nav_3_1_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Configuration</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.get_seed.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>get_<wbr>seed</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.set_seed.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>set_<wbr>seed</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.get_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>get_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.set_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>set_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+      
+    <li class="md-nav__item md-nav__item--active md-nav__current-toc">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <span>API reference</span>
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>API reference</span>
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-analyses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The analyses</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The analyses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.proportion.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>proportion</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.compare_proportions.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>compare_<wbr>proportions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.contingency.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>contingency</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.mean.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>mean</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.compare_means.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>compare_<wbr>means</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.correlation.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>correlation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.compare_groups.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>compare_<wbr>groups</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-result-object" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The result object</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The result object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.Result.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>Result</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.Decision.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>Decision</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.BayesFactor.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>Bayes<wbr>Factor</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priors" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Priors</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.BetaPrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Beta<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.ConcentrationPrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Concentration<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.EffectSizePrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Effect<wbr>Size<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.CorrelationPrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Correlation<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_proportion.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>proportion</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_table.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>table</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_effect_size.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>effect_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_correlation.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>correlation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.from_previous_study.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>study</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.describe.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>describe</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.available.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>available</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequentist-twins" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Frequentist twins</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frequentist twins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.FrequentistTwin.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>Frequentist<wbr>Twin</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.one_proportion.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>proportion</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.two_proportions.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>two_<wbr>proportions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.chi_square_independence.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>chi_<wbr>square_<wbr>independence</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.one_mean.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>mean</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.two_means.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>two_<wbr>means</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.correlation.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>correlation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.one_way_anova.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>way_<wbr>anova</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teaching-tools" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Teaching tools</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Teaching tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.natural_frequencies.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>natural_<wbr>frequencies</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.grid_posterior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>grid_<wbr>posterior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.binomial_likelihood.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>binomial_<wbr>likelihood</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.sequential.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>sequential</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.precision_planning.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Natural<wbr>Frequencies</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.GridPosterior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Grid<wbr>Posterior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.SequentialUpdate.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Sequential<wbr>Update</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.PrecisionPlan.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Precision<wbr>Plan</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Datasets</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.available.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>available</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.describe.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>describe</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_collisions.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>collisions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_tracts.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>tracts</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_blockgroups.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>blockgroups</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_parcels.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>parcels</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Configuration</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.get_seed.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>get_<wbr>seed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.set_seed.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>set_<wbr>seed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.get_draws.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>get_<wbr>draws</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.set_draws.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>set_<wbr>draws</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__current-nested md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#core-mathematics" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Core mathematics</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Core mathematics</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#proportions" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Proportions</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Proportions</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.beta_binomial.posterior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>beta_<wbr>binomial.<wbr>posterior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.beta_binomial.draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>beta_<wbr>binomial.<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.beta_binomial.log_marginal_likelihood.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>beta_<wbr>binomial.<wbr>log_<wbr>marginal_<wbr>likelihood</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.beta_binomial.log_bayes_factor_point_null.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>beta_<wbr>binomial.<wbr>log_<wbr>bayes_<wbr>factor_<wbr>point_<wbr>null</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.beta_binomial.prior_predictive_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>beta_<wbr>binomial.<wbr>prior_<wbr>predictive_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.beta_binomial.validate_counts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>beta_<wbr>binomial.<wbr>validate_<wbr>counts</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#contingency-tables" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Contingency tables</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Contingency tables</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>log_<wbr>bayes_<wbr>factor_<wbr>independence</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.dirichlet_multinomial.posterior_cell_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>posterior_<wbr>cell_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.dirichlet_multinomial.cramers_v.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>cramers_<wbr>v</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.dirichlet_multinomial.log_odds_ratio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>log_<wbr>odds_<wbr>ratio</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.dirichlet_multinomial.log_multivariate_beta.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>log_<wbr>multivariate_<wbr>beta</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.dirichlet_multinomial.validate_table.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>validate_<wbr>table</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#means" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Means</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Means</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.normal_t.mean_posterior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>normal_<wbr>t.<wbr>mean_<wbr>posterior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.normal_t.pooled_difference_posterior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>normal_<wbr>t.<wbr>pooled_<wbr>difference_<wbr>posterior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.normal_t.difference_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>normal_<wbr>t.<wbr>difference_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.normal_t.log_bayes_factor_ttest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>normal_<wbr>t.<wbr>log_<wbr>bayes_<wbr>factor_<wbr>ttest</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.normal_t.summarise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>normal_<wbr>t.<wbr>summarise</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.normal_t.validate_sample.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>normal_<wbr>t.<wbr>validate_<wbr>sample</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#correlation" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Correlation</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Correlation</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.correlation.log_sampling_density.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>correlation.<wbr>log_<wbr>sampling_<wbr>density</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.correlation.log_prior_density.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>correlation.<wbr>log_<wbr>prior_<wbr>density</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.correlation.posterior_on_grid.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>correlation.<wbr>posterior_<wbr>on_<wbr>grid</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.correlation.log_bayes_factor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>correlation.<wbr>log_<wbr>bayes_<wbr>factor</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.correlation.rho_grid.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>correlation.<wbr>rho_<wbr>grid</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.correlation.validate_pair.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>correlation.<wbr>validate_<wbr>pair</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#partial-pooling" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Partial pooling</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Partial pooling</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.hierarchical.shrink.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>hierarchical.<wbr>shrink</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.hierarchical.between_group_variance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>hierarchical.<wbr>between_<wbr>group_<wbr>variance</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#summarising-a-posterior" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Summarising a posterior</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Summarising a posterior</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.intervals.interval.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>intervals.<wbr>interval</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.intervals.hdi_from_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>intervals.<wbr>hdi_<wbr>from_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.intervals.eti_from_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>intervals.<wbr>eti_<wbr>from_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.intervals.probability_from_draws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>intervals.<wbr>probability_<wbr>from_<wbr>draws</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.intervals.monte_carlo_se.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>intervals.<wbr>monte_<wbr>carlo_<wbr>se</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="#grid-approximation" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    <span>Grid approximation</span>
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Grid approximation</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.grid.normalize_log_density.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>grid.<wbr>normalize_<wbr>log_<wbr>density</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.grid.sample_from_grid.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>grid.<wbr>sample_<wbr>from_<wbr>grid</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.grid.grid_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>grid.<wbr>grid_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generated/bayesplain.core.grid.grid_quantile.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>grid.<wbr>grid_<wbr>quantile</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+      
+    <li class="md-nav__item md-nav__item--active md-nav__current-toc">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <span>Core mathematics</span>
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#core-mathematics" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Core mathematics</span>
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-analyses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The analyses</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The analyses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.proportion.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>proportion</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.compare_proportions.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>compare_<wbr>proportions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.contingency.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>contingency</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.mean.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>mean</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.compare_means.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>compare_<wbr>means</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.correlation.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>correlation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.compare_groups.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>compare_<wbr>groups</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-result-object" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The result object</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The result object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.Result.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>Result</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.Decision.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>Decision</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.BayesFactor.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>Bayes<wbr>Factor</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priors" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Priors</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.BetaPrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Beta<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.ConcentrationPrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Concentration<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.EffectSizePrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Effect<wbr>Size<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.CorrelationPrior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>Correlation<wbr>Prior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_proportion.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>proportion</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_table.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>table</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_effect_size.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>effect_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.resolve_correlation.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>correlation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.from_previous_study.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>study</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.describe.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>describe</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.priors.available.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>priors.<wbr>available</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequentist-twins" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Frequentist twins</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frequentist twins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.FrequentistTwin.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>Frequentist<wbr>Twin</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.one_proportion.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>proportion</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.two_proportions.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>two_<wbr>proportions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.chi_square_independence.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>chi_<wbr>square_<wbr>independence</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.one_mean.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>mean</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.two_means.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>two_<wbr>means</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.correlation.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>correlation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.frequentist.one_way_anova.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>frequentist.<wbr>one_<wbr>way_<wbr>anova</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teaching-tools" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Teaching tools</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Teaching tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.natural_frequencies.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>natural_<wbr>frequencies</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.grid_posterior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>grid_<wbr>posterior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.binomial_likelihood.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>binomial_<wbr>likelihood</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.sequential.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>sequential</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.precision_planning.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Natural<wbr>Frequencies</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.GridPosterior.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Grid<wbr>Posterior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.SequentialUpdate.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Sequential<wbr>Update</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.teach.PrecisionPlan.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>teach.<wbr>Precision<wbr>Plan</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Datasets</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.available.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>available</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.describe.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>describe</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_collisions.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>collisions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_tracts.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>tracts</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_blockgroups.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>blockgroups</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.datasets.load_parcels.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>datasets.<wbr>load_<wbr>parcels</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Configuration</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.get_seed.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>get_<wbr>seed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.set_seed.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>set_<wbr>seed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.get_draws.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>get_<wbr>draws</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="generated/bayesplain.set_draws.html" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>bayesplain.<wbr>set_<wbr>draws</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Validation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scope.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Scope, and what is deliberately missing</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="references.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>References</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-analyses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The analyses</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-result-object" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The result object</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priors" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Priors</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequentist-twins" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Frequentist twins</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teaching-tools" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Teaching tools</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Datasets</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Configuration</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                
+                
+                  
+
+
+  
+    <a href="https://github.com/knaaptime/bayesplain/blob/main/docs/api.rst" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m.12 13.5 3.74 3.74 1.42-1.41-2.33-2.33 2.33-2.33-1.42-1.41zm11.16 0-3.74-3.74-1.42 1.41 2.33 2.33-2.33 2.33 1.42 1.41z"/></svg>
+    </a>
+  
+  
+
+<h1 id="api-reference"><span id="api-ref"></span>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
+<h2 id="the-analyses">The analyses<a class="headerlink" href="#the-analyses" title="Link to this heading">¶</a></h2>
+<p>Seven functions, each returning a <a class="reference internal" href="generated/bayesplain.Result.html#bayesplain.Result" title="bayesplain.Result (Python class) — What every bayesplain analysis hands back."><code class="xref py py-class docutils literal notranslate"><span class="pre">Result</span></code></a>. The frequentist counterpart
+each one is paired with is named in its own documentation.</p>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.proportion.html#bayesplain.proportion" title="bayesplain.proportion (Python function) — Estimate one unknown rate from counts."><code class="xref py py-obj docutils literal notranslate"><span class="pre">proportion</span></code></a>(successes, n[, prior, reference, ...])</p></td>
+<td><p>Estimate one unknown rate from counts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.compare_proportions.html#bayesplain.compare_proportions" title="bayesplain.compare_proportions (Python function) — Compare a rate between two groups."><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_proportions</span></code></a>(successes, n[, prior, ...])</p></td>
+<td><p>Compare a rate between two groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.contingency.html#bayesplain.contingency" title="bayesplain.contingency (Python function) — Test whether the rows and columns of a table are related."><code class="xref py py-obj docutils literal notranslate"><span class="pre">contingency</span></code></a>(table[, prior, scheme, fixed, ...])</p></td>
+<td><p>Test whether the rows and columns of a table are related.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.mean.html#bayesplain.mean" title="bayesplain.mean (Python function) — Estimate one unknown average from a sample."><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></a>(x[, prior, reference, label, unit, ...])</p></td>
+<td><p>Estimate one unknown average from a sample.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.compare_means.html#bayesplain.compare_means" title="bayesplain.compare_means (Python function) — Compare the average of two groups."><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_means</span></code></a>(x, y[, prior, labels, ...])</p></td>
+<td><p>Compare the average of two groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.correlation.html#bayesplain.correlation" title="bayesplain.correlation (Python function) — Estimate the correlation between two variables."><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation</span></code></a>(x, y[, prior, labels, ...])</p></td>
+<td><p>Estimate the correlation between two variables.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.compare_groups.html#bayesplain.compare_groups" title="bayesplain.compare_groups (Python function) — Compare the averages of three or more groups."><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_groups</span></code></a>(data[, by, labels, pool, ...])</p></td>
+<td><p>Compare the averages of three or more groups.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-result-object">The result object<a class="headerlink" href="#the-result-object" title="Link to this heading">¶</a></h2>
+<p>Every analysis returns one of these, with the same methods throughout, so the
+interface learned for one carries over to all of them.</p>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.Result.html#bayesplain.Result" title="bayesplain.Result (Python class) — What every bayesplain analysis hands back."><code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code></a>(*, quantity, draws[, posterior, ...])</p></td>
+<td><p>What every <code class="docutils literal notranslate"><span class="pre">bayesplain</span></code> analysis hands back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.Decision.html#bayesplain.Decision" title="bayesplain.Decision (Python class) — The outcome of comparing a credible interval against a ROPE."><code class="xref py py-obj docutils literal notranslate"><span class="pre">Decision</span></code></a>(verdict, rope, interval, ...)</p></td>
+<td><p>The outcome of comparing a credible interval against a ROPE.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.BayesFactor.html#bayesplain.BayesFactor" title="bayesplain.BayesFactor (Python class) — A Bayes factor, with the caveat it should never be quoted without."><code class="xref py py-obj docutils literal notranslate"><span class="pre">BayesFactor</span></code></a>(bf10, bf01, log_bf10, ...)</p></td>
+<td><p>A Bayes factor, with the caveat it should never be quoted without.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="priors">Priors<a class="headerlink" href="#priors" title="Link to this heading">¶</a></h2>
+<p>Named presets, so nobody has to type a shape parameter to get started, and
+nobody can hide which assumption they used.</p>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.priors.BetaPrior.html#bayesplain.priors.BetaPrior" title="bayesplain.priors.BetaPrior (Python class) — A Beta prior over a proportion, carrying its own explanation."><code class="xref py py-obj docutils literal notranslate"><span class="pre">BetaPrior</span></code></a>(a, b[, name, rationale])</p></td>
+<td><p>A Beta prior over a proportion, carrying its own explanation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.priors.ConcentrationPrior.html#bayesplain.priors.ConcentrationPrior" title="bayesplain.priors.ConcentrationPrior (Python class) — A symmetric Dirichlet prior over the cells of a contingency table."><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcentrationPrior</span></code></a>(a[, name, rationale])</p></td>
+<td><p>A symmetric Dirichlet prior over the cells of a contingency table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.priors.EffectSizePrior.html#bayesplain.priors.EffectSizePrior" title="bayesplain.priors.EffectSizePrior (Python class) — A Cauchy prior on standardised effect size, for means and correlations."><code class="xref py py-obj docutils literal notranslate"><span class="pre">EffectSizePrior</span></code></a>(scale[, name, rationale])</p></td>
+<td><p>A Cauchy prior on standardised effect size, for means and correlations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.priors.CorrelationPrior.html#bayesplain.priors.CorrelationPrior" title="bayesplain.priors.CorrelationPrior (Python class) — A stretched-beta prior on a correlation coefficient."><code class="xref py py-obj docutils literal notranslate"><span class="pre">CorrelationPrior</span></code></a>(kappa[, name, rationale])</p></td>
+<td><p>A stretched-beta prior on a correlation coefficient.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.priors.resolve_proportion.html#bayesplain.priors.resolve_proportion" title="bayesplain.priors.resolve_proportion (Python function) — Turn whatever the user passed as prior= into a BetaPrior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_proportion</span></code></a>(prior)</p></td>
+<td><p>Turn whatever the user passed as <code class="docutils literal notranslate"><span class="pre">prior=</span></code> into a <code class="docutils literal notranslate"><span class="pre">BetaPrior</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.priors.resolve_table.html#bayesplain.priors.resolve_table" title="bayesplain.priors.resolve_table (Python function) — Turn whatever the user passed as prior= into a ConcentrationPrior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_table</span></code></a>(prior)</p></td>
+<td><p>Turn whatever the user passed as <code class="docutils literal notranslate"><span class="pre">prior=</span></code> into a <code class="docutils literal notranslate"><span class="pre">ConcentrationPrior</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.priors.resolve_effect_size.html#bayesplain.priors.resolve_effect_size" title="bayesplain.priors.resolve_effect_size (Python function) — Turn whatever the user passed as prior= into an EffectSizePrior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_effect_size</span></code></a>(prior)</p></td>
+<td><p>Turn whatever the user passed as <code class="docutils literal notranslate"><span class="pre">prior=</span></code> into an <code class="docutils literal notranslate"><span class="pre">EffectSizePrior</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.priors.resolve_correlation.html#bayesplain.priors.resolve_correlation" title="bayesplain.priors.resolve_correlation (Python function) — Turn whatever the user passed as prior= into a CorrelationPrior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_correlation</span></code></a>(prior)</p></td>
+<td><p>Turn whatever the user passed as <code class="docutils literal notranslate"><span class="pre">prior=</span></code> into a <code class="docutils literal notranslate"><span class="pre">CorrelationPrior</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.priors.from_previous_study.html#bayesplain.priors.from_previous_study" title="bayesplain.priors.from_previous_study (Python function) — Build a prior from an earlier study's counts."><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_previous_study</span></code></a>(successes, n)</p></td>
+<td><p>Build a prior from an earlier study's counts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.priors.describe.html#bayesplain.priors.describe" title="bayesplain.priors.describe (Python function) — Explain in one line what a prior assumes."><code class="xref py py-obj docutils literal notranslate"><span class="pre">describe</span></code></a>([prior])</p></td>
+<td><p>Explain in one line what a prior assumes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.priors.available.html#bayesplain.priors.available" title="bayesplain.priors.available (Python function) — List the preset prior names."><code class="xref py py-obj docutils literal notranslate"><span class="pre">available</span></code></a>()</p></td>
+<td><p>List the preset prior names.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequentist-twins">Frequentist twins<a class="headerlink" href="#frequentist-twins" title="Link to this heading">¶</a></h2>
+<p>The conventional tests, computed and printed alongside every Bayesian result.
+Usable on their own when you only want the classical answer.</p>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.FrequentistTwin.html#bayesplain.frequentist.FrequentistTwin" title="bayesplain.frequentist.FrequentistTwin (Python class) — A conventional test result, with its interpretation attached."><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrequentistTwin</span></code></a>(test, statistic_name, ...[, ...])</p></td>
+<td><p>A conventional test result, with its interpretation attached.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.one_proportion.html#bayesplain.frequentist.one_proportion" title="bayesplain.frequentist.one_proportion (Python function) — Exact binomial test and Wilson score interval for one proportion."><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_proportion</span></code></a>(successes, n[, p0, level])</p></td>
+<td><p>Exact binomial test and Wilson score interval for one proportion.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.two_proportions.html#bayesplain.frequentist.two_proportions" title="bayesplain.frequentist.two_proportions (Python function) — Two-proportion chi-square test and Wald interval on the difference."><code class="xref py py-obj docutils literal notranslate"><span class="pre">two_proportions</span></code></a>(successes, n[, level])</p></td>
+<td><p>Two-proportion chi-square test and Wald interval on the difference.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.chi_square_independence.html#bayesplain.frequentist.chi_square_independence" title="bayesplain.frequentist.chi_square_independence (Python function) — Pearson chi-square test of independence for an r x c table."><code class="xref py py-obj docutils literal notranslate"><span class="pre">chi_square_independence</span></code></a>(table[, correction])</p></td>
+<td><p>Pearson chi-square test of independence for an r x c table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.one_mean.html#bayesplain.frequentist.one_mean" title="bayesplain.frequentist.one_mean (Python function) — One-sample t-test and its confidence interval."><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_mean</span></code></a>(x[, mu0, level])</p></td>
+<td><p>One-sample t-test and its confidence interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.two_means.html#bayesplain.frequentist.two_means" title="bayesplain.frequentist.two_means (Python function) — Two-sample t-test and confidence interval on the difference."><code class="xref py py-obj docutils literal notranslate"><span class="pre">two_means</span></code></a>(x, y[, equal_var, level])</p></td>
+<td><p>Two-sample t-test and confidence interval on the difference.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.correlation.html#bayesplain.frequentist.correlation" title="bayesplain.frequentist.correlation (Python function) — Pearson correlation with its p-value and Fisher-z interval."><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation</span></code></a>(x, y[, level])</p></td>
+<td><p>Pearson correlation with its p-value and Fisher-z interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.frequentist.one_way_anova.html#bayesplain.frequentist.one_way_anova" title="bayesplain.frequentist.one_way_anova (Python function) — One-way ANOVA F test across three or more groups."><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_way_anova</span></code></a>(groups)</p></td>
+<td><p>One-way ANOVA F test across three or more groups.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="teaching-tools">Teaching tools<a class="headerlink" href="#teaching-tools" title="Link to this heading">¶</a></h2>
+<p>Pedagogy-only helpers that show a mechanism the analysis functions deliberately
+hide. Nothing here belongs in a research package; all of it belongs in a first
+course.</p>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.teach.natural_frequencies.html#bayesplain.teach.natural_frequencies" title="bayesplain.teach.natural_frequencies (Python function) — Lay out a detection problem as whole counts instead of probabilities."><code class="xref py py-obj docutils literal notranslate"><span class="pre">natural_frequencies</span></code></a>(base_rate, sensitivity, ...)</p></td>
+<td><p>Lay out a detection problem as whole counts instead of probabilities.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.teach.grid_posterior.html#bayesplain.teach.grid_posterior" title="bayesplain.teach.grid_posterior (Python function) — Multiply prior by likelihood over a grid, then divide by the total."><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_posterior</span></code></a>(grid[, prior, likelihood, ...])</p></td>
+<td><p>Multiply prior by likelihood over a grid, then divide by the total.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.teach.binomial_likelihood.html#bayesplain.teach.binomial_likelihood" title="bayesplain.teach.binomial_likelihood (Python function) — Likelihood of binomial data at each candidate rate on a grid."><code class="xref py py-obj docutils literal notranslate"><span class="pre">binomial_likelihood</span></code></a>(successes, n, grid)</p></td>
+<td><p>Likelihood of binomial data at each candidate rate on a grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.teach.sequential.html#bayesplain.teach.sequential" title="bayesplain.teach.sequential (Python function) — Recompute the posterior after each chunk of incoming data."><code class="xref py py-obj docutils literal notranslate"><span class="pre">sequential</span></code></a>(outcomes[, step, prior, level, label])</p></td>
+<td><p>Recompute the posterior after each chunk of incoming data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.teach.precision_planning.html#bayesplain.teach.precision_planning" title="bayesplain.teach.precision_planning (Python function) — Find the sample size that makes an interval narrow enough to act on."><code class="xref py py-obj docutils literal notranslate"><span class="pre">precision_planning</span></code></a>(target_width[, ...])</p></td>
+<td><p>Find the sample size that makes an interval narrow enough to act on.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.teach.NaturalFrequencies.html#bayesplain.teach.NaturalFrequencies" title="bayesplain.teach.NaturalFrequencies (Python class) — A 2x2 grid of whole counts, and what it implies."><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalFrequencies</span></code></a>(table, n, base_rate, ...)</p></td>
+<td><p>A 2x2 grid of whole counts, and what it implies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.teach.GridPosterior.html#bayesplain.teach.GridPosterior" title="bayesplain.teach.GridPosterior (Python class) — Prior, likelihood, and posterior over a grid, with the arithmetic shown."><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridPosterior</span></code></a>(grid, prior, likelihood, ...)</p></td>
+<td><p>Prior, likelihood, and posterior over a grid, with the arithmetic shown.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.teach.SequentialUpdate.html#bayesplain.teach.SequentialUpdate" title="bayesplain.teach.SequentialUpdate (Python class) — The posterior after each successive chunk of data."><code class="xref py py-obj docutils literal notranslate"><span class="pre">SequentialUpdate</span></code></a>(checkpoints, successes[, ...])</p></td>
+<td><p>The posterior after each successive chunk of data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.teach.PrecisionPlan.html#bayesplain.teach.PrecisionPlan" title="bayesplain.teach.PrecisionPlan (Python class) — How much data a target precision requires."><code class="xref py py-obj docutils literal notranslate"><span class="pre">PrecisionPlan</span></code></a>(required_n, target_width, ...)</p></td>
+<td><p>How much data a target precision requires.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="datasets">Datasets<a class="headerlink" href="#datasets" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.datasets.available.html#bayesplain.datasets.available" title="bayesplain.datasets.available (Python function) — List the datasets shipped with the package."><code class="xref py py-obj docutils literal notranslate"><span class="pre">available</span></code></a>()</p></td>
+<td><p>List the datasets shipped with the package.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.datasets.describe.html#bayesplain.datasets.describe" title="bayesplain.datasets.describe (Python function) — Explain what a dataset holds and which analyses it suits."><code class="xref py py-obj docutils literal notranslate"><span class="pre">describe</span></code></a>([name])</p></td>
+<td><p>Explain what a dataset holds and which analyses it suits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.datasets.load.html#bayesplain.datasets.load" title="bayesplain.datasets.load (Python function) — Load a shipped dataset by name."><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(name)</p></td>
+<td><p>Load a shipped dataset by name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.datasets.load_collisions.html#bayesplain.datasets.load_collisions" title="bayesplain.datasets.load_collisions (Python function) — Load traffic collisions for Los Angeles and San Diego counties."><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_collisions</span></code></a>()</p></td>
+<td><p>Load traffic collisions for Los Angeles and San Diego counties.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.datasets.load_tracts.html#bayesplain.datasets.load_tracts" title="bayesplain.datasets.load_tracts (Python function) — Load ACS estimates for Los Angeles County census tracts."><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_tracts</span></code></a>()</p></td>
+<td><p>Load ACS estimates for Los Angeles County census tracts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.datasets.load_blockgroups.html#bayesplain.datasets.load_blockgroups" title="bayesplain.datasets.load_blockgroups (Python function) — Load ACS estimates for Los Angeles County block groups."><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_blockgroups</span></code></a>()</p></td>
+<td><p>Load ACS estimates for Los Angeles County block groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.datasets.load_parcels.html#bayesplain.datasets.load_parcels" title="bayesplain.datasets.load_parcels (Python function) — Load Baltimore residential parcels with assessed values."><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_parcels</span></code></a>()</p></td>
+<td><p>Load Baltimore residential parcels with assessed values.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.get_seed.html#bayesplain.get_seed" title="bayesplain.get_seed (Python function) — Return the current default seed."><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_seed</span></code></a>()</p></td>
+<td><p>Return the current default seed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.set_seed.html#bayesplain.set_seed" title="bayesplain.set_seed (Python function) — Set the default seed for every subsequent analysis."><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_seed</span></code></a>(seed)</p></td>
+<td><p>Set the default seed for every subsequent analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.get_draws.html#bayesplain.get_draws" title="bayesplain.get_draws (Python function) — Return the current default number of posterior draws."><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_draws</span></code></a>()</p></td>
+<td><p>Return the current default number of posterior draws.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.set_draws.html#bayesplain.set_draws" title="bayesplain.set_draws (Python function) — Set the default number of posterior draws."><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_draws</span></code></a>(n_draws)</p></td>
+<td><p>Set the default number of posterior draws.</p></td>
+</tr>
+</tbody>
+</table>
+<h1 id="core-mathematics">Core mathematics<a class="headerlink" href="#core-mathematics" title="Link to this heading">¶</a></h1>
+<p>Layer 0: pure functions, no objects, no printing, nothing that knows it is
+being used to teach. Documented because the derivations belong somewhere
+readable, and because a methods audience will want to check them.</p>
+<h2 id="proportions">Proportions<a class="headerlink" href="#proportions" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.beta_binomial.posterior.html#bayesplain.core.beta_binomial.posterior" title="bayesplain.core.beta_binomial.posterior (Python function) — Exact Beta posterior for an unknown proportion."><code class="xref py py-obj docutils literal notranslate"><span class="pre">posterior</span></code></a>(successes, n[, a, b])</p></td>
+<td><p>Exact Beta posterior for an unknown proportion.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.beta_binomial.draws.html#bayesplain.core.beta_binomial.draws" title="bayesplain.core.beta_binomial.draws (Python function) — Draw independent samples from the exact Beta posterior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">draws</span></code></a>(successes, n[, a, b, size, rng])</p></td>
+<td><p>Draw independent samples from the exact Beta posterior.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.beta_binomial.log_marginal_likelihood.html#bayesplain.core.beta_binomial.log_marginal_likelihood" title="bayesplain.core.beta_binomial.log_marginal_likelihood (Python function) — Log marginal likelihood of binomial data under a Beta prior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_marginal_likelihood</span></code></a>(successes, n[, a, b])</p></td>
+<td><p>Log marginal likelihood of binomial data under a Beta prior.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.beta_binomial.log_bayes_factor_point_null.html#bayesplain.core.beta_binomial.log_bayes_factor_point_null" title="bayesplain.core.beta_binomial.log_bayes_factor_point_null (Python function) — Log Bayes factor comparing an unknown rate against a fixed value."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_bayes_factor_point_null</span></code></a>(successes, n[, ...])</p></td>
+<td><p>Log Bayes factor comparing an unknown rate against a fixed value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.beta_binomial.prior_predictive_mean.html#bayesplain.core.beta_binomial.prior_predictive_mean" title="bayesplain.core.beta_binomial.prior_predictive_mean (Python function) — Mean of a Beta(a, b) prior, i.e. the rate expected before data."><code class="xref py py-obj docutils literal notranslate"><span class="pre">prior_predictive_mean</span></code></a>([a, b])</p></td>
+<td><p>Mean of a <code class="docutils literal notranslate"><span class="pre">Beta(a,</span> <span class="pre">b)</span></code> prior, i.e. the rate expected before data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.beta_binomial.validate_counts.html#bayesplain.core.beta_binomial.validate_counts" title="bayesplain.core.beta_binomial.validate_counts (Python function) — Check that a successes/trials pair describes a possible experiment."><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_counts</span></code></a>(successes, n)</p></td>
+<td><p>Check that a successes/trials pair describes a possible experiment.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="contingency-tables">Contingency tables<a class="headerlink" href="#contingency-tables" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.html#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence (Python function) — Log Bayes factor for association against independence."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_bayes_factor_independence</span></code></a>(table[, ...])</p></td>
+<td><p>Log Bayes factor for association against independence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.dirichlet_multinomial.posterior_cell_draws.html#bayesplain.core.dirichlet_multinomial.posterior_cell_draws" title="bayesplain.core.dirichlet_multinomial.posterior_cell_draws (Python function) — Draw whole tables of cell probabilities from the Dirichlet posterior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">posterior_cell_draws</span></code></a>(table[, concentration, ...])</p></td>
+<td><p>Draw whole tables of cell probabilities from the Dirichlet posterior.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.dirichlet_multinomial.cramers_v.html#bayesplain.core.dirichlet_multinomial.cramers_v" title="bayesplain.core.dirichlet_multinomial.cramers_v (Python function) — Cramer's V for one or many tables of probabilities."><code class="xref py py-obj docutils literal notranslate"><span class="pre">cramers_v</span></code></a>(prob_tables)</p></td>
+<td><p>Cramer's V for one or many tables of probabilities.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.dirichlet_multinomial.log_odds_ratio.html#bayesplain.core.dirichlet_multinomial.log_odds_ratio" title="bayesplain.core.dirichlet_multinomial.log_odds_ratio (Python function) — Log odds ratio of a 2x2 table of probabilities, or a stack of them."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_odds_ratio</span></code></a>(prob_tables)</p></td>
+<td><p>Log odds ratio of a 2x2 table of probabilities, or a stack of them.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.dirichlet_multinomial.log_multivariate_beta.html#bayesplain.core.dirichlet_multinomial.log_multivariate_beta" title="bayesplain.core.dirichlet_multinomial.log_multivariate_beta (Python function) — Log of the Dirichlet normalising function."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_multivariate_beta</span></code></a>(alpha)</p></td>
+<td><p>Log of the Dirichlet normalising function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.dirichlet_multinomial.validate_table.html#bayesplain.core.dirichlet_multinomial.validate_table" title="bayesplain.core.dirichlet_multinomial.validate_table (Python function) — Check that an array is a usable table of counts."><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_table</span></code></a>(table)</p></td>
+<td><p>Check that an array is a usable table of counts.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="means">Means<a class="headerlink" href="#means" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.normal_t.mean_posterior.html#bayesplain.core.normal_t.mean_posterior" title="bayesplain.core.normal_t.mean_posterior (Python function) — Exact Student-t posterior for one unknown mean."><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_posterior</span></code></a>(n, mean, sd)</p></td>
+<td><p>Exact Student-t posterior for one unknown mean.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.normal_t.pooled_difference_posterior.html#bayesplain.core.normal_t.pooled_difference_posterior" title="bayesplain.core.normal_t.pooled_difference_posterior (Python function) — Exact Student-t posterior for a difference of means, equal variances."><code class="xref py py-obj docutils literal notranslate"><span class="pre">pooled_difference_posterior</span></code></a>(n1, mean1, sd1, ...)</p></td>
+<td><p>Exact Student-t posterior for a difference of means, equal variances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.normal_t.difference_draws.html#bayesplain.core.normal_t.difference_draws" title="bayesplain.core.normal_t.difference_draws (Python function) — Draw the difference of two means without assuming equal variances."><code class="xref py py-obj docutils literal notranslate"><span class="pre">difference_draws</span></code></a>(n1, mean1, sd1, n2, mean2, sd2)</p></td>
+<td><p>Draw the difference of two means without assuming equal variances.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.normal_t.log_bayes_factor_ttest.html#bayesplain.core.normal_t.log_bayes_factor_ttest" title="bayesplain.core.normal_t.log_bayes_factor_ttest (Python function) — Log JZS Bayes factor for a t statistic."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_bayes_factor_ttest</span></code></a>(t, n_effective, df[, ...])</p></td>
+<td><p>Log JZS Bayes factor for a t statistic.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.normal_t.summarise.html#bayesplain.core.normal_t.summarise" title="bayesplain.core.normal_t.summarise (Python function) — Reduce a sample to the three numbers every later step needs."><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarise</span></code></a>(x[, name])</p></td>
+<td><p>Reduce a sample to the three numbers every later step needs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.normal_t.validate_sample.html#bayesplain.core.normal_t.validate_sample" title="bayesplain.core.normal_t.validate_sample (Python function) — Check that a sample is usable, dropping missing values."><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_sample</span></code></a>(x[, name])</p></td>
+<td><p>Check that a sample is usable, dropping missing values.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="correlation">Correlation<a class="headerlink" href="#correlation" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.correlation.log_sampling_density.html#bayesplain.core.correlation.log_sampling_density" title="bayesplain.core.correlation.log_sampling_density (Python function) — Log density of an observed correlation given the true one."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_sampling_density</span></code></a>(r, rho, n)</p></td>
+<td><p>Log density of an observed correlation given the true one.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.correlation.log_prior_density.html#bayesplain.core.correlation.log_prior_density" title="bayesplain.core.correlation.log_prior_density (Python function) — Log density of the stretched-beta prior on a correlation."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_prior_density</span></code></a>(rho[, kappa])</p></td>
+<td><p>Log density of the stretched-beta prior on a correlation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.correlation.posterior_on_grid.html#bayesplain.core.correlation.posterior_on_grid" title="bayesplain.core.correlation.posterior_on_grid (Python function) — Evaluate and normalise the posterior over the true correlation."><code class="xref py py-obj docutils literal notranslate"><span class="pre">posterior_on_grid</span></code></a>(r, n[, kappa, points])</p></td>
+<td><p>Evaluate and normalise the posterior over the true correlation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.correlation.log_bayes_factor.html#bayesplain.core.correlation.log_bayes_factor" title="bayesplain.core.correlation.log_bayes_factor (Python function) — Log Bayes factor for a real correlation against no correlation."><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_bayes_factor</span></code></a>(r, n[, kappa, points])</p></td>
+<td><p>Log Bayes factor for a real correlation against no correlation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.correlation.rho_grid.html#bayesplain.core.correlation.rho_grid" title="bayesplain.core.correlation.rho_grid (Python function) — Build a grid over (-1, 1) that resolves a sharply peaked posterior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho_grid</span></code></a>(r, n[, points])</p></td>
+<td><p>Build a grid over (-1, 1) that resolves a sharply peaked posterior.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.correlation.validate_pair.html#bayesplain.core.correlation.validate_pair" title="bayesplain.core.correlation.validate_pair (Python function) — Check two paired samples and drop rows where either value is missing."><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_pair</span></code></a>(x, y)</p></td>
+<td><p>Check two paired samples and drop rows where either value is missing.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="partial-pooling">Partial pooling<a class="headerlink" href="#partial-pooling" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.hierarchical.shrink.html#bayesplain.core.hierarchical.shrink" title="bayesplain.core.hierarchical.shrink (Python function) — Pull group means toward the overall average, in proportion to noise."><code class="xref py py-obj docutils literal notranslate"><span class="pre">shrink</span></code></a>(means, standard_errors)</p></td>
+<td><p>Pull group means toward the overall average, in proportion to noise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.hierarchical.between_group_variance.html#bayesplain.core.hierarchical.between_group_variance" title="bayesplain.core.hierarchical.between_group_variance (Python function) — Estimate the spread between true group means, by DerSimonian-Laird."><code class="xref py py-obj docutils literal notranslate"><span class="pre">between_group_variance</span></code></a>(means, standard_errors)</p></td>
+<td><p>Estimate the spread between true group means, by DerSimonian-Laird.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="summarising-a-posterior">Summarising a posterior<a class="headerlink" href="#summarising-a-posterior" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.intervals.interval.html#bayesplain.core.intervals.interval" title="bayesplain.core.intervals.interval (Python function) — Posterior interval, taken analytically when that is possible."><code class="xref py py-obj docutils literal notranslate"><span class="pre">interval</span></code></a>([draws, level, kind, dist])</p></td>
+<td><p>Posterior interval, taken analytically when that is possible.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.intervals.hdi_from_draws.html#bayesplain.core.intervals.hdi_from_draws" title="bayesplain.core.intervals.hdi_from_draws (Python function) — Highest-density interval from posterior draws."><code class="xref py py-obj docutils literal notranslate"><span class="pre">hdi_from_draws</span></code></a>(draws[, level])</p></td>
+<td><p>Highest-density interval from posterior draws.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.intervals.eti_from_draws.html#bayesplain.core.intervals.eti_from_draws" title="bayesplain.core.intervals.eti_from_draws (Python function) — Equal-tailed interval from posterior draws."><code class="xref py py-obj docutils literal notranslate"><span class="pre">eti_from_draws</span></code></a>(draws[, level])</p></td>
+<td><p>Equal-tailed interval from posterior draws.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.intervals.probability_from_draws.html#bayesplain.core.intervals.probability_from_draws" title="bayesplain.core.intervals.probability_from_draws (Python function) — Posterior probability that a quantity satisfies a comparison."><code class="xref py py-obj docutils literal notranslate"><span class="pre">probability_from_draws</span></code></a>(draws, op, value)</p></td>
+<td><p>Posterior probability that a quantity satisfies a comparison.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.intervals.monte_carlo_se.html#bayesplain.core.intervals.monte_carlo_se" title="bayesplain.core.intervals.monte_carlo_se (Python function) — Compute the standard error of a posterior mean from i.i.d. draws."><code class="xref py py-obj docutils literal notranslate"><span class="pre">monte_carlo_se</span></code></a>(draws)</p></td>
+<td><p>Compute the standard error of a posterior mean from i.i.d.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="grid-approximation">Grid approximation<a class="headerlink" href="#grid-approximation" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils data align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.grid.normalize_log_density.html#bayesplain.core.grid.normalize_log_density" title="bayesplain.core.grid.normalize_log_density (Python function) — Turn an unnormalised log density on a grid into a proper density."><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_log_density</span></code></a>(log_density, grid)</p></td>
+<td><p>Turn an unnormalised log density on a grid into a proper density.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.grid.sample_from_grid.html#bayesplain.core.grid.sample_from_grid" title="bayesplain.core.grid.sample_from_grid (Python function) — Sample from a grid-approximated posterior by inverting its CDF."><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_from_grid</span></code></a>(density, grid[, size, rng])</p></td>
+<td><p>Sample from a grid-approximated posterior by inverting its CDF.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/bayesplain.core.grid.grid_mean.html#bayesplain.core.grid.grid_mean" title="bayesplain.core.grid.grid_mean (Python function) — Posterior mean by numerical integration on a grid."><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_mean</span></code></a>(density, grid)</p></td>
+<td><p>Posterior mean by numerical integration on a grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/bayesplain.core.grid.grid_quantile.html#bayesplain.core.grid.grid_quantile" title="bayesplain.core.grid.grid_quantile (Python function) — Quantiles of a grid-approximated posterior."><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_quantile</span></code></a>(density, grid, q)</p></td>
+<td><p>Quantiles of a grid-approximated posterior.</p></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2026-, Eli Knaap.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    9.1.0.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿bayesplain.core.correlation.log\_sampling\_density
+==================================================
+
+.. currentmodule:: bayesplain.core.correlation
+
+.. autofunction:: log_sampling_density

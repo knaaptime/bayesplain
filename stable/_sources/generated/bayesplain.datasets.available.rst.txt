@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.available
+=============================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: available

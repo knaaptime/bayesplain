@@ -1,0 +1,6 @@
+﻿bayesplain.core.beta\_binomial.draws
+====================================
+
+.. currentmodule:: bayesplain.core.beta_binomial
+
+.. autofunction:: draws
