@@ -1,0 +1,6 @@
+﻿bayesplain.compare\_groups
+==========================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: compare_groups

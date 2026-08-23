@@ -1,0 +1,6 @@
+﻿bayesplain.core.hierarchical.between\_group\_variance
+=====================================================
+
+.. currentmodule:: bayesplain.core.hierarchical
+
+.. autofunction:: between_group_variance

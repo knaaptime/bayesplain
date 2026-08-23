@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.one\_way\_anova
+======================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: one_way_anova

@@ -1,0 +1,6 @@
+﻿bayesplain.core.correlation.log\_prior\_density
+===============================================
+
+.. currentmodule:: bayesplain.core.correlation
+
+.. autofunction:: log_prior_density

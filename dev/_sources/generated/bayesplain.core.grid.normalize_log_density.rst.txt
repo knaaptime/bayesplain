@@ -1,0 +1,6 @@
+﻿bayesplain.core.grid.normalize\_log\_density
+============================================
+
+.. currentmodule:: bayesplain.core.grid
+
+.. autofunction:: normalize_log_density

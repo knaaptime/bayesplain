@@ -1,0 +1,6 @@
+﻿bayesplain.core.beta\_binomial.validate\_counts
+===============================================
+
+.. currentmodule:: bayesplain.core.beta_binomial
+
+.. autofunction:: validate_counts

@@ -1,0 +1,20 @@
+﻿bayesplain.teach.PrecisionPlan
+==============================
+
+.. currentmodule:: bayesplain.teach
+
+.. autoclass:: PrecisionPlan
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PrecisionPlan.summary
+   
+   

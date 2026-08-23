@@ -1,0 +1,6 @@
+﻿bayesplain.teach.precision\_planning
+====================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autofunction:: precision_planning

@@ -1,0 +1,6 @@
+﻿bayesplain.core.hierarchical.shrink
+===================================
+
+.. currentmodule:: bayesplain.core.hierarchical
+
+.. autofunction:: shrink

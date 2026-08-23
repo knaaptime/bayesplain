@@ -1,0 +1,6 @@
+﻿bayesplain.priors.describe
+==========================
+
+.. currentmodule:: bayesplain.priors
+
+.. autofunction:: describe
