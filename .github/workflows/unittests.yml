@@ -66,12 +66,12 @@ jobs:
 
       - name: run tests
         run: |
-          baysplain tests \
+          bayesplain tests \
           -v \
           -r a \
           -n auto \
           --color yes \
-          --cov baysplain \
+          --cov bayesplain \
           --cov-append \
           --cov-report term-missing \
           --cov-report xml .
