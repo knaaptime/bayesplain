@@ -64,7 +64,7 @@ jobs:
 
       - name: run tests
         run: |
-          bayesplain tests \
+          pytest bayesplain/tests \
           -v \
           -r a \
           -n auto \
