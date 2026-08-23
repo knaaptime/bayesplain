@@ -122,3 +122,6 @@ claude.md
 
 /.quarto/
 **/*.quarto_ipynb
+
+**.pytest_cache
+**.ruff_cache

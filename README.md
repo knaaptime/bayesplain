@@ -1,5 +1,9 @@
 # bayesplain
 
+
+[![Continuous Integration](https://github.com/knaaptime/bayesplain/actions/workflows/unittests.yml/badge.svg)](https://github.com/knaaptime/bayesplain/actions/workflows/unittests.yml)
+[![codecov](https://codecov.io/gh/knaaptime/bayesplain/branch/main/graph/badge.svg?token=XO4SilfBEb)](https://codecov.io/gh/knaaptime/bayesplain)
+
 **Bayesian answers to the questions frequentist tests are usually asked.**
 
 `bayesplain` gives you the Bayesian version of the handful of tests an
@@ -244,7 +248,7 @@ cd docs && make html
 ```
 
 Sphinx with `sphinx-immaterial` and executed notebooks, in the same shape as
-`bayespecon`. Builds clean with no warnings.
+`bayesplain`. Builds clean with no warnings.
 
 ## Development
 
