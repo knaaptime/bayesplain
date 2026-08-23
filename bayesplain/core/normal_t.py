@@ -288,16 +288,30 @@ def log_bayes_factor_ttest(
     log_null = -0.5 * (df + 1.0) * np.log1p(t2 / df)
     prior_g = stats.invgamma(a=0.5, scale=scale**2 / 2.0)
 
-    def integrand(g):
+    def log_integrand(g):
+        """Log of the integrand, relative to the null likelihood."""
         shrink = 1.0 + n_effective * g
         log_alt = -0.5 * np.log(shrink) - 0.5 * (df + 1.0) * np.log1p(
             t2 / (shrink * df)
         )
-        return np.exp(log_alt - log_null) * prior_g.pdf(g)
+        return log_alt - log_null + prior_g.logpdf(g)
 
-    value, _ = integrate.quad(integrand, 0.0, np.inf, limit=200)
+    # Integrate in log space, shifted by the peak. A large t statistic --
+    # which is exactly what you get when a mean is tested against a reference
+    # far from the data, or when the sample is large -- drives the integrand
+    # past the range of a float64 before quad ever sees it. Locating the peak
+    # on a coarse log-spaced sweep first keeps the shifted integrand near 1.
+    probe = np.logspace(-12, 12, 400)
+    with np.errstate(over="ignore", invalid="ignore"):
+        probe_values = log_integrand(probe)
+    finite = probe_values[np.isfinite(probe_values)]
+    peak = float(finite.max()) if finite.size else 0.0
+
+    value, _ = integrate.quad(
+        lambda g: np.exp(log_integrand(g) - peak), 0.0, np.inf, limit=200
+    )
     if not np.isfinite(value) or value <= 0:
         raise RuntimeError(
             f"the JZS integral did not converge for t={t}, df={df}, scale={scale}."
         )
-    return float(np.log(value))
+    return float(peak + np.log(value))

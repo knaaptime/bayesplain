@@ -155,6 +155,27 @@ class TestBayesFactor:
         assert np.isfinite(nt.log_bayes_factor_ttest(t, n_eff, df))
 
     @pytest.mark.parametrize(
+        ("t", "df"),
+        [(217.03, 7868), (50.0, 500), (500.0, 100_000), (1e4, 1000)],
+    )
+    def test_huge_t_does_not_overflow(self, t, df):
+        # exp(log_alt - log_null) leaves float64 range well before this. These
+        # are not exotic inputs: testing a mean against a reference far from
+        # the data does it immediately, which is what bp.mean() does by default
+        # on any variable that is not centred near zero.
+        value = nt.log_bayes_factor_ttest(t, n_effective=df + 1, df=df)
+        assert np.isfinite(value)
+        assert value > 0
+
+    def test_a_mean_far_from_the_reference_still_works(self):
+        # Floor areas in the thousands, against the default reference of 0.
+        pytest.importorskip("pandas")
+        sqft = bp.datasets.load_parcels()["sqft"]
+        res = bp.mean(sqft)
+        assert np.isfinite(res.log_bf10)
+        assert np.isfinite(res.interval()).all()
+
+    @pytest.mark.parametrize(
         ("kwargs", "match"),
         [
             ({"t": 2.0, "n_effective": 20, "df": 0}, "df must be positive"),
