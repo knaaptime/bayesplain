@@ -1,0 +1,21 @@
+﻿bayesplain.teach.NaturalFrequencies
+===================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autoclass:: NaturalFrequencies
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~NaturalFrequencies.bayes_rule_check
+      ~NaturalFrequencies.summary
+   
+   

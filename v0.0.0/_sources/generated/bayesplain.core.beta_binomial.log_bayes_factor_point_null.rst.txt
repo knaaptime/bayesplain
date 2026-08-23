@@ -1,0 +1,6 @@
+﻿bayesplain.core.beta\_binomial.log\_bayes\_factor\_point\_null
+==============================================================
+
+.. currentmodule:: bayesplain.core.beta_binomial
+
+.. autofunction:: log_bayes_factor_point_null

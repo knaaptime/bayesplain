@@ -1,0 +1,6 @@
+﻿bayesplain.core.intervals.interval
+==================================
+
+.. currentmodule:: bayesplain.core.intervals
+
+.. autofunction:: interval

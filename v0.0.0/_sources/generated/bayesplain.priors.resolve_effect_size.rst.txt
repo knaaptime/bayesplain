@@ -1,0 +1,6 @@
+﻿bayesplain.priors.resolve\_effect\_size
+=======================================
+
+.. currentmodule:: bayesplain.priors
+
+.. autofunction:: resolve_effect_size

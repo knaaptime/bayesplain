@@ -1,0 +1,1446 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../installation.html">
+      
+      
+        <link rel="next" href="priors.html">
+      
+      
+      <link rel="icon" href="">
+    
+    
+      
+        <title>Quickstart - bayesplain</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+        <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#one-analysis-both-frameworks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="bayesplain" class="md-header__button md-logo" aria-label="bayesplain" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            bayesplain
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quickstart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/knaaptime/bayesplain/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    knaaptime/bayesplain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="bayesplain" class="md-nav__button md-logo" aria-label="bayesplain" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    bayesplain
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/knaaptime/bayesplain/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    knaaptime/bayesplain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Getting started</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Getting started</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Installation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <span>Quickstart</span>
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Quickstart</span>
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#one-analysis-both-frameworks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>One analysis, both frameworks</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asking-a-question-the-p-value-cannot-answer" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Asking a question the p-<wbr>value cannot answer</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-memo-sentence" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The memo sentence</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translating-between-frameworks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Translating between frameworks</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-much-does-the-prior-matter" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>How much does the prior matter?</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-it" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Seeing it</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bayes-factor-when-someone-asks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The Bayes factor, when someone asks</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-other-six-analyses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The other six analyses</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility-in-a-classroom" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Reproducibility in a classroom</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Guides</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Guides</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="priors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Priors, and how much they matter</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frequentist-twins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>The frequentist twin</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="datasets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>The bundled datasets</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Reference</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Reference</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>API reference</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#core-mathematics" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Core mathematics</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Validation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scope.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Scope, and what is deliberately missing</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>References</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#one-analysis-both-frameworks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>One analysis, both frameworks</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asking-a-question-the-p-value-cannot-answer" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Asking a question the p-<wbr>value cannot answer</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-memo-sentence" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The memo sentence</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translating-between-frameworks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Translating between frameworks</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-much-does-the-prior-matter" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>How much does the prior matter?</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-it" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Seeing it</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bayes-factor-when-someone-asks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The Bayes factor, when someone asks</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-other-six-analyses" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>The other six analyses</span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility-in-a-classroom" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Reproducibility in a classroom</span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                
+                
+                  
+
+
+  
+    <a href="https://github.com/knaaptime/bayesplain/blob/main/docs/user-guide/quickstart.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m.12 13.5 3.74 3.74 1.42-1.41-2.33-2.33 2.33-2.33-1.42-1.41zm11.16 0-3.74-3.74-1.42 1.41 2.33 2.33-2.33 2.33 1.42 1.41z"/></svg>
+    </a>
+  
+  
+
+<h1 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">¶</a></h1>
+<p>Every analysis in <code class="docutils literal notranslate"><span class="pre">bayesplain</span></code> returns the same object with the same methods,
+so what you learn here works for all seven.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bayesplain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bp</span>
+
+<span class="n">bp</span><span class="o">.</span><span class="n">__version__</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'0.0.0'
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="one-analysis-both-frameworks">One analysis, both frameworks<a class="headerlink" href="#one-analysis-both-frameworks" title="Link to this heading">¶</a></h2>
+<p>Two counties’ rates of alcohol involvement in traffic collisions, from the
+bundled data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_collisions</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"county"</span><span class="p">)</span><span class="o">.</span><span class="n">alcohol_involved</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"sum"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">])</span>
+<span class="n">counts</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sum</th>
+      <th>size</th>
+    </tr>
+    <tr>
+      <th>county</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Los Angeles</th>
+      <td>803</td>
+      <td>9886</td>
+    </tr>
+    <tr>
+      <th>San Diego</th>
+      <td>243</td>
+      <td>2114</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">compare_proportions</span><span class="p">(</span>
+    <span class="n">successes</span><span class="o">=</span><span class="n">counts</span><span class="p">[</span><span class="s2">"sum"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">counts</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>==========================================================================
+ difference in rate (San Diego − Los Angeles)
+==========================================================================
+
+ BAYESIAN — what the data say about the quantity itself
+
+   most likely value         3.4 percentage points
+   95% credible interval     1.9 to 4.9 percentage points  (HDI)
+   P(San Diego higher)       1.000
+
+   Read: San Diego is higher than Los Angeles with 100% probability; the
+         gap is most likely 3.4 percentage points, and the data are
+         consistent with anything from 1.9 to 4.9 percentage points (95%
+         credible interval).
+
+ FREQUENTIST — two-proportion z-test (equivalently chi-square, 1 df)
+
+   chi-square (1 df)         24.89
+   p-value                   6.069e-07  (significant at 0.05)
+   95% confidence interval   1.9 to 4.8 percentage points  (Wald)
+
+   Read: If the two rates were identical, data at least this extreme would
+         turn up less than once in a million studies.
+
+   --------------------------------------------------------------------
+
+   How they line up
+     Both point the same way here, so the choice between them is not
+     about the conclusion but about what you can say. 'Significant'
+     licenses a claim about the data; the posterior licenses a claim
+     about the size of the effect, which is what a recommendation
+     actually needs.
+
+--------------------------------------------------------------------------
+ assumption   prior: uninformed — Beta(1, 1)
+ precision    100,000 independent draws; Monte Carlo error on the mean
+              is ±2.4e-05. These are exact samples, not a Markov chain.
+ next         .probability('&gt;', x)  .decide(rope=(lo, hi))  .sensitivity()
+==========================================================================
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>The posterior comes first because it is what a recommendation is written from.
+The conventional test comes second because you will meet it in every report you
+read, and because seeing both is the only reliable way to learn what each one
+actually claims.</p>
+<h2 id="asking-a-question-the-p-value-cannot-answer">Asking a question the p-value cannot answer<a class="headerlink" href="#asking-a-question-the-p-value-cannot-answer" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res</span><span class="o">.</span><span class="n">probability</span><span class="p">(</span><span class="s2">"&gt;"</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>   <span class="c1"># P(the gap exceeds 2 percentage points)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>0.97199
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">decide</span><span class="p">(</span><span class="n">rope</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)))</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>PRACTICALLY DIFFERENT — the whole 95% credible interval sits outside the
+                        range you called too small to act on (−1.0 to 1.0
+                        percentage points), so the difference is both real
+                        and big enough to matter
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>A “ROPE” is a region of practical equivalence: a range you decided in advance
+is too small to act on. Comparing the credible interval against it replaces
+“reject the null” with a rule that refers to consequences.</p>
+<h2 id="the-memo-sentence">The memo sentence<a class="headerlink" href="#the-memo-sentence" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'San Diego is higher than Los Angeles with 100% probability; the gap is most likely 3.4 percentage points, and the data are consistent with anything from 1.9 to 4.9 percentage points (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Have students write this themselves before revealing the method. Otherwise the
+convenience quietly becomes the learning objective.</p>
+<h2 id="translating-between-frameworks">Translating between frameworks<a class="headerlink" href="#translating-between-frameworks" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">translate</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>THE QUANTITY: difference in rate (San Diego − Los Angeles)
+
+What the posterior says
+  Given this data and the stated prior, there is a 95% probability the
+  value lies in the range 1.9 to 4.9 percentage points, and a 100%
+  probability it is greater than zero. Both are statements about the
+  quantity itself.
+
+What the two-proportion z-test (equivalently chi-square, 1 df) says
+  If the two rates were identical, data at least this extreme would turn
+  up less than once in a million studies.
+  It is not the probability that the null is true, not the probability
+  this finding is wrong, and it says nothing about how large the effect
+  is. p = 6.1e-07 is a statement about data given a hypothesis, not about
+  a hypothesis given data.
+  Across many repetitions of this study, 95% of intervals built this way
+  would contain the true value. It does not say there is a 95% chance the
+  true value lies in the range 1.9 to 4.8 percentage points — that
+  sentence is only available for a credible interval.
+
+How they line up
+  Both point the same way here, so the choice between them is not
+  about the conclusion but about what you can say. 'Significant'
+  licenses a claim about the data; the posterior licenses a claim
+  about the size of the effect, which is what a recommendation
+  actually needs.
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="how-much-does-the-prior-matter">How much does the prior matter?<a class="headerlink" href="#how-much-does-the-prior-matter" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">sensitivity</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>HOW MUCH DOES THE PRIOR MATTER?
+quantity: difference in rate (San Diego − Los Angeles)
+interval in percentage points
+
+prior                         95% interval            P(dir)        BF10
+--------------------------------------------------------------------------
+uninformed — Beta(1, 1)       1.9 to 4.9               1.000    2.11e+03
+jeffreys — Beta(0.5, 0.5)     1.9 to 4.8               1.000    2.17e+03
+gentle — Beta(2, 2)           2.0 to 4.9               1.000    1.21e+03
+skeptical — Beta(10, 10)      2.2 to 5.1               1.000        1.45
+
+Verdict: the estimate barely moves. The direction probability shifts by
+         less than 0.05 across every assumption tried and the interval
+         width by less than 1%, so this conclusion is driven by the data.
+         Report it, and note that you checked.
+
+But note: the Bayes factor is a different story: it moves by a factor of
+          1497 over the same priors, while the interval hardly budged.
+          That gap is not a bug in either number — it is why this package
+          leads with the estimate. Locating a value is a question the data
+          can mostly answer on its own; grading the evidence for one model
+          against another cannot be separated from what you assumed the
+          alternative looked like.
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Notice what this usually shows: the credible interval barely moves across every
+prior, while the Bayes factor moves a great deal. They are answering different
+questions, and that asymmetry is why this package leads with the estimate.</p>
+<h2 id="seeing-it">Seeing it<a class="headerlink" href="#seeing-it" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c614646f38b2ef0d99c16ac4d08ea69e3e7f737564aaef6f0c50eef83fbb6d19.png" src="../_images/c614646f38b2ef0d99c16ac4d08ea69e3e7f737564aaef6f0c50eef83fbb6d19.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"components"</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1f535f779a26707050f89194213e5f5ca659d87fb5a435f285306baca0cde70f.png" src="../_images/1f535f779a26707050f89194213e5f5ca659d87fb5a435f285306baca0cde70f.png" />
+</div>
+</div>
+<p>The second plot is the one that explains where a difference came from.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res</span><span class="o">.</span><span class="n">plot_kinds</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>['posterior', 'prior_posterior', 'components']
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="the-bayes-factor-when-someone-asks">The Bayes factor, when someone asks<a class="headerlink" href="#the-bayes-factor-when-someone-asks" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">bayes_factor</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>BF10 = 2.11e+03  (extreme evidence for a difference)
+BF01 = 0.000475
+Compares 'the two groups have different rates' against 'they have the same rate', under a flat Dirichlet prior over the 2x2 table. Prior-sensitive; run .sensitivity() before quoting it.
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Deliberately a method call rather than part of the summary.</p>
+<h2 id="the-other-six-analyses">The other six analyses<a class="headerlink" href="#the-other-six-analyses" title="Link to this heading">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">parcels</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_parcels</span><span class="p">()</span>
+
+<span class="n">rowhouses</span> <span class="o">=</span> <span class="n">parcels</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">parcels</span><span class="o">.</span><span class="n">rowhouse</span><span class="p">,</span> <span class="s2">"assessed_value"</span><span class="p">]</span>
+<span class="n">detached</span> <span class="o">=</span> <span class="n">parcels</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">parcels</span><span class="o">.</span><span class="n">rowhouse</span><span class="p">,</span> <span class="s2">"assessed_value"</span><span class="p">]</span>
+
+<span class="n">means</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">compare_means</span><span class="p">(</span>
+    <span class="n">rowhouses</span><span class="p">,</span> <span class="n">detached</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">"rowhouse"</span><span class="p">,</span> <span class="s2">"detached"</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"dollars"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">means</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'detached is higher than rowhouse with 100% probability; the gap is most likely 9362.39 dollars, and the data are consistent with anything from 3051.65 to 15752.44 dollars (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">groups</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">sub</span><span class="o">.</span><span class="n">assessed_value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">parcels</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"construction"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">res_groups</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">compare_groups</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"dollars"</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res_groups</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">only</span><span class="o">=</span><span class="p">[(</span><span class="s2">"Stucco"</span><span class="p">,</span> <span class="s2">"Brick"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Frame"</span><span class="p">,</span> <span class="s2">"Brick"</span><span class="p">)]))</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>PAIRWISE COMPARISONS (partially pooled)
+
+comparison                    difference  95% interval           P(1st&gt;2nd)
+----------------------------------------------------------------------------
+Stucco − Brick                74275.96    50774.92 to 97925.59        1.000
+Frame − Brick                 3940.42     -4289.47 to 12177.94        0.826
+
+comparison                      BF10 (JZS)   verdict
+----------------------------------------------------------------------------
+Stucco − Brick                 93470477.31   favours a difference
+Frame − Brick                         0.06   favours no difference
+
+Note: Every row is an estimate, not a test, so no multiple-comparisons
+      correction is applied or needed. Describing several groups does not
+      make the description of any one of them less accurate. If you are
+      worried that a small group looks extreme by chance, the fix is
+      pool=True, not a correction.
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">res_groups</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"forest"</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/663995925d769bda4aed2863459b9a57ead90f5ed5097d10a541ea85c44d3085.png" src="../_images/663995925d769bda4aed2863459b9a57ead90f5ed5097d10a541ea85c44d3085.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">parcels</span><span class="o">.</span><span class="n">construction</span><span class="p">,</span> <span class="n">parcels</span><span class="o">.</span><span class="n">condition</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bp</span><span class="o">.</span><span class="n">contingency</span><span class="p">(</span><span class="n">table</span><span class="p">)</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>==========================================================================
+ strength of association (Cramér's V) between rows and columns
+==========================================================================
+
+ BAYESIAN — what the data say about the quantity itself
+
+   most likely value         0.078
+   95% credible interval     0.064 to 0.092  (HDI)
+   P(above 0.100)            0.002
+
+   Read: The association strength is most likely 0.078, and the data are
+         consistent with anything from 0.064 to 0.092 (95% credible
+         interval).
+
+ FREQUENTIST — Pearson chi-square test of independence
+
+   chi-square (15 df)        123.9
+   p-value                   3.337e-19  (significant at 0.05)
+
+   Read: If rows and columns were unrelated, data at least this extreme
+         would turn up less than once in a million studies.
+
+   --------------------------------------------------------------------
+
+   How they line up
+     Both point the same way here, so the choice between them is not
+     about the conclusion but about what you can say. 'Significant'
+     licenses a claim about the data; the posterior licenses a claim
+     about the size of the effect, which is what a recommendation
+     actually needs.
+
+--------------------------------------------------------------------------
+ assumption   prior: uninformed — Dirichlet(1)
+ precision    100,000 independent draws; Monte Carlo error on the mean
+              is ±2.3e-05. These are exact samples, not a Markov chain.
+ note         Cramér's V cannot be negative, so P(above 0.1) is measured
+              against a conventional 'small association' bar rather than a
+              null. Set threshold= to a value that matters for your
+              decision instead.
+ next         .probability('&gt;', x)  .decide(rope=(lo, hi))  .sensitivity()
+==========================================================================
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">tracts</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_tracts</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"median_income"</span><span class="p">,</span> <span class="s2">"median_rent"</span><span class="p">])</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">correlation</span><span class="p">(</span>
+    <span class="n">tracts</span><span class="o">.</span><span class="n">median_income</span><span class="p">,</span> <span class="n">tracts</span><span class="o">.</span><span class="n">median_rent</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">"median income"</span><span class="p">,</span> <span class="s2">"median rent"</span><span class="p">],</span> <span class="n">aggregated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">corr</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'The correlation is most likely 0.781, and the data are consistent with anything from 0.765 to 0.796 (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="reproducibility-in-a-classroom">Reproducibility in a classroom<a class="headerlink" href="#reproducibility-in-a-classroom" title="Link to this heading">¶</a></h2>
+<p>The seed is fixed by default, so every student sees identical digits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">bp</span><span class="o">.</span><span class="n">get_seed</span><span class="p">(),</span> <span class="n">bp</span><span class="o">.</span><span class="n">get_draws</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>(12345, 100000)
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Having hidden that noise, the package surfaces it — every sampled quantity
+prints its Monte Carlo standard error. Use <code class="docutils literal notranslate"><span class="pre">bp.set_seed(None)</span></code> to show a class
+that the wobble is real.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2026-, Eli Knaap.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    9.1.0.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>

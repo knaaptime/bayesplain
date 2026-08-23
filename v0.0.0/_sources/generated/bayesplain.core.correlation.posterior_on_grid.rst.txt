@@ -1,0 +1,6 @@
+﻿bayesplain.core.correlation.posterior\_on\_grid
+===============================================
+
+.. currentmodule:: bayesplain.core.correlation
+
+.. autofunction:: posterior_on_grid

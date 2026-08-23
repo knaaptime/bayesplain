@@ -1,0 +1,6 @@
+﻿bayesplain.core.normal\_t.log\_bayes\_factor\_ttest
+===================================================
+
+.. currentmodule:: bayesplain.core.normal_t
+
+.. autofunction:: log_bayes_factor_ttest
