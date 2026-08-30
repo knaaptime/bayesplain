@@ -928,7 +928,7 @@ so what you learn here works for all seven.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'0.1.dev7+g4ad31605e'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'0.0.1.dev1+g4022c4a95'
 </code></pre></div>
 </div>
 </div>
@@ -1186,7 +1186,7 @@ questions, and that asymmetry is why this package leads with the estimate.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21e0f8a38994f0176c2786acd78fbab0093048f57b6d0c3c4158a462cf2bca6c.png" src="../_images/21e0f8a38994f0176c2786acd78fbab0093048f57b6d0c3c4158a462cf2bca6c.png" />
+<img alt="../_images/5fa10bce86a271036efdd1aad5aa259cbac7c5bc54201e5a639c07b79cb3ac4e.png" src="../_images/5fa10bce86a271036efdd1aad5aa259cbac7c5bc54201e5a639c07b79cb3ac4e.png" />
 </div>
 </div>
 <p>The second plot is the one that explains where a difference came from.</p>
@@ -1318,11 +1318,14 @@ Note: Every row is an estimate, not a test, so no multiple-comparisons
    --------------------------------------------------------------------
 
    How they line up
-     Both point the same way here, so the choice between them is not
-     about the conclusion but about what you can say. 'Significant'
-     licenses a claim about the data; the posterior licenses a claim
-     about the size of the effect, which is what a recommendation
-     actually needs.
+     They are not aimed at the same target. The test asks whether rows
+     and columns were unrelated, and rules it out at p = 3.34e-19. The
+     posterior does not measure against that hypothesis at all: it
+     measures against 0.100, a conventional bar for a small effect. So
+     the test tells you there is something here, and the interval —
+     0.064 to 0.092 — tells you how much. With data this plentiful the
+     first question is nearly always settled, which is why the second
+     one is the one worth reporting.
 
 --------------------------------------------------------------------------
  assumption   prior: uninformed — Dirichlet(1)
