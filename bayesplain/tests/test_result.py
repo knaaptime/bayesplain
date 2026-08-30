@@ -107,6 +107,15 @@ class TestDecide:
         assert a.verdict == b.verdict
         assert a.rope == b.rope
 
+    @pytest.mark.parametrize("rope", [(-0.5, 0.5), (-0.02, 0.02), (-0.0001, 0.0001)])
+    def test_every_explanation_is_a_finished_sentence(self, evictions, rope):
+        # The undecided branch once ended "...how much more data would",
+        # which reads as output that got cut off rather than as a sentence.
+        text = evictions.decide(rope=rope).explanation
+        assert not text.rstrip().endswith(
+            ("would", "is", "the", "a", "of", "and", "to")
+        ), f"explanation ends mid-clause: {text!r}"
+
 
 class TestBayesFactor:
     def test_reported_as_a_ratio_pair(self, evictions):

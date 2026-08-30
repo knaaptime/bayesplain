@@ -189,6 +189,10 @@ def contingency(
         display_scale=scale,
         decimals=decimals,
         direction_reference=reference,
+        # Cramér's V is compared against a "small association" bar; the
+        # chi-square null is exact independence. Those are different
+        # hypotheses, so the summary must not reconcile them by sign.
+        reference_is_null=(effect == "log_odds_ratio" and reference == 0.0),
         components=_row_profiles(cells, row_labels),
         component_axis="share of each row falling in the first column (%)",
         component_scale=100.0,

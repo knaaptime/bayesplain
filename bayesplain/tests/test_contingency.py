@@ -183,3 +183,25 @@ class TestOutput:
 
         out = bp.contingency(DOLLS).to_dict()
         assert json.loads(json.dumps(out))["analysis"] == "contingency"
+
+    def test_significant_table_is_not_described_as_finding_nothing(self):
+        # A 3x2 table with p ~ 1e-22 once printed "Neither framework finds
+        # much to report", because the reconciliation compared the posterior's
+        # probability of direction against 0.5 -- and that probability is
+        # measured against the 0.1 "small association" bar, not against the
+        # chi-square null of independence. Cramér's V cannot be negative, so it
+        # has no direction to be confident about in the first place.
+        counts = np.array([[7134, 613], [1209, 202], [261, 63]])
+        res = bp.contingency(counts)
+        assert res.frequentist.pvalue < 1e-10
+        text = " ".join(str(res.summary()).split())
+        assert "Neither framework finds much to report" not in text
+        assert "not aimed at the same target" in text
+
+    def test_log_odds_ratio_still_reconciles_by_direction(self):
+        # The 2x2 default measures against 0, which *is* the test's null, so
+        # the sign-based reconciliation remains the right one there.
+        res = bp.contingency(DOLLS)
+        assert res.reference_is_null is True
+        text = " ".join(str(res.summary()).split())
+        assert "not aimed at the same target" not in text

@@ -245,6 +245,15 @@ class Result:
     direction_reference : float, default 0.0
         The value that :meth:`probability` compares against by default, and
         the one the "probability of direction" line in the summary reports.
+    reference_is_null : bool, default True
+        Whether ``direction_reference`` is the same hypothesis the paired
+        frequentist test is built against. It is not for a quantity that
+        cannot be negative -- Cramér's V is compared against a conventional
+        "small association" bar, while the chi-square null is exact
+        independence. When the two targets differ, the summary reconciles the
+        frameworks on the size of the effect rather than on its sign, because
+        a probability of direction says nothing about a quantity that has only
+        one direction available to it.
     higher_label, lower_label : str, optional
         Group names used to build a plain-English sentence for comparisons.
     components : mapping, optional
@@ -299,6 +308,7 @@ class Result:
         display_scale: float = 1.0,
         decimals: int | None = None,
         direction_reference: float = 0.0,
+        reference_is_null: bool = True,
         higher_label: str = "",
         lower_label: str = "",
         components: Mapping[str, Any] | None = None,
@@ -329,6 +339,7 @@ class Result:
             decimals if decimals is not None else (1 if display_scale == 100 else 3)
         )
         self.direction_reference = float(direction_reference)
+        self.reference_is_null = bool(reference_is_null)
         self.higher_label = higher_label
         self.lower_label = lower_label
         self.components = dict(components) if components else {}
@@ -526,7 +537,7 @@ class Result:
                 f"the {pct} credible interval straddles the edge of the range "
                 f"you called too small to act on ({span}); the honest answer is "
                 f"that this data cannot settle the decision, and the useful "
-                f"next question is how much more data would"
+                f"next question is how much more data would settle it"
             )
         return Decision(verdict, (low, high), (lo, hi), inside, explanation)
 
@@ -637,6 +648,40 @@ class Result:
         sig = self.frequentist.significant
         null = self.frequentist.null_statement or "the null hypothesis held"
         thing = "difference" if self.is_comparison else "value"
+
+        if not self.reference_is_null:
+            # The posterior is measured against a bar, the test against a
+            # null, and the two are not the same hypothesis. Lining them up by
+            # sign would be a category error -- and, for a quantity that cannot
+            # go below zero, would report a probability of direction for
+            # something with only one direction. Reconcile on size instead.
+            lo, hi = self.interval()
+            bar = self._fmt(self.direction_reference)
+            title = "How they line up"
+            if sig:
+                body = (
+                    f"They are not aimed at the same target. The test asks "
+                    f"whether {null}, and rules it out at p = {p:.3g}. The "
+                    f"posterior does not measure against that hypothesis at "
+                    f"all: it measures against {bar}, a conventional bar for a "
+                    f"small effect. So the test tells you there is something "
+                    f"here, and the interval — {self._fmt_range(lo, hi)} — "
+                    f"tells you how much. With data this plentiful the first "
+                    f"question is nearly always settled, which is why the "
+                    f"second one is the one worth reporting."
+                )
+            else:
+                body = (
+                    f"Neither one finds much. The test cannot rule out that "
+                    f"{null} (p = {p:.3g}), and the posterior puts the effect "
+                    f"somewhere in {self._fmt_range(lo, hi)}, measured against "
+                    f"a {bar} bar for a small effect. Note that these are "
+                    f"different questions with a common answer here, not one "
+                    f"question asked twice: the interval is the more useful of "
+                    f"the two, because it is wide enough to show you which "
+                    f"conclusions the data cannot yet separate."
+                )
+            return [title, *_wrap(body, prefix="  ", width=68)]
 
         if not sig and prob >= 0.9:
             title = "Why they look like they disagree"
