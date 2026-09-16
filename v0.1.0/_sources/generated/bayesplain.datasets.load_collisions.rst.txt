@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.load\_collisions
+====================================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: load_collisions

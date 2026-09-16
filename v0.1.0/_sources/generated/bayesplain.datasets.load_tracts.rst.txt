@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.load\_tracts
+================================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: load_tracts

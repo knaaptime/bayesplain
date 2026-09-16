@@ -1,0 +1,6 @@
+﻿bayesplain.mean
+===============
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: mean

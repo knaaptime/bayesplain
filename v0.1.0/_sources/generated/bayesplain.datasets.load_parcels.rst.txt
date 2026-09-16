@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.load\_parcels
+=================================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: load_parcels

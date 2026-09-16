@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.two\_proportions
+=======================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: two_proportions

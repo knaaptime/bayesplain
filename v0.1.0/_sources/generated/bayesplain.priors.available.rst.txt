@@ -1,0 +1,6 @@
+﻿bayesplain.priors.available
+===========================
+
+.. currentmodule:: bayesplain.priors
+
+.. autofunction:: available

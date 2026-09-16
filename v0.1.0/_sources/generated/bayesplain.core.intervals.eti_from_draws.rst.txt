@@ -1,0 +1,6 @@
+﻿bayesplain.core.intervals.eti\_from\_draws
+==========================================
+
+.. currentmodule:: bayesplain.core.intervals
+
+.. autofunction:: eti_from_draws

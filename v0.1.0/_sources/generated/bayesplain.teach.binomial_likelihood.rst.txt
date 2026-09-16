@@ -1,0 +1,6 @@
+﻿bayesplain.teach.binomial\_likelihood
+=====================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autofunction:: binomial_likelihood

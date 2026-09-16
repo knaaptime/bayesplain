@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.describe
+============================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: describe

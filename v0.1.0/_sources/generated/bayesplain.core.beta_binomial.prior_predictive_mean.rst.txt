@@ -1,0 +1,6 @@
+﻿bayesplain.core.beta\_binomial.prior\_predictive\_mean
+======================================================
+
+.. currentmodule:: bayesplain.core.beta_binomial
+
+.. autofunction:: prior_predictive_mean

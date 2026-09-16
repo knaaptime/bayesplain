@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.one\_mean
+================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: one_mean

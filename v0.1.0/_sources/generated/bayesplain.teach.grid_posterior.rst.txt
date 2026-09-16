@@ -1,0 +1,6 @@
+﻿bayesplain.teach.grid\_posterior
+================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autofunction:: grid_posterior

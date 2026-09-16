@@ -1,0 +1,20 @@
+﻿bayesplain.priors.BetaPrior
+===========================
+
+.. currentmodule:: bayesplain.priors
+
+.. autoclass:: BetaPrior
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BetaPrior.dist
+   
+   

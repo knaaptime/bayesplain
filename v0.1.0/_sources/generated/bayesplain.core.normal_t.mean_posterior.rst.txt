@@ -1,0 +1,6 @@
+﻿bayesplain.core.normal\_t.mean\_posterior
+=========================================
+
+.. currentmodule:: bayesplain.core.normal_t
+
+.. autofunction:: mean_posterior

@@ -1,0 +1,6 @@
+﻿bayesplain.correlation
+======================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: correlation
