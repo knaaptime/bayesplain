@@ -1,0 +1,6 @@
+﻿bayesplain.compare\_proportions
+===============================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: compare_proportions

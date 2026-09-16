@@ -1,0 +1,6 @@
+﻿bayesplain.compare\_means
+=========================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: compare_means

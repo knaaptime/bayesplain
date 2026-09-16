@@ -1,0 +1,6 @@
+﻿bayesplain.core.intervals.hdi\_from\_draws
+==========================================
+
+.. currentmodule:: bayesplain.core.intervals
+
+.. autofunction:: hdi_from_draws

@@ -1,0 +1,6 @@
+﻿bayesplain.core.grid.sample\_from\_grid
+=======================================
+
+.. currentmodule:: bayesplain.core.grid
+
+.. autofunction:: sample_from_grid

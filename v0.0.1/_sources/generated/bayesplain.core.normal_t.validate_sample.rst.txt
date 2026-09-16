@@ -1,0 +1,6 @@
+﻿bayesplain.core.normal\_t.validate\_sample
+==========================================
+
+.. currentmodule:: bayesplain.core.normal_t
+
+.. autofunction:: validate_sample

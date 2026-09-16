@@ -1,0 +1,33 @@
+﻿bayesplain.Result
+=================
+
+.. currentmodule:: bayesplain
+
+.. autoclass:: Result
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Result.bayes_factor
+      ~Result.decide
+      ~Result.interval
+      ~Result.monte_carlo_error
+      ~Result.plot
+      ~Result.plot_kinds
+      ~Result.point
+      ~Result.probability
+      ~Result.probability_of_direction
+      ~Result.sensitivity
+      ~Result.sentence
+      ~Result.summary
+      ~Result.to_dict
+      ~Result.translate
+   
+   

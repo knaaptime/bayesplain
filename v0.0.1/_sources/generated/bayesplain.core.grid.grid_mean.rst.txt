@@ -1,0 +1,6 @@
+﻿bayesplain.core.grid.grid\_mean
+===============================
+
+.. currentmodule:: bayesplain.core.grid
+
+.. autofunction:: grid_mean

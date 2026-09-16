@@ -1,0 +1,6 @@
+﻿bayesplain.set\_seed
+====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: set_seed

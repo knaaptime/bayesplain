@@ -1,0 +1,6 @@
+﻿bayesplain.core.grid.grid\_quantile
+===================================
+
+.. currentmodule:: bayesplain.core.grid
+
+.. autofunction:: grid_quantile

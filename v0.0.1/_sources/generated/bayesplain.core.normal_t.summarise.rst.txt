@@ -1,0 +1,6 @@
+﻿bayesplain.core.normal\_t.summarise
+===================================
+
+.. currentmodule:: bayesplain.core.normal_t
+
+.. autofunction:: summarise

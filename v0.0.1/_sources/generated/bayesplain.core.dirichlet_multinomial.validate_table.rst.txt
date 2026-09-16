@@ -1,0 +1,6 @@
+﻿bayesplain.core.dirichlet\_multinomial.validate\_table
+======================================================
+
+.. currentmodule:: bayesplain.core.dirichlet_multinomial
+
+.. autofunction:: validate_table

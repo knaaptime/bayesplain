@@ -1,0 +1,6 @@
+﻿bayesplain.get\_seed
+====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: get_seed

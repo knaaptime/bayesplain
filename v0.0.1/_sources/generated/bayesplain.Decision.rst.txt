@@ -1,0 +1,14 @@
+﻿bayesplain.Decision
+===================
+
+.. currentmodule:: bayesplain
+
+.. autoclass:: Decision
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   
