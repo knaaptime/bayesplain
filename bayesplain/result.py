@@ -835,17 +835,47 @@ class Result:
         Bayes factor can move by an order of magnitude over the same range,
         because it is comparing models rather than locating a value.
 
+        The verdict weighs two things: how much the direction probability
+        moves, and how much the interval width itself moves. A probability
+        pinned at 0.5 -- a posterior sitting exactly on the reference, which
+        happens whenever the data are symmetric about it -- is maximum
+        uncertainty about the direction, not robustness, so it never counts
+        toward "the estimate barely moves" on its own.
+
         Returns
         -------
         list of str
             Wrapped verdict lines.
         """
         spread = max(probs) - min(probs)
-        same_side = all(p >= 0.5 for p in probs) or all(p < 0.5 for p in probs)
+        # A direction probability pinned at 0.5 carries no information: a
+        # posterior sitting exactly on the reference stays there under every
+        # prior, so it must not be read as robustness. Compare against a
+        # small tolerance so that float noise at the boundary (0.5 vs
+        # 0.4999999999999999) cannot decide the verdict.
+        pinned = all(abs(p - 0.5) < 0.01 for p in probs)
+        same_side = all(p >= 0.5 for p in probs) or all(p <= 0.5 for p in probs)
         widths = [hi - lo for lo, hi in bounds]
         width_change = (max(widths) - min(widths)) / max(widths)
 
-        if spread < 0.05 and same_side:
+        if pinned:
+            if width_change < 0.15:
+                body = (
+                    "the interval is stable across the priors tried, but the "
+                    "direction probability is 0.5 under every one of them: the "
+                    "posterior sits right on the reference, so the data cannot "
+                    "say which side the quantity falls on. Report the interval, "
+                    "and say the direction is undetermined rather than reading "
+                    "a sign from this data."
+                )
+            else:
+                body = (
+                    "nothing here is driven by the data alone. The direction "
+                    "probability is 0.5 under every prior, and the interval "
+                    f"width moves by {width_change:.0%} across them, so the "
+                    "answer reflects the assumption as much as the evidence."
+                )
+        elif spread < 0.05 and same_side and width_change < 0.15:
             width_text = (
                 "by less than 1%" if width_change < 0.01 else f"by {width_change:.0%}"
             )

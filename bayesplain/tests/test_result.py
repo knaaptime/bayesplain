@@ -160,7 +160,11 @@ class TestSensitivity:
     def test_small_samples_are_flagged_as_prior_dependent(self):
         res = bf.proportion(3, 6, reference=0.5)
         text = flat(res.sensitivity())
+        # With a symmetric posterior centred exactly on the reference, the
+        # direction probability is 0.5 under every prior -- that is maximum
+        # uncertainty, not robustness -- and the interval width moves ~44%.
         assert "estimate barely moves" not in text
+        assert "nothing here is driven by the data alone" in text
 
     def test_empty_prior_list_rejected(self, evictions):
         with pytest.raises(ValueError, match="no priors"):
