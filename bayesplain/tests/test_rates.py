@@ -185,7 +185,7 @@ class TestCompareRates:
         assert hi == pytest.approx(fhi, rel=0.15)
 
     def test_sentence_calls_a_ratio_a_ratio(self, road_diet):
-        assert "the ratio is most likely" in road_diet.sentence()
+        assert "best estimate of the ratio is" in road_diet.sentence()
 
     def test_difference_estimand_is_sampled(self):
         res = bp.compare_rates([31, 9], [4, 2], estimand="difference")

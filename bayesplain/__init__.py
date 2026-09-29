@@ -25,8 +25,8 @@ with no compiler and no convergence warnings, ever.
 
 Getting started
 ---------------
->>> import bayesplain as bf
->>> res = bf.compare_proportions(
+>>> import bayesplain as bp
+>>> res = bp.compare_proportions(
 ...     successes=[34, 51],
 ...     n=[220, 240],
 ...     labels=["District A", "District B"],

@@ -32,7 +32,7 @@ print(res.summary())
 
  BAYESIAN — what the data say about the quantity itself
 
-   most likely value         5.7 percentage points
+   best estimate (median)    5.7 percentage points
    95% credible interval     −1.2 to 12.9 percentage points  (HDI)
    P(District B higher)      0.945
 

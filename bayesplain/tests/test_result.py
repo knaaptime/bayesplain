@@ -3,13 +3,13 @@
 import numpy as np
 import pytest
 
-import bayesplain as bf
+import bayesplain as bp
 from bayesplain.core import intervals
 
 
 @pytest.fixture
 def evictions():
-    return bf.compare_proportions(
+    return bp.compare_proportions(
         successes=[34, 51], n=[220, 240], labels=["District A", "District B"]
     )
 
@@ -44,7 +44,7 @@ class TestIntervals:
         assert (hdi[1] - hdi[0]) < (eti[1] - eti[0])
 
     def test_analytic_eti_used_when_a_posterior_exists(self):
-        res = bf.proportion(34, 220)
+        res = bp.proportion(34, 220)
         lo, hi = res.interval(kind="eti")
         assert lo == pytest.approx(res.posterior.ppf(0.025), abs=1e-12)
         assert hi == pytest.approx(res.posterior.ppf(0.975), abs=1e-12)
@@ -52,14 +52,14 @@ class TestIntervals:
     @pytest.mark.parametrize("level", [0, 1, -0.1, 95])
     def test_invalid_level_rejected(self, level):
         with pytest.raises(ValueError, match="between 0 and 1"):
-            bf.proportion(34, 220).interval(level=level)
+            bp.proportion(34, 220).interval(level=level)
 
     def test_invalid_kind_rejected(self):
         with pytest.raises(ValueError, match="hdi"):
-            bf.proportion(34, 220).interval(kind="quantile")
+            bp.proportion(34, 220).interval(kind="quantile")
 
     def test_wider_level_gives_wider_interval(self):
-        res = bf.proportion(34, 220)
+        res = bp.proportion(34, 220)
         narrow = np.diff(res.interval(level=0.5))[0]
         wide = np.diff(res.interval(level=0.99))[0]
         assert wide > narrow
@@ -93,7 +93,7 @@ class TestDecide:
         assert decision.probability_inside == pytest.approx(1.0, abs=1e-6)
 
     def test_narrow_rope_far_from_the_effect_gives_difference(self):
-        res = bf.compare_proportions([10, 90], [100, 100])
+        res = bp.compare_proportions([10, 90], [100, 100])
         decision = res.decide(rope=(-0.01, 0.01))
         assert decision.verdict == "practically different"
 
@@ -141,7 +141,7 @@ class TestBayesFactor:
 class TestSensitivity:
     def test_walks_the_whole_ladder(self, evictions):
         text = flat(evictions.sensitivity())
-        for name in bf.priors.SENSITIVITY_LADDER:
+        for name in bp.priors.SENSITIVITY_LADDER:
             assert name in text
 
     def test_accepts_explicit_priors(self, evictions):
@@ -158,7 +158,7 @@ class TestSensitivity:
         assert "Bayes factor is a different story" in flat(evictions.sensitivity())
 
     def test_small_samples_are_flagged_as_prior_dependent(self):
-        res = bf.proportion(3, 6, reference=0.5)
+        res = bp.proportion(3, 6, reference=0.5)
         text = flat(res.sensitivity())
         # With a symmetric posterior centred exactly on the reference, the
         # direction probability is 0.5 under every prior -- that is maximum
@@ -180,7 +180,7 @@ class TestLanguage:
         assert evictions.sentence().startswith("District B is higher")
 
     def test_sentence_flips_when_the_data_flip(self):
-        res = bf.compare_proportions(
+        res = bp.compare_proportions(
             [51, 34], [240, 220], labels=["District A", "District B"]
         )
         assert res.sentence().startswith("District A is higher")
@@ -211,7 +211,7 @@ class TestSummary:
         assert "Monte Carlo error" in flat(evictions.summary())
 
     def test_says_so_when_exact(self):
-        text = flat(bf.proportion(34, 220).summary())
+        text = flat(bp.proportion(34, 220).summary())
         assert "exact" in text
         assert "Monte Carlo error" not in text
 
@@ -288,7 +288,7 @@ class TestPedagogy:
     @pytest.mark.pedagogy
     def test_week7_small_cells_degrade_gracefully(self):
         # chi-square warns here; the exact posterior does not need to.
-        res = bf.compare_proportions([1, 8], [30, 32])
+        res = bp.compare_proportions([1, 8], [30, 32])
         lo, hi = res.interval()
         assert np.isfinite([lo, hi]).all()
         assert any("fewer than 5" in note for note in res.notes)
@@ -298,8 +298,8 @@ class TestPedagogy:
         def spread(n):
             successes = int(0.3 * n)
             points = [
-                bf.proportion(successes, n, prior=p).point()
-                for p in bf.priors.SENSITIVITY_LADDER
+                bp.proportion(successes, n, prior=p).point()
+                for p in bp.priors.SENSITIVITY_LADDER
             ]
             return max(points) - min(points)
 

@@ -28,9 +28,10 @@ import numpy as np
 
 from . import frequentist, priors
 from ._config import get_draws, make_rng
+from ._frame import column
 from .core import correlation as core_corr
 from .core import grid as grid_utils
-from .result import Result
+from .result import Result, _missing_note
 
 __all__ = ["correlation"]
 
@@ -43,6 +44,7 @@ def correlation(
     aggregated: bool = False,
     n_draws: int | None = None,
     seed="unset",
+    data=None,
 ) -> Result:
     """Estimate the correlation between two variables.
 
@@ -53,8 +55,10 @@ def correlation(
 
     Parameters
     ----------
-    x, y : array_like
-        Paired observations. Rows where either value is missing are dropped.
+    x, y : array_like or str
+        Paired observations, or the names of two columns in ``data``. Rows
+        where either value is missing are dropped, and the summary says how
+        many.
     prior : str, float, or CorrelationPrior, default 'uninformed'
         Stretched-beta prior width on the correlation. The default is flat on
         (-1, 1). See :func:`bayesplain.priors.describe`.
@@ -69,6 +73,9 @@ def correlation(
         Number of draws. Defaults to the package setting.
     seed : int or None, optional
         Seed for the draws.
+    data : data frame, optional
+        Where to look ``x`` and ``y`` up when they are column names. The column
+        names become the labels unless ``labels`` is given.
 
     Returns
     -------
@@ -85,6 +92,10 @@ def correlation(
     >>> res.probability(">", 0) > 0.95
     True
     """
+    x, x_name = column(x, data, "x")
+    y, y_name = column(y, data, "y")
+    if labels is None and x_name and y_name:
+        labels = (x_name, y_name)
     a, b = core_corr.validate_pair(x, y)
     n = a.size
     resolved = priors.resolve_correlation(prior)
@@ -105,6 +116,9 @@ def correlation(
     log_bf10 = core_corr.log_bayes_factor(r, n, kappa=resolved.kappa)
 
     notes = _build_notes(n, aggregated)
+    missing = _missing_note(np.asarray(x, dtype=float).size - n, n, "incomplete pairs")
+    if missing:
+        notes.append(missing)
 
     def _refit(spec):
         return correlation(

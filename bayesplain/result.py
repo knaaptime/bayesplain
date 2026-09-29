@@ -43,6 +43,36 @@ def _join_unit(text: str, unit: str) -> str:
     return f"{text}{unit}" if unit in _TIGHT_UNITS else f"{text} {unit}"
 
 
+def _missing_note(dropped: int, kept: int, unit: str = "missing values") -> str | None:
+    """Say how many missing values were dropped, when any were.
+
+    Dropping them is the only thing a closed-form analysis can do, but doing it
+    silently hides an assumption: that the missing cases look like the rest.
+
+    Parameters
+    ----------
+    dropped : int
+        How many were removed.
+    kept : int
+        How many remain.
+    unit : str, default 'missing values'
+        What was dropped, plural, e.g. ``'incomplete pairs'``.
+
+    Returns
+    -------
+    str or None
+        The note, or ``None`` when nothing was dropped.
+    """
+    if dropped <= 0:
+        return None
+    noun = unit[:-1] if dropped == 1 and unit.endswith("s") else unit
+    return (
+        f"{dropped:,} {noun} {'was' if dropped == 1 else 'were'} dropped, "
+        f"leaving {kept:,}. That assumes the missing cases look like the rest; "
+        "if they differ systematically, so will the answer"
+    )
+
+
 def _pad_label(label: str, width: int) -> str:
     """Left-justify a label, keeping a gap even when it overruns the column."""
     return label.ljust(width) if len(label) < width else label + "  "
@@ -371,8 +401,9 @@ class Prediction:
             ]
         lines += [""]
         lines += _wrap(
-            f"The {self.what} will most likely come in around "
-            f"{_join_unit(self._fmt(self.point()), self.unit)}, and there is a "
+            f"The {self.what} is forecast at about "
+            f"{_join_unit(self._fmt(self.point()), self.unit)} (the median), and "
+            "there is a "
             f"{pct} probability it lands in the range {self._fmt_range(lo, hi)}.",
             prefix="   Read: ",
         )
@@ -664,8 +695,8 @@ class Result:
 
         Examples
         --------
-        >>> import bayesplain as bf
-        >>> res = bf.compare_proportions([34, 51], [220, 240])
+        >>> import bayesplain as bp
+        >>> res = bp.compare_proportions([34, 51], [220, 240])
         >>> round(res.probability(">", 0), 2)
         0.94
         """
@@ -805,12 +836,13 @@ class Result:
             size = "ratio" if self.direction_reference == 1.0 else "gap"
             return (
                 f"{higher} is higher than {lower} with {p:.0%} probability; the "
-                f"{size} is most likely {point}, and the data are consistent "
-                f"with anything from {span} ({pct} credible interval)."
+                f"best estimate of the {size} is {point}, and the data are "
+                f"consistent with anything from {span} ({pct} credible interval)."
             )
         return (
-            f"The {self.subject} is most likely {point}, and the data are "
-            f"consistent with anything from {span} ({pct} credible interval)."
+            f"The best estimate of the {self.subject} is {point}, and the data "
+            f"are consistent with anything from {span} ({pct} credible "
+            "interval)."
         )
 
     def translate(self, level: float = 0.95) -> _Report:
@@ -1250,7 +1282,9 @@ class Result:
         lines += [
             " BAYESIAN — what the data say about the quantity itself",
             "",
-            f"   {'most likely value':<{pad}}{self._fmt(self.point())}",
+            # The median, which is not the most likely value (the mode) --
+            # for a skewed posterior the two differ, so the label says which.
+            f"   {'best estimate (median)':<{pad}}{self._fmt(self.point())}",
             f"   {pct + ' credible interval':<{pad}}"
             f"{self._fmt_range(lo, hi)}  ({kind.upper()})",
             f"   {_pad_label(self._direction_label(), pad)}{prob:.3f}",

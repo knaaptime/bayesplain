@@ -77,8 +77,8 @@ def proportion(
 
     Examples
     --------
-    >>> import bayesplain as bf
-    >>> res = bf.proportion(successes=34, n=220, reference=0.10)
+    >>> import bayesplain as bp
+    >>> res = bp.proportion(successes=34, n=220, reference=0.10)
     >>> round(res.point(), 4)
     0.1566
     >>> round(res.probability(">", 0.10), 3)
@@ -248,8 +248,8 @@ def compare_proportions(
     Two districts' eviction filing rates -- the case where the two frameworks
     give the same numbers and very different advice:
 
-    >>> import bayesplain as bf
-    >>> res = bf.compare_proportions(
+    >>> import bayesplain as bp
+    >>> res = bp.compare_proportions(
     ...     successes=[34, 51],
     ...     n=[220, 240],
     ...     labels=["District A", "District B"],

@@ -23,9 +23,10 @@ from scipy import stats
 
 from . import frequentist, priors
 from ._config import get_draws, make_rng
+from ._frame import column
 from .core import normal_t
 from .core import regression as core_reg
-from .result import Prediction, Result
+from .result import Prediction, Result, _missing_note
 
 __all__ = ["regression"]
 
@@ -39,13 +40,15 @@ def regression(
     reference: float = 0.0,
     n_draws: int | None = None,
     seed="unset",
+    data=None,
 ) -> Result:
     """Estimate how much ``y`` changes per unit of ``x``, with one predictor.
 
     Parameters
     ----------
-    x, y : array_like
-        Predictor and outcome. Rows where either is missing are dropped.
+    x, y : array_like or str
+        Predictor and outcome, or the names of two columns in ``data``. Rows
+        where either is missing are dropped, and the summary says how many.
     prior : str, float, or EffectSizePrior, default 'conventional'
         Cauchy prior on the standardised slope. Affects the Bayes factor
         only; the posterior and credible interval do not depend on it.
@@ -60,6 +63,9 @@ def regression(
         Number of draws. Defaults to the package setting.
     seed : int or None, optional
         Seed for the draws.
+    data : data frame, optional
+        Where to look ``x`` and ``y`` up when they are column names. The column
+        names become the labels unless ``labels`` is given.
 
     Returns
     -------
@@ -82,6 +88,10 @@ def regression(
     >>> bool(np.allclose((lo, hi), res.frequentist.interval))
     True
     """
+    x, x_name = column(x, data, "x")
+    y, y_name = column(y, data, "y")
+    if labels is None and x_name and y_name:
+        labels = (x_name, y_name)
     fit = core_reg.fit_line(x, y)
     resolved = priors.resolve_effect_size(prior)
     n_draws = get_draws() if n_draws is None else int(n_draws)
@@ -106,6 +116,7 @@ def regression(
     b = np.asarray(y, dtype=float).ravel()
     keep = np.isfinite(a) & np.isfinite(b)
     a, b = a[keep], b[keep]
+    missing = _missing_note(int((~keep).sum()), fit.n, "incomplete rows")
 
     notes = [
         f"one predictor only. The slope describes how {labels[1]} moves with "
@@ -113,6 +124,8 @@ def regression(
         f"{labels[0]}: anything else that moves with {labels[0]} is folded "
         "into this number. For more predictors, see the scope page (Bambi).",
     ]
+    if missing:
+        notes.append(missing)
     if fit.n < 15:
         notes.append(
             f"only {fit.n} points, so this leans on the scatter around the line "

@@ -13,12 +13,12 @@ output says so.
 
 Examples
 --------
->>> import bayesplain as bf
->>> bf.priors.resolve_proportion("gentle")
+>>> import bayesplain as bp
+>>> bp.priors.resolve_proportion("gentle")
 BetaPrior(a=2.0, b=2.0, name='gentle')
->>> bf.priors.resolve_proportion((0.5, 0.5)).name
+>>> bp.priors.resolve_proportion((0.5, 0.5)).name
 'custom'
->>> bf.priors.describe("gentle").startswith("gentle: mild pull toward the middle")
+>>> bp.priors.describe("gentle").startswith("gentle: mild pull toward the middle")
 True
 """
 

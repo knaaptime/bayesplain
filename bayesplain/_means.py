@@ -29,8 +29,9 @@ from scipy import stats
 
 from . import frequentist, priors
 from ._config import get_draws, make_rng
+from ._frame import column, split_by
 from .core import normal_t
-from .result import Prediction, Result
+from .result import Prediction, Result, _missing_note
 
 __all__ = ["mean", "compare_means"]
 
@@ -81,6 +82,7 @@ def mean(
     log: bool = False,
     n_draws: int | None = None,
     seed="unset",
+    data=None,
 ) -> Result:
     """Estimate one unknown average from a sample.
 
@@ -90,8 +92,9 @@ def mean(
 
     Parameters
     ----------
-    x : array_like
-        Observations. Non-finite values are dropped.
+    x : array_like or str
+        Observations, or the name of a column in ``data``. Non-finite values
+        are dropped, and the summary says how many.
     prior : str, float, or EffectSizePrior, default 'conventional'
         Cauchy prior on standardised effect size. Affects the Bayes factor
         only; the posterior and credible interval do not depend on it.
@@ -114,6 +117,9 @@ def mean(
         setting.
     seed : int or None, optional
         Seed for those draws.
+    data : data frame, optional
+        Where to look ``x`` up when it is a column name. The column name
+        becomes the label unless ``label`` is given.
 
     Returns
     -------
@@ -131,7 +137,10 @@ def mean(
     >>> res.exact
     True
     """
+    x, name = column(x, data, "x")
+    label = label or name or ""
     values = _finite(x)
+    dropped = np.asarray(x, dtype=float).size - values.size
     if log:
         if reference is None:
             raise ValueError(
@@ -176,7 +185,7 @@ def mean(
     else:
         subject = label or "average"
         quantity = f"average {label}".strip() + f" (from {n} observations)"
-    notes = []
+    notes = [note for note in [_missing_note(dropped, n)] if note]
     if n < 15:
         notes.append(
             f"only {n} observations, so this leans on the assumption that the "
@@ -247,7 +256,7 @@ def mean(
 
 def compare_means(
     x,
-    y,
+    y=None,
     prior="conventional",
     labels=None,
     equal_var: bool = False,
@@ -256,6 +265,8 @@ def compare_means(
     unit: str = "",
     n_draws: int | None = None,
     seed="unset",
+    by=None,
+    data=None,
 ) -> Result:
     """Compare the average of two groups.
 
@@ -274,13 +285,16 @@ def compare_means(
 
     Parameters
     ----------
-    x, y : array_like
-        The two samples. The difference is oriented as ``y - x``.
+    x, y : array_like or str
+        The two samples, or the names of two columns in ``data``. The
+        difference is oriented as ``y - x``. Leave ``y`` out and pass ``by=``
+        instead for data in long format.
     prior : str, float, or EffectSizePrior, default 'conventional'
         Cauchy prior on standardised effect size. Affects the Bayes factor
         only.
     labels : sequence of str, optional
-        Group names. Defaults to ``('group 1', 'group 2')``.
+        Group names. Defaults to the column names or group labels when there
+        are any, otherwise ``('group 1', 'group 2')``.
     equal_var : bool, default False
         Pool the variances. Off by default, because assuming two groups have
         identical spread is an assumption people make out of habit rather than
@@ -303,6 +317,13 @@ def compare_means(
         Number of draws. Defaults to the package setting.
     seed : int or None, optional
         Seed for the draws.
+    by : array_like or str, optional
+        Group labels splitting ``x`` into exactly two groups, for data in long
+        format, e.g. ``compare_means("value", by="district", data=df)``. The
+        groups are taken in sorted order of their labels, so the difference is
+        second minus first.
+    data : data frame, optional
+        Where to look up ``x``, ``y`` and ``by`` when they are column names.
 
     Returns
     -------
@@ -330,6 +351,35 @@ def compare_means(
     >>> round(bp.compare_means(before, after).probability("<", 0), 2)
     0.77
     """
+    x, x_name = column(x, data, "x")
+    if by is not None:
+        if y is not None:
+            raise ValueError("pass either y or by=, not both.")
+        if paired:
+            raise ValueError(
+                "paired=True needs the two measurements side by side, as x and "
+                "y columns; by= splits one column into independent groups."
+            )
+        keys, by_name = column(by, data, "by")
+        names, samples = split_by(x, keys, by_name)
+        if len(names) != 2:
+            raise ValueError(
+                f"by= must split the data into exactly two groups, but it gives "
+                f"{len(names)}: {', '.join(names[:8])}. For three or more, use "
+                "compare_groups()."
+            )
+        x, y = samples
+        if labels is None:
+            labels = names
+    else:
+        if y is None:
+            raise ValueError(
+                "compare_means needs a second sample y, or by= to split x into "
+                "two groups."
+            )
+        y, y_name = column(y, data, "y")
+        if labels is None and x_name and y_name:
+            labels = (x_name, y_name)
     if paired and equal_var:
         raise ValueError(
             "equal_var has no meaning for paired data: the analysis is of the "
@@ -351,9 +401,16 @@ def compare_means(
                 f"and y has {b.size}."
             )
         keep = np.isfinite(a) & np.isfinite(b)
+        dropped = int((~keep).sum())
         a, b = a[keep], b[keep]
     else:
         a, b = _finite(x), _finite(y)
+        dropped = (
+            np.asarray(x, dtype=float).size
+            + np.asarray(y, dtype=float).size
+            - a.size
+            - b.size
+        )
     if log:
         a, b = _positive(a, "x"), _positive(b, "y")
 
@@ -362,7 +419,9 @@ def compare_means(
     rng = make_rng(seed)
 
     if paired:
-        return _compare_paired(a, b, resolved, labels, log, unit, n_draws, seed, rng)
+        return _compare_paired(
+            a, b, resolved, labels, log, unit, n_draws, seed, rng, dropped=dropped
+        )
 
     n1, mean1, sd1 = normal_t.summarise(a, "x")
     n2, mean2, sd2 = normal_t.summarise(b, "y")
@@ -387,7 +446,7 @@ def compare_means(
         scale=resolved.scale,
     )
 
-    notes = []
+    notes = [note for note in [_missing_note(dropped, n1 + n2)] if note]
     if min(n1, n2) < 15:
         notes.append(
             f"the smaller group has {min(n1, n2)} observations, so this leans "
@@ -471,7 +530,9 @@ def compare_means(
     )
 
 
-def _compare_paired(a, b, resolved, labels, log, unit, n_draws, seed, rng):
+def _compare_paired(
+    a, b, resolved, labels, log, unit, n_draws, seed, rng, dropped: int = 0
+):
     """Paired comparison: one exact posterior for the average difference."""
     differences = b - a
     n, mean_d, sd_d = normal_t.summarise(
@@ -485,6 +546,9 @@ def _compare_paired(a, b, resolved, labels, log, unit, n_draws, seed, rng):
     )
 
     notes = [_pairing_note(a, b, twin, log)]
+    missing = _missing_note(dropped, n, "incomplete pairs")
+    if missing:
+        notes.append(missing)
     if n < 15:
         notes.append(
             f"only {n} pairs, so this leans on the within-pair differences "
