@@ -24,7 +24,7 @@ print(bp.priors.describe())
 The names describe *what the assumption says*, not what family it belongs to.
 None of them is neutral, and the summary output says so.
 
-## Four families, one argument
+## Five families, one argument
 
 Each analysis takes `prior=`, and what it means depends on what is being
 estimated.
@@ -35,6 +35,14 @@ estimated.
 | `contingency` | cell probabilities, as `Dirichlet(a)` | same four names |
 | `mean`, `compare_means` | standardised effect size, as `Cauchy(scale)` | `modest`, `conventional`, `uninformed`, `generous` |
 | `correlation` | the correlation, as a stretched beta | `concentrated`, `modest`, `uninformed`, `generous` |
+| `rate`, `compare_rates` | the rate, as `Gamma(shape, exposure)` | `jeffreys` (default), `uninformed` |
+| `regression` | standardised slope, as `Cauchy(scale)` | same four as means |
+| `categories` | category shares, as `Dirichlet`, centred on the expected shares | same four as proportions |
+
+The rate presets carry no exposure, so neither says anything about how large a
+rate is — only how much to lean when events are rare. To say something about
+size, use an earlier period:
+`bp.priors.from_previous_period(events=30, exposure=5)`.
 
 The first two line up exactly rather than by analogy: for a 2×2 table of
 successes and failures, concentration `a` on the columns *is* a `Beta(a, a)`

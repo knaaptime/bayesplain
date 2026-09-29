@@ -1,6 +1,6 @@
 """The object every analysis returns.
 
-One class for all seven analyses, so that the methods a student learns in week
+One class for every analysis, so that the methods a student learns in week
 2 are the same methods they use in week 9. The muscle memory transfers; only
 the question changes.
 
@@ -11,8 +11,8 @@ factor is a method call rather than a printed default, because "BF = 4.2" is
 not a sentence anyone puts in a memo, and because it is prior-sensitive in a
 way that is genuinely hard to explain honestly to a non-technical audience.
 
-Nothing here is specific to proportions -- the seven analysis functions all
-assemble one of these.
+Nothing here is specific to proportions -- every analysis function assembles
+one of these.
 """
 
 from __future__ import annotations

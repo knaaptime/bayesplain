@@ -7,9 +7,9 @@
 **Bayesian answers to the questions frequentist tests are usually asked.**
 
 `bayesplain` gives you the Bayesian version of the handful of tests an
-introductory statistics course is built around — proportions, means,
-contingency tables, correlation, group comparisons — and prints the
-conventional test alongside it every time.
+introductory statistics course is built around — proportions, rates, means,
+contingency tables, goodness of fit, correlation, a line with one predictor,
+group comparisons — and prints the conventional test alongside it every time.
 
 It exists because there is a real hole in the Python ecosystem. `pingouin`
 gives you Bayes factors for t-tests and correlations; `PyMC` and `Bambi` own the
@@ -119,6 +119,7 @@ res.decide(rope=(-0.02, 0.02)) # HDI + ROPE, in place of "reject the null"
 res.sentence()                 # one memo-ready line
 res.translate()                # what the p-value claims vs the posterior
 res.sensitivity()              # how the conclusion moves as the prior widens
+res.predict(n=100)             # forecast the next 100 cases, uncertainty included
 res.plot(kind="components")    # where the difference came from
 res.plot_kinds()               # what this particular result can draw
 res.to_dict()                  # autograding hook
@@ -157,22 +158,30 @@ Carlo noise instead of questions about statistics. Having hidden that noise, the
 package then surfaces it — every sampled quantity prints its Monte Carlo
 standard error. Use `bp.set_seed(None)` to demonstrate that the wobble is real.
 
-## The seven analyses
+## The analyses
 
 All built, tested, and documented.
 
 | Function | Frequentist counterpart printed alongside | Method |
 | --- | --- | --- |
 | `proportion` | exact binomial test, Wilson interval | Beta-Binomial, exact |
-| `compare_proportions` | two-proportion z / chi-square, Wald interval | two Betas, exact draws |
+| `compare_proportions` | two-proportion z / chi-square; chi-square of equal proportions for 3+ groups | two Betas, exact draws; pairwise with optional beta-binomial partial pooling for 3+ |
+| `rate` | exact Poisson test, Garwood interval | Gamma-Poisson, exact; flags overdispersed periods |
+| `compare_rates` | exact conditional test for two Poisson rates | exact beta-prime posterior for the rate ratio |
 | `contingency` | Pearson chi-square test of independence | Gunel-Dickey, all four sampling schemes; posterior over Cramér's V or the log odds ratio |
-| `mean` | one-sample t-test | closed-form Student-t posterior |
-| `compare_means` | Welch's t-test (or pooled) | Student-t per group; Behrens-Fisher by draws |
+| `categories` | chi-square goodness-of-fit test | Dirichlet posterior over the shares; Cohen's w against a noise floor |
+| `mean` | one-sample t-test | closed-form Student-t posterior; `log=True` for geometric means |
+| `compare_means` | Welch's t-test (or pooled, or paired) | Student-t per group; Behrens-Fisher by draws; `paired=True`, `log=True` |
 | `correlation` | Pearson r, Fisher-z interval | exact sampling density, grid + inverse CDF |
+| `regression` | t-test on the slope | closed-form Student-t posterior; Zellner-Siow Bayes factor |
 | `compare_groups` | one-way ANOVA | pairwise-first, optional closed-form partial pooling |
 
+`proportion`, `rate`, `mean`, and `regression` also forecast the next
+observation with `.predict()`, next to the plug-in forecast that ignores the
+uncertainty in the estimate.
+
 Explicitly out of scope: multi-factor ANOVA, interactions, regression with more
-than one predictor, mixed models, anything needing importance sampling over
+than one predictor, overdispersed counts, mixed models, anything needing importance sampling over
 multiple hyperparameters. For those, go to `Bambi` — the docs include a worked
 handoff. There is also deliberately no *omnibus* Bayes factor for
 `compare_groups`; `.pairwise()` reports a validated one per pair instead, and
