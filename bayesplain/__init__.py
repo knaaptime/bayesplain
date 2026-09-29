@@ -44,6 +44,7 @@ bayesplain.core : The mathematics, as pure functions.
 from __future__ import annotations
 
 from . import core, datasets, frequentist, priors, teach
+from ._categories import SMALL_EFFECT_W, categories
 from ._config import (
     DEFAULT_DRAWS,
     DEFAULT_SEED,
@@ -75,6 +76,8 @@ __all__ = [
     "compare_rates",
     "contingency",
     "SMALL_EFFECT_V",
+    "categories",
+    "SMALL_EFFECT_W",
     "mean",
     "compare_means",
     "correlation",
