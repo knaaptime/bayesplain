@@ -353,3 +353,47 @@ class TestPlots:
         assert post.plot() is not None
         rng = np.random.default_rng(0)
         assert bp.teach.sequential(rng.binomial(1, 0.4, 100)).plot() is not None
+
+
+class TestPrecisionPlanningMean:
+    def test_required_n_actually_delivers_the_width(self):
+        plan = bp.teach.precision_planning_mean(target_width=4, sd=12)
+        rng = np.random.default_rng(0)
+        for n, ok in ((plan.required_n, True), (plan.required_n - 1, False)):
+            x = rng.normal(size=n)
+            x = (x - x.mean()) / x.std(ddof=1) * 12  # sd exactly as planned
+            lo, hi = bp.mean(x).interval(kind="eti")
+            assert (hi - lo <= 4) is ok
+
+    def test_two_groups_need_roughly_twice_as_many_each(self):
+        one = bp.teach.precision_planning_mean(4, 12).required_n
+        two = bp.teach.precision_planning_mean(4, 12, groups=2).required_n
+        assert 1.9 * one < two < 2.1 * one
+
+    def test_width_scales_with_the_square_of_the_sd(self):
+        base = bp.teach.precision_planning_mean(4, 12).required_n
+        doubled = bp.teach.precision_planning_mean(4, 24).required_n
+        assert doubled == pytest.approx(4 * base, rel=0.03)
+
+    def test_summary_talks_about_the_assumed_sd(self):
+        text = flat(bp.teach.precision_planning_mean(4, 12, unit="minutes").summary())
+        assert "standard deviation of 12 minutes" in text
+        assert "in each group" not in text
+        text2 = flat(bp.teach.precision_planning_mean(4, 12, groups=2).summary())
+        assert "in each group" in text2
+
+    @pytest.mark.parametrize(
+        "kwargs, match",
+        [
+            ({"target_width": 0, "sd": 1}, "target_width"),
+            ({"target_width": 1, "sd": -1}, "sd must be"),
+            ({"target_width": 1, "sd": 1, "groups": 3}, "groups must be"),
+        ],
+    )
+    def test_bad_inputs(self, kwargs, match):
+        with pytest.raises(ValueError, match=match):
+            bp.teach.precision_planning_mean(**kwargs)
+
+    def test_rate_plans_still_read_as_before(self):
+        text = flat(bp.teach.precision_planning(0.10, 0.15).summary())
+        assert "assuming the true rate is near 15%" in text

@@ -202,3 +202,110 @@ class TestPriors:
         text = bf.priors.describe()
         for name in bf.priors.available():
             assert name in text
+
+
+class TestRatioIntervals:
+    def test_risk_ratio_interval_is_on_the_ratio(self):
+        res = bf.compare_proportions([34, 51], [220, 240], estimand="risk_ratio")
+        lo, hi = res.frequentist.interval
+        assert 0 < lo < 1 < hi
+        # Katz log interval, by hand.
+        rr = (51 / 240) / (34 / 220)
+        se = np.sqrt(1 / 34 - 1 / 220 + 1 / 51 - 1 / 240)
+        assert lo == pytest.approx(rr * np.exp(-1.959964 * se), rel=1e-5)
+
+    def test_odds_ratio_interval_is_on_the_ratio(self):
+        res = bf.compare_proportions([34, 51], [220, 240], estimand="odds_ratio")
+        lo, hi = res.frequentist.interval
+        assert lo < res.frequentist.estimate < hi
+        assert lo > 0
+
+
+class TestSeveralProportions:
+    @pytest.fixture
+    def districts(self):
+        return bf.compare_proportions(
+            [34, 51, 12, 40], [220, 240, 30, 260], labels=["A", "B", "C", "D"]
+        )
+
+    def test_twin_is_the_chi_square_test_of_equal_proportions(self, districts):
+        from scipy import stats
+
+        table = np.array([[34, 186], [51, 189], [12, 18], [40, 220]])
+        want = stats.chi2_contingency(table, correction=False)
+        assert districts.frequentist.pvalue == pytest.approx(want[1])
+
+    def test_pairwise_reports_every_pair(self, districts):
+        report = str(districts.pairwise())
+        for pair in ["A − B", "A − C", "C − D"]:
+            assert pair in report
+
+    def test_pairwise_bayes_factor_matches_two_group_analysis(self, districts):
+        two = bf.compare_proportions([34, 12], [220, 30])
+        assert f"{two.bayes_factor().bf10:.3g}" in str(
+            districts.pairwise(only=[("A", "C")])
+        )
+
+    def test_pooling_pulls_the_small_group_the_furthest(self, districts):
+        pooled = bf.compare_proportions(
+            [34, 51, 12, 40],
+            [220, 240, 30, 260],
+            labels=["A", "B", "C", "D"],
+            pool=True,
+        )
+        raw_c = np.median(districts.group_draws["C"])
+        pooled_c = np.median(pooled.group_draws["C"])
+        raw_a = np.median(districts.group_draws["A"])
+        pooled_a = np.median(pooled.group_draws["A"])
+        assert abs(raw_c - pooled_c) > abs(raw_a - pooled_a)
+        assert pooled.interval()[1] < districts.interval()[1]
+
+    def test_identical_rates_pool_completely(self):
+        res = bf.compare_proportions([10, 20, 30], [100, 200, 300], pool=True)
+        assert res.pooling["full"]
+        assert any("indistinguishable" in note for note in res.notes)
+
+    def test_no_omnibus_bayes_factor(self, districts):
+        with pytest.raises(NotImplementedError, match="pairwise"):
+            districts.bayes_factor()
+
+    def test_ratio_estimand_needs_two_groups(self):
+        with pytest.raises(ValueError, match="two groups only"):
+            bf.compare_proportions([1, 2, 3], [9, 9, 9], estimand="risk_ratio")
+
+    def test_pooling_needs_three_groups(self):
+        with pytest.raises(ValueError, match="at least three groups"):
+            bf.compare_proportions([1, 2], [9, 9], pool=True)
+
+    def test_plots(self, districts):
+        pytest.importorskip("matplotlib")
+        import matplotlib
+
+        matplotlib.use("Agg")
+        for kind in ("forest", "pairwise", "components"):
+            assert districts.plot(kind=kind) is not None
+
+
+class TestProportionForecast:
+    def test_forecast_is_beta_binomial(self):
+        from scipy import stats
+
+        forecast = bf.proportion(34, 220).predict(n=100)
+        want = stats.betabinom(100, 35, 187)
+        assert forecast.probability(">=", 20) == pytest.approx(want.sf(19))
+        assert forecast.probability("<", 20) == pytest.approx(want.cdf(19))
+
+    def test_small_samples_forecast_wider_than_plug_in(self):
+        forecast = bf.proportion(3, 12).predict(n=100)
+        lo, hi = forecast.interval()
+        plo, phi = forecast._interval_of(forecast.plug_in, 0.95)
+        assert hi - lo > 2 * (phi - plo)
+        assert "Why:" in str(forecast.summary())
+
+    def test_bad_n_is_rejected(self):
+        with pytest.raises(ValueError, match="positive whole number"):
+            bf.proportion(3, 12).predict(n=0)
+
+    def test_comparisons_do_not_forecast(self):
+        with pytest.raises(NotImplementedError):
+            bf.compare_proportions([34, 51], [220, 240]).predict()

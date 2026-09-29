@@ -247,3 +247,103 @@ class TestFrequentistTwins:
         expected = stats.ttest_ind(b, a, equal_var=True)
         assert twin.statistic == pytest.approx(expected.statistic)
         assert twin.pvalue == pytest.approx(expected.pvalue)
+
+
+class TestPaired:
+    @pytest.fixture
+    def retiming(self):
+        before = np.array([41, 55, 38, 62, 47, 51, 36, 58, 44, 49, 53, 40.0])
+        after = before - np.array([3, 2, 4, 1, 3, 2, 5, 2, 3, 4, 2, 3.0])
+        return before, after
+
+    def test_matches_the_paired_t_test(self, retiming):
+        before, after = retiming
+        res = bp.compare_means(before, after, paired=True)
+        want = stats.ttest_rel(after, before)
+        assert res.frequentist.statistic == pytest.approx(want.statistic)
+        assert res.frequentist.pvalue == pytest.approx(want.pvalue)
+        lo, hi = res.interval(kind="eti")
+        assert (lo, hi) == pytest.approx(res.frequentist.interval)
+
+    def test_is_a_one_sample_analysis_of_the_differences(self, retiming):
+        before, after = retiming
+        paired = bp.compare_means(before, after, paired=True)
+        direct = bp.mean(after - before)
+        assert paired.interval() == pytest.approx(direct.interval())
+        assert paired.bayes_factor().log_bf10 == pytest.approx(
+            direct.bayes_factor().log_bf10
+        )
+
+    def test_pairing_note_reports_the_gain(self, retiming):
+        res = bp.compare_means(*retiming, paired=True)
+        assert any("pairing matters here" in note for note in res.notes)
+        assert bp.compare_means(*retiming).interval()[1] > res.interval()[1]
+
+    def test_incomplete_pairs_are_dropped_together(self, retiming):
+        before, after = retiming
+        with_gap = np.append(before, np.nan), np.append(after, 30.0)
+        assert bp.compare_means(*with_gap, paired=True).interval() == pytest.approx(
+            bp.compare_means(before, after, paired=True).interval()
+        )
+
+    def test_mismatched_lengths_are_rejected(self):
+        with pytest.raises(ValueError, match="one y for every x"):
+            bp.compare_means([1, 2, 3], [1, 2], paired=True)
+
+    def test_equal_var_with_paired_is_rejected(self, retiming):
+        with pytest.raises(ValueError, match="no meaning for paired"):
+            bp.compare_means(*retiming, paired=True, equal_var=True)
+
+    def test_sensitivity_refits_the_paired_model(self, retiming):
+        report = str(bp.compare_means(*retiming, paired=True).sensitivity())
+        assert "within-pair" in report
+
+
+@pytest.fixture(scope="module")
+def prices():
+    rng = np.random.default_rng(3)
+    return rng.lognormal(12.5, 0.6, 80), rng.lognormal(12.8, 0.7, 70)
+
+
+class TestLogScale:
+    def test_ratio_matches_the_log_scale_welch_interval(self, prices):
+        res = bp.compare_means(*prices, log=True)
+        lo, hi = res.interval(kind="eti")
+        flo, fhi = res.frequentist.interval
+        assert lo == pytest.approx(flo, rel=0.01)
+        assert hi == pytest.approx(fhi, rel=0.01)
+        assert res.direction_reference == 1.0
+        assert res.point() > 1
+
+    def test_mean_on_the_log_scale_is_the_geometric_mean(self, prices):
+        a, _ = prices
+        res = bp.mean(a, reference=250_000, log=True)
+        assert res.point() == pytest.approx(np.exp(np.log(a).mean()), rel=0.01)
+
+    def test_nonpositive_values_are_rejected(self):
+        with pytest.raises(ValueError, match="to be positive"):
+            bp.compare_means([1, 2, 0], [3, 4, 5], log=True)
+        with pytest.raises(ValueError, match="reference must be positive"):
+            bp.mean([1, 2, 3], reference=0, log=True)
+        with pytest.raises(ValueError, match="pass reference="):
+            bp.mean([1, 2, 3], log=True)
+
+
+class TestForecast:
+    def test_forecast_equals_the_textbook_prediction_interval(self):
+        rng = np.random.default_rng(5)
+        x = rng.normal(30, 8, 25)
+        forecast = bp.mean(x).predict()
+        assert forecast.interval() == pytest.approx(forecast.frequentist_interval)
+        n, m, s = x.size, x.mean(), x.std(ddof=1)
+        half = stats.t.ppf(0.975, n - 1) * s * np.sqrt(1 + 1 / n)
+        assert forecast.interval() == pytest.approx((m - half, m + half))
+
+    def test_log_forecast_is_back_transformed_exactly(self):
+        rng = np.random.default_rng(6)
+        x = rng.lognormal(3, 0.5, 30)
+        forecast = bp.mean(x, reference=20, log=True).predict()
+        lo, hi = forecast.interval()
+        logged = bp.mean(np.log(x)).predict().interval()
+        assert (lo, hi) == pytest.approx(tuple(np.exp(logged)))
+        assert forecast.probability(">", hi) == pytest.approx(0.025)

@@ -75,7 +75,7 @@ def _exp_twin(twin, test_suffix: str, null_statement: str):
 def mean(
     x,
     prior="conventional",
-    reference: float = 0.0,
+    reference: float | None = None,
     label: str = "",
     unit: str = "",
     log: bool = False,
@@ -95,9 +95,11 @@ def mean(
     prior : str, float, or EffectSizePrior, default 'conventional'
         Cauchy prior on standardised effect size. Affects the Bayes factor
         only; the posterior and credible interval do not depend on it.
-    reference : float, default 0.0
+    reference : float, optional
         The value to compare against: the null for the t-test, the threshold
         for the reported probability, and the point null for the Bayes factor.
+        Defaults to 0. With ``log=True`` it is required, on the original
+        scale, since zero has no logarithm.
     label : str, optional
         What the quantity is, for output, e.g. ``"commute time"``.
     unit : str, optional
@@ -131,11 +133,19 @@ def mean(
     """
     values = _finite(x)
     if log:
+        if reference is None:
+            raise ValueError(
+                "with log=True, pass reference= a typical value to compare "
+                "against, on the original scale — last year's median price, "
+                "a target commute. The raw-scale default of 0 has no logarithm."
+            )
         if not reference > 0:
             raise ValueError(
                 f"with log=True the reference must be positive, got {reference}."
             )
         values = _positive(values, "x")
+    elif reference is None:
+        reference = 0.0
     n, sample_mean, sd = normal_t.summarise(values, "x")
     resolved = priors.resolve_effect_size(prior)
     n_draws = get_draws() if n_draws is None else int(n_draws)
