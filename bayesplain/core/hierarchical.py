@@ -54,6 +54,10 @@ __all__ = ["between_group_variance", "shrink", "shrink_proportions"]
 #: rate, and pooling is reported as complete.
 _FULL_POOLING_KAPPA = 1e7
 
+#: Log-likelihood gap, in nats, below which one shared rate is judged to fit
+#: as well as separate ones. A likelihood ratio of exp(1e-4) is invisible.
+_FULL_POOLING_TOLERANCE = 1e-4
+
 
 def between_group_variance(means, standard_errors) -> float:
     r"""Estimate the spread between true group means, by DerSimonian-Laird.
@@ -183,26 +187,43 @@ def shrink_proportions(successes, n):
 
     pooled = (x.sum() + 0.5) / (t.sum() + 1.0)
     upper = np.log(_FULL_POOLING_KAPPA)
+    bounds = [(-30.0, 30.0), (np.log(1e-3), upper)]
     best = None
-    # A few starting concentrations, because the likelihood in kappa is
-    # often flat on one side and a single start can stall there.
-    for start in (1.0, 10.0, 100.0, 1e4):
+    # Several starting concentrations, one of them at the full-pooling
+    # bound, because the likelihood in kappa is often nearly flat on one
+    # side and a single start can stall anywhere along that ridge.
+    for start in (1.0, 10.0, 100.0, 1e4, _FULL_POOLING_KAPPA):
         fit = optimize.minimize(
             negative_log_likelihood,
             x0=[special.logit(pooled), np.log(start)],
             method="L-BFGS-B",
-            bounds=[(-30.0, 30.0), (np.log(1e-3), upper)],
+            bounds=bounds,
+            options={"ftol": 1e-13, "gtol": 1e-10},
         )
         if best is None or fit.fun < best.fun:
             best = fit
-    mu = float(special.expit(best.x[0]))
-    kappa = float(np.exp(best.x[1]))
-    full = best.x[1] >= upper - 1e-6
+
+    # Full pooling is a verdict about the data, not about where the optimiser
+    # happened to stop: if one shared rate fits as well as the best fit, to
+    # within a likelihood difference no data could detect, the groups are
+    # indistinguishable. Deciding this from the optimum's position alone made
+    # the answer depend on floating-point details of the platform.
+    shared = optimize.minimize_scalar(
+        lambda m: negative_log_likelihood([m, upper]),
+        bounds=(-30.0, 30.0),
+        method="bounded",
+    )
+    full = bool(shared.fun <= best.fun + _FULL_POOLING_TOLERANCE)
+    if full:
+        mu, kappa = float(special.expit(shared.x)), _FULL_POOLING_KAPPA
+    else:
+        mu = float(special.expit(best.x[0]))
+        kappa = float(np.exp(best.x[1]))
     return {
         "alpha": mu * kappa + x,
         "beta": (1.0 - mu) * kappa + t - x,
         "weights": t / (t + kappa),
         "kappa": kappa,
         "grand_mean": mu,
-        "full": bool(full),
+        "full": full,
     }
