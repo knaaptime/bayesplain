@@ -15,7 +15,7 @@ Requires scipy and nothing else.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 import numpy as np
 from scipy import stats
@@ -24,6 +24,12 @@ __all__ = [
     "FrequentistTwin",
     "one_proportion",
     "two_proportions",
+    "several_proportions",
+    "one_rate",
+    "two_rates",
+    "paired_means",
+    "goodness_of_fit",
+    "simple_regression",
     "chi_square_independence",
     "one_mean",
     "two_means",
@@ -207,8 +213,10 @@ def one_proportion(
     )
 
 
-def two_proportions(successes, n, level: float = 0.95) -> FrequentistTwin:
-    """Two-proportion chi-square test and Wald interval on the difference.
+def two_proportions(
+    successes, n, level: float = 0.95, estimand: str = "difference"
+) -> FrequentistTwin:
+    """Two-proportion chi-square test, with an interval on the chosen estimand.
 
     The chi-square statistic here is computed without a continuity correction,
     so it equals the square of the two-proportion z statistic and the p-values
@@ -229,11 +237,16 @@ def two_proportions(successes, n, level: float = 0.95) -> FrequentistTwin:
         Two trial counts, ``[n1, n2]``.
     level : float, default 0.95
         Confidence level for the interval.
+    estimand : {'difference', 'risk_ratio', 'odds_ratio'}, default 'difference'
+        What the interval is on. Ratios get the conventional log-scale
+        intervals (Katz for the risk ratio, Woolf for the odds ratio), with
+        half a case added to every cell when one of them is empty. The test
+        itself does not depend on this choice.
 
     Returns
     -------
     FrequentistTwin
-        The conventional result, oriented as group 2 minus group 1.
+        The conventional result, oriented as group 2 relative to group 1.
     """
     x1, x2 = (int(v) for v in successes)
     n1, n2 = (int(v) for v in n)
@@ -248,9 +261,35 @@ def two_proportions(successes, n, level: float = 0.95) -> FrequentistTwin:
     else:
         z, pvalue = np.nan, np.nan
 
-    se_diff = np.sqrt(p1 * (1.0 - p1) / n1 + p2 * (1.0 - p2) / n2)
     crit = stats.norm.ppf(0.5 + level / 2.0)
-    interval = (float(diff - crit * se_diff), float(diff + crit * se_diff))
+    if estimand == "difference":
+        se_diff = np.sqrt(p1 * (1.0 - p1) / n1 + p2 * (1.0 - p2) / n2)
+        estimate = diff
+        interval = (float(diff - crit * se_diff), float(diff + crit * se_diff))
+        method = "Wald"
+    elif estimand in {"risk_ratio", "odds_ratio"}:
+        cells = np.array([x1, n1 - x1, x2, n2 - x2], dtype=float)
+        if (cells == 0).any():
+            cells = cells + 0.5
+        a, b, c, d = cells
+        if estimand == "risk_ratio":
+            log_est = np.log((c / (c + d)) / (a / (a + b)))
+            se_log = np.sqrt(1 / a - 1 / (a + b) + 1 / c - 1 / (c + d))
+            method = "Katz log"
+        else:
+            log_est = np.log((c / d) / (a / b))
+            se_log = np.sqrt(1 / a + 1 / b + 1 / c + 1 / d)
+            method = "Woolf log"
+        estimate = float(np.exp(log_est))
+        interval = (
+            float(np.exp(log_est - crit * se_log)),
+            float(np.exp(log_est + crit * se_log)),
+        )
+    else:
+        raise ValueError(
+            "estimand must be 'difference', 'risk_ratio', or 'odds_ratio', got "
+            f"{estimand!r}."
+        )
 
     return FrequentistTwin(
         test="two-proportion z-test (equivalently chi-square, 1 df)",
@@ -258,10 +297,174 @@ def two_proportions(successes, n, level: float = 0.95) -> FrequentistTwin:
         statistic=float(z**2),
         pvalue=float(pvalue),
         dof=1.0,
-        estimate=float(diff),
+        estimate=float(estimate),
         interval=interval,
         interval_level=level,
-        interval_method="Wald",
+        interval_method=method,
+        null_statement="the two rates were identical",
+    )
+
+
+def several_proportions(successes, n) -> FrequentistTwin:
+    """Chi-square test that three or more groups share one rate.
+
+    The same Pearson statistic as a test of independence on the ``k x 2``
+    table of successes and failures, named for the question it is being
+    asked here.
+
+    Parameters
+    ----------
+    successes : array_like
+        Success count in each group.
+    n : array_like
+        Trial count in each group.
+
+    Returns
+    -------
+    FrequentistTwin
+        The omnibus result. ``estimate`` carries the range of the observed
+        rates, highest minus lowest, as a point estimate.
+    """
+    x = np.asarray(successes, dtype=float)
+    t = np.asarray(n, dtype=float)
+    table = np.column_stack([x, t - x])
+    chi2, pvalue, dof, expected = stats.chi2_contingency(table, correction=False)
+    rates = x / t
+    small = int((expected < 5).sum())
+    note = ""
+    if small:
+        note = (
+            f" Note: {small} cell(s) have expected counts below 5, where this "
+            "test's approximation is unreliable."
+        )
+    return FrequentistTwin(
+        test="chi-square test of equal proportions",
+        statistic_name="chi-square",
+        statistic=float(chi2),
+        pvalue=float(pvalue),
+        dof=float(dof),
+        estimate=float(rates.max() - rates.min()),
+        interval=None,
+        interval_method="none reported for the range of rates" + note,
+        null_statement="every group had the same rate",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Rates
+# ---------------------------------------------------------------------------
+
+
+def one_rate(
+    events: float, exposure: float, rate0: float, level: float = 0.95
+) -> FrequentistTwin:
+    """Exact Poisson test and exact (Garwood) interval for one rate.
+
+    Parameters
+    ----------
+    events : int
+        Events counted.
+    exposure : float
+        Exposure they were counted over.
+    rate0 : float
+        Null value for the rate, per unit of exposure.
+    level : float, default 0.95
+        Confidence level for the interval.
+
+    Returns
+    -------
+    FrequentistTwin
+        The conventional result. The two-sided p-value doubles the smaller
+        tail, which is what makes it consistent with the Garwood interval.
+    """
+    events, exposure = int(events), float(exposure)
+    expected = rate0 * exposure
+    null = stats.poisson(expected)
+    pvalue = min(1.0, 2.0 * min(null.cdf(events), null.sf(events - 1)))
+    alpha = 1.0 - level
+    low = stats.chi2.ppf(alpha / 2.0, 2 * events) / (2.0 * exposure) if events else 0.0
+    high = stats.chi2.ppf(1.0 - alpha / 2.0, 2 * events + 2) / (2.0 * exposure)
+    z = (events - expected) / np.sqrt(expected)
+
+    return FrequentistTwin(
+        test="exact Poisson test",
+        statistic_name="z (for reference)",
+        statistic=float(z),
+        pvalue=float(pvalue),
+        dof=None,
+        estimate=float(events / exposure),
+        interval=(float(low), float(high)),
+        interval_level=level,
+        interval_method="exact Garwood",
+        null_statement=f"the true rate were exactly {rate0:.4g}",
+    )
+
+
+def two_rates(
+    events, exposure, estimand: str = "ratio", level: float = 0.95
+) -> FrequentistTwin:
+    """Exact conditional test comparing two Poisson rates.
+
+    Conditional on the total number of events, the count in group 2 is
+    binomial, with success probability equal to group 2's share of the
+    exposure if the rates are the same. That turns the comparison into an
+    exact binomial test, with no approximation and no dependence on how large
+    the rates are.
+
+    Parameters
+    ----------
+    events : array_like
+        Two event counts, ``[y1, y2]``.
+    exposure : array_like
+        Two exposures, ``[t1, t2]``.
+    estimand : {'ratio', 'difference'}, default 'ratio'
+        What the interval is on. The ratio gets the exact conditional
+        interval; the difference gets a Wald interval.
+    level : float, default 0.95
+        Confidence level.
+
+    Returns
+    -------
+    FrequentistTwin
+        The conventional result, oriented as group 2 relative to group 1.
+    """
+    y1, y2 = (int(v) for v in events)
+    t1, t2 = (float(v) for v in exposure)
+    total = y1 + y2
+    if total == 0:
+        raise ValueError("no events in either group, so there is nothing to test.")
+    share0 = t2 / (t1 + t2)
+    test = stats.binomtest(y2, total, share0)
+    z = (y2 - total * share0) / np.sqrt(total * share0 * (1.0 - share0))
+
+    if estimand == "ratio":
+        ci = test.proportion_ci(confidence_level=level, method="exact")
+
+        def to_ratio(share):
+            return np.inf if share >= 1.0 else share / (1.0 - share) * t1 / t2
+
+        estimate = (y2 / t2) / (y1 / t1) if y1 else np.inf
+        interval = (float(to_ratio(ci.low)), float(to_ratio(ci.high)))
+        method = "exact conditional (Clopper-Pearson)"
+    elif estimand == "difference":
+        estimate = y2 / t2 - y1 / t1
+        se = np.sqrt(y1 / t1**2 + y2 / t2**2)
+        crit = stats.norm.ppf(0.5 + level / 2.0)
+        interval = (float(estimate - crit * se), float(estimate + crit * se))
+        method = "Wald"
+    else:
+        raise ValueError(f"estimand must be 'ratio' or 'difference', got {estimand!r}.")
+
+    return FrequentistTwin(
+        test="exact conditional test for two Poisson rates",
+        statistic_name="z (for reference)",
+        statistic=float(z),
+        pvalue=float(test.pvalue),
+        dof=None,
+        estimate=float(estimate),
+        interval=interval,
+        interval_level=level,
+        interval_method=method,
         null_statement="the two rates were identical",
     )
 
@@ -311,6 +514,33 @@ def one_mean(x, mu0: float = 0.0, level: float = 0.95) -> FrequentistTwin:
         interval_level=level,
         interval_method="Student t",
         null_statement=f"the true mean were exactly {mu0:g}",
+    )
+
+
+def paired_means(x, y, level: float = 0.95) -> FrequentistTwin:
+    """Paired t-test: a one-sample t-test on the within-pair differences.
+
+    Parameters
+    ----------
+    x, y : array_like
+        The two measurements on each unit, in the same order. The difference
+        is oriented as ``y - x``. Pairs with either value missing are dropped.
+    level : float, default 0.95
+        Confidence level.
+
+    Returns
+    -------
+    FrequentistTwin
+        The conventional result on the average difference.
+    """
+    a = np.asarray(x, dtype=float).ravel()
+    b = np.asarray(y, dtype=float).ravel()
+    keep = np.isfinite(a) & np.isfinite(b)
+    twin = one_mean(b[keep] - a[keep], mu0=0.0, level=level)
+    return replace(
+        twin,
+        test="paired t-test",
+        null_statement="the average within-pair difference were exactly zero",
     )
 
 
@@ -507,4 +737,97 @@ def chi_square_independence(table, correction: bool = False) -> FrequentistTwin:
         interval=None,
         interval_method="none available for Cramer's V" + note,
         null_statement="rows and columns were unrelated",
+    )
+
+
+def goodness_of_fit(counts, expected_shares) -> FrequentistTwin:
+    """Pearson chi-square goodness-of-fit test for one categorical variable.
+
+    Parameters
+    ----------
+    counts : array_like
+        Observed count in each category.
+    expected_shares : array_like
+        The share each category should hold under the null. Normalised to sum
+        to one.
+
+    Returns
+    -------
+    FrequentistTwin
+        The conventional result. ``estimate`` carries Cohen's w, the sample
+        effect size, as a point estimate with no uncertainty attached.
+    """
+    observed = np.asarray(counts, dtype=float)
+    shares = np.asarray(expected_shares, dtype=float)
+    shares = shares / shares.sum()
+    total = observed.sum()
+    expected = total * shares
+    chi2, pvalue = stats.chisquare(observed, f_exp=expected)
+    small = int((expected < 5).sum())
+    note = ""
+    if small:
+        note = (
+            f" Note: {small} categor{'y has' if small == 1 else 'ies have'} "
+            "expected counts below 5, where this test's approximation is "
+            "unreliable."
+        )
+    return FrequentistTwin(
+        test="chi-square goodness-of-fit test",
+        statistic_name="chi-square",
+        statistic=float(chi2),
+        pvalue=float(pvalue),
+        dof=float(observed.size - 1),
+        estimate=float(np.sqrt(chi2 / total)),
+        interval=None,
+        interval_method="none available for Cohen's w" + note,
+        null_statement="the true shares were exactly the expected ones",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Regression
+# ---------------------------------------------------------------------------
+
+
+def simple_regression(x, y, level: float = 0.95) -> FrequentistTwin:
+    """t-test and confidence interval for a least-squares slope.
+
+    Parameters
+    ----------
+    x, y : array_like
+        Predictor and outcome. Rows where either is missing are dropped.
+    level : float, default 0.95
+        Confidence level.
+
+    Returns
+    -------
+    FrequentistTwin
+        The conventional result on the slope.
+
+    Notes
+    -----
+    As with a mean, this interval coincides with the equal-tailed credible
+    interval under the reference prior. Same arithmetic, different sentence.
+    """
+    a = np.asarray(x, dtype=float).ravel()
+    b = np.asarray(y, dtype=float).ravel()
+    keep = np.isfinite(a) & np.isfinite(b)
+    a, b = a[keep], b[keep]
+    fit = stats.linregress(a, b)
+    df = a.size - 2
+    crit = stats.t.ppf(0.5 + level / 2.0, df)
+    return FrequentistTwin(
+        test="t-test on the least-squares slope",
+        statistic_name="t",
+        statistic=float(fit.slope / fit.stderr),
+        pvalue=float(fit.pvalue),
+        dof=float(df),
+        estimate=float(fit.slope),
+        interval=(
+            float(fit.slope - crit * fit.stderr),
+            float(fit.slope + crit * fit.stderr),
+        ),
+        interval_level=level,
+        interval_method="Student t",
+        null_statement="the true slope were exactly zero",
     )

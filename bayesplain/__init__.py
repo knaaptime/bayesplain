@@ -57,7 +57,8 @@ from ._correlation import correlation
 from ._groups import compare_groups
 from ._means import compare_means, mean
 from ._proportions import compare_proportions, proportion
-from .result import BayesFactor, Decision, Result
+from ._rates import compare_rates, rate
+from .result import BayesFactor, Decision, Prediction, Result
 
 try:  # pragma: no cover - depends on install method
     from importlib.metadata import PackageNotFoundError, version
@@ -70,6 +71,8 @@ __all__ = [
     # analyses
     "proportion",
     "compare_proportions",
+    "rate",
+    "compare_rates",
     "contingency",
     "SMALL_EFFECT_V",
     "mean",
@@ -80,6 +83,7 @@ __all__ = [
     "Result",
     "Decision",
     "BayesFactor",
+    "Prediction",
     # sub-packages
     "priors",
     "frequentist",

@@ -12,11 +12,12 @@ The frequentist counterparts are the sample proportion with its standard error
 from __future__ import annotations
 
 import numpy as np
+from scipy import stats
 
 from . import frequentist, priors
 from ._config import get_draws, make_rng
 from .core import beta_binomial, dirichlet_multinomial
-from .result import Result
+from .result import Prediction, Result
 
 __all__ = ["proportion", "compare_proportions"]
 
@@ -71,7 +72,8 @@ def proportion(
     Returns
     -------
     Result
-        Call ``.summary()`` for the full report.
+        Call ``.summary()`` for the full report, and ``.predict(n=...)`` for a
+        forecast of the successes among the next ``n`` cases.
 
     Examples
     --------
@@ -109,6 +111,7 @@ def proportion(
     )
     twin = frequentist.one_proportion(successes, n, p0=reference)
 
+    total = n
     notes = []
     if n < 30:
         notes.append(
@@ -120,6 +123,20 @@ def proportion(
             f"all {n} observations fell on one side; the posterior still gives "
             "a usable interval where a Wald confidence interval would collapse "
             "to zero width"
+        )
+
+    def _predictor(n: int = 100) -> Prediction:
+        n_new = int(n)
+        if n_new < 1 or n_new != n:
+            raise ValueError(f"n must be a positive whole number of cases, got {n}.")
+        forecast = stats.betabinom(
+            n_new, resolved.a + successes, resolved.b + total - successes
+        )
+        return Prediction(
+            what=f"number of successes in the next {n_new:,} cases",
+            dist=forecast,
+            plug_in=stats.binom(n_new, successes / total),
+            discrete=True,
         )
 
     def _refit(spec):
@@ -153,6 +170,7 @@ def proportion(
         components={f"rate ({successes}/{n})": post},
         component_axis="rate (%)",
         component_scale=100.0,
+        predictor=_predictor,
         refit=_refit,
         prior_ladder=priors.SENSITIVITY_LADDER,
         n_draws=n_draws,

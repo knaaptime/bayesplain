@@ -9,6 +9,9 @@ Modules
 beta_binomial
     Exact Beta posteriors and closed-form marginal likelihoods for
     proportions.
+gamma_poisson
+    Exact Gamma posteriors for rates, the exact posterior of a rate ratio, and
+    Bayes factors for one rate and for two.
 dirichlet_multinomial
     Closed-form Bayes factors against independence for contingency tables,
     plus Dirichlet posterior draws over cell probabilities.
@@ -32,6 +35,7 @@ from . import (
     beta_binomial,
     correlation,
     dirichlet_multinomial,
+    gamma_poisson,
     grid,
     hierarchical,
     intervals,
@@ -42,6 +46,7 @@ __all__ = [
     "beta_binomial",
     "correlation",
     "dirichlet_multinomial",
+    "gamma_poisson",
     "grid",
     "hierarchical",
     "intervals",

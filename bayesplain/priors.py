@@ -39,6 +39,11 @@ __all__ = [
     "CORRELATION_PRIORS",
     "CORRELATION_SENSITIVITY_LADDER",
     "resolve_correlation",
+    "RatePrior",
+    "RATE_PRIORS",
+    "RATE_SENSITIVITY_LADDER",
+    "resolve_rate",
+    "from_previous_period",
     "PROPORTION_PRIORS",
     "TABLE_PRIORS",
     "SENSITIVITY_LADDER",
@@ -667,3 +672,187 @@ def resolve_correlation(prior) -> CorrelationPrior:
             "name or a positive number."
         ) from err
     return CorrelationPrior(kappa, "custom", f"custom width {kappa:g} prior")
+
+
+# ---------------------------------------------------------------------------
+# Rates
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class RatePrior:
+    """A Gamma prior on a rate of events per unit of exposure.
+
+    Read the two numbers as data you pretend to have seen already: ``shape``
+    events over ``exposure`` units of watching. The presets set ``exposure``
+    to zero, which carries no information about how large the rate is -- no
+    units, so nothing to get wrong -- and leaves only the small ``shape``
+    term, which matters when events are rare.
+
+    Attributes
+    ----------
+    shape : float
+        Worth this many events.
+    exposure : float
+        Worth this much exposure, in the same units as the data. Zero gives an
+        improper prior, which is fine for estimation but cannot be drawn.
+    name : str
+        Short label used in printed output.
+    rationale : str
+        Plain-English statement of what this assumption commits you to.
+    """
+
+    shape: float
+    exposure: float = 0.0
+    name: str = "custom"
+    rationale: str = ""
+
+    def __post_init__(self) -> None:
+        if self.shape <= 0:
+            raise ValueError(f"the prior shape must be positive, got {self.shape}.")
+        if self.exposure < 0:
+            raise ValueError(
+                f"the prior exposure must be zero or positive, got {self.exposure}."
+            )
+
+    @property
+    def label(self) -> str:
+        """Name and parameters together, for printing in a summary table."""
+        return f"{self.name} — Gamma({self.shape:g}, {self.exposure:g})"
+
+    @property
+    def prior_mean(self) -> float:
+        """Mean rate under the prior; infinite when the prior is improper."""
+        return self.shape / self.exposure if self.exposure > 0 else float("inf")
+
+    def dist(self):
+        """Return the prior as a frozen scipy distribution, or ``None``.
+
+        An improper prior (``exposure == 0``) has no density to draw, so
+        plotting code skips the prior layer for the presets.
+        """
+        if self.exposure <= 0:
+            return None
+        return stats.gamma(self.shape, scale=1.0 / self.exposure)
+
+    def __repr__(self) -> str:
+        return (
+            f"RatePrior(shape={self.shape!r}, exposure={self.exposure!r}, "
+            f"name={self.name!r})"
+        )
+
+
+#: Rate priors. Both carry zero exposure, so neither says anything about the
+#: size of the rate; they differ only in how much they lean when events are
+#: rare.
+RATE_PRIORS: dict[str, RatePrior] = {
+    "jeffreys": RatePrior(
+        0.5,
+        0.0,
+        "jeffreys",
+        "the conventional reference choice for a count; says nothing about "
+        "how large the rate is, and its interval sits inside the exact "
+        "confidence interval",
+    ),
+    "uninformed": RatePrior(
+        1.0,
+        0.0,
+        "uninformed",
+        "every rate from zero upward starts out equally plausible; leans "
+        "slightly higher than jeffreys when events are rare",
+    ),
+}
+
+#: Rate presets, for ``Result.sensitivity()``.
+RATE_SENSITIVITY_LADDER: tuple[str, ...] = ("jeffreys", "uninformed")
+
+
+def resolve_rate(prior) -> RatePrior:
+    """Turn whatever the user passed as ``prior=`` into a ``RatePrior``.
+
+    Accepts a preset name, a ``(shape, exposure)`` pair, an existing
+    :class:`RatePrior`, or ``None`` for the Jeffreys default.
+
+    Parameters
+    ----------
+    prior : str, tuple, RatePrior, or None
+        The prior specification. ``None`` resolves to ``"jeffreys"``.
+
+    Returns
+    -------
+    RatePrior
+        The resolved prior.
+
+    Raises
+    ------
+    ValueError
+        If a name is not a known preset, or a tuple of the wrong length.
+    """
+    if prior is None:
+        return RATE_PRIORS["jeffreys"]
+    if isinstance(prior, RatePrior):
+        return prior
+    if isinstance(prior, str):
+        key = prior.strip().lower()
+        if key not in RATE_PRIORS:
+            options = ", ".join(repr(k) for k in RATE_PRIORS)
+            raise ValueError(
+                f"unknown prior {prior!r}. Available presets: {options}. You "
+                "can also pass a (shape, exposure) pair, or "
+                "bayesplain.priors.from_previous_period(...)."
+            )
+        return RATE_PRIORS[key]
+    try:
+        shape, exposure = prior
+    except (TypeError, ValueError) as err:
+        raise ValueError(
+            f"could not read {prior!r} as a rate prior. Pass a preset name, a "
+            "(shape, exposure) pair, or a RatePrior."
+        ) from err
+    return RatePrior(
+        float(shape),
+        float(exposure),
+        "custom",
+        f"custom Gamma({shape:g}, {exposure:g}) prior",
+    )
+
+
+def from_previous_period(events: float, exposure: float) -> RatePrior:
+    """Build a rate prior from an earlier period's count.
+
+    Treats the earlier period as data observed under the Jeffreys prior,
+    giving ``Gamma(0.5 + events, exposure)``. As with
+    :func:`from_previous_study`, the strength of the assumption is legible: a
+    prior period of three years is worth three years, no more. Discount it
+    yourself -- by passing a fraction of the exposure and events -- if you
+    think the rate has drifted since.
+
+    Parameters
+    ----------
+    events : int
+        Events in the earlier period.
+    exposure : float
+        Exposure in the earlier period, in the same units you will use for the
+        new data.
+
+    Returns
+    -------
+    RatePrior
+        The resulting prior.
+
+    Examples
+    --------
+    >>> from_previous_period(events=30, exposure=5.0).prior_mean
+    6.1
+    """
+    from .core.gamma_poisson import validate_events
+
+    events, exposure = validate_events(events, exposure)
+    return RatePrior(
+        0.5 + events,
+        exposure,
+        "prior period",
+        f"an earlier period that saw {events} events over {exposure:g} units "
+        f"of exposure ({events / exposure:.3g} per unit), treated as evidence "
+        "in hand",
+    )
