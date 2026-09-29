@@ -2,7 +2,7 @@ name: test
 channels:
   - conda-forge
 dependencies:
-  - python=3.14
+  - python=3.10
   - numpy
   - scipy
   # optional extras, exercised by the tests that need them

@@ -41,7 +41,7 @@ Repository = "https://github.com/knaaptime/bayesplain"
 [project.optional-dependencies]
 plot = ["matplotlib"]
 data = ["pandas"]
-tests = ["pytest", "pytest-cov", "hypothesis", "matplotlib", "pandas"]
+tests = ["pytest", "pytest-cov", "pytest-xdist", "matplotlib", "pandas"]
 # Cross-validation against independent implementations of the same integrals.
 validate = ["pingouin"]
 docs = [

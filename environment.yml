@@ -19,5 +19,7 @@ dependencies:
   - sphinx-immaterial
   - numpydoc
   - matplotlib
+  - pytest
   - pytest-xdist
   - pytest-cov
+  - ruff
