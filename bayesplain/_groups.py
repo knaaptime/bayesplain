@@ -408,9 +408,10 @@ def _forest_plot(result):
 
     def draw(ax):
         names = result.group_names
+        scale = getattr(result, "group_scale", 1.0)
         order = sorted(names, key=lambda n: np.median(result.group_draws[n]))
         for row, name in enumerate(order):
-            sample = result.group_draws[name]
+            sample = result.group_draws[name] * scale
             lo, hi = np.quantile(sample, [0.025, 0.975])
             inner = np.quantile(sample, [0.25, 0.75])
             ax.plot([lo, hi], [row, row], color="#4a4e69", lw=1.6, zorder=2)
@@ -426,7 +427,7 @@ def _forest_plot(result):
             )
         if result.pooling is not None:
             ax.axvline(
-                result.pooling["grand_mean"],
+                result.pooling["grand_mean"] * scale,
                 color="#c9184a",
                 ls="--",
                 lw=1.2,
@@ -452,13 +453,14 @@ def _pairwise_plot(result):
 
     def draw(ax):
         names = result.group_names
+        scale = getattr(result, "group_scale", 1.0)
         pairs = [
             (names[i], names[j])
             for i in range(len(names))
             for j in range(i + 1, len(names))
         ]
         for row, (a, b) in enumerate(pairs):
-            diff = result.group_draws[a] - result.group_draws[b]
+            diff = (result.group_draws[a] - result.group_draws[b]) * scale
             lo, hi = np.quantile(diff, [0.025, 0.975])
             crosses = lo < 0 < hi
             colour = "#9a8c98" if crosses else "#22223b"

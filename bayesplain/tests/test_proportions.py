@@ -119,9 +119,13 @@ class TestCompareProportions:
         assert res.direction_reference == 1.0
         assert res.point() == pytest.approx((51 / 240) / (34 / 220), abs=0.05)
 
-    def test_wrong_number_of_groups_points_to_the_right_function(self):
-        with pytest.raises(ValueError, match="compare_groups"):
-            bf.compare_proportions([1, 2, 3], [10, 10, 10])
+    def test_a_single_group_is_rejected(self):
+        with pytest.raises(ValueError, match="two or more groups"):
+            bf.compare_proportions([1], [10])
+
+    def test_mismatched_counts_are_rejected(self):
+        with pytest.raises(ValueError, match="one trial count"):
+            bf.compare_proportions([1, 2, 3], [10, 10])
 
     def test_bad_estimand_rejected(self):
         with pytest.raises(ValueError, match="estimand must be"):
