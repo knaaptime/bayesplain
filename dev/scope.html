@@ -801,7 +801,8 @@
 degrades. Here is what <code class="docutils literal notranslate"><span class="pre">bayesplain</span></code> does not do, and why.</p>
 <h2 id="not-implemented-on-purpose">Not implemented, on purpose<a class="headerlink" href="#not-implemented-on-purpose" title="Link to this heading">¶</a></h2>
 <p><strong>Multi-factor ANOVA, interactions, and regression with more than one
-predictor.</strong> These require integrating over several hyperparameters at once,
+predictor.</strong> <code class="docutils literal notranslate"><span class="pre">regression()</span></code> handles a line with one predictor, which is closed
+form. Anything more requires integrating over several hyperparameters at once,
 which means importance sampling, which means a sampler in the dependency chain.
 That would break the constraint the whole package is organised around. Use
 <a class="reference external" href="https://bambinos.github.io/bambi/">Bambi</a>, which reads much like <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>
@@ -830,7 +831,9 @@ independent-multinomial scheme.</p>
 causal, and the correlation analysis attaches a note saying so to every result.</p>
 <h2 id="known-limitations-of-what-is-implemented">Known limitations of what is implemented<a class="headerlink" href="#known-limitations-of-what-is-implemented" title="Link to this heading">¶</a></h2>
 <p><strong>Partial pooling is empirical Bayes.</strong> <code class="docutils literal notranslate"><span class="pre">compare_groups(pool=True)</span></code> estimates
-the between-group variance and then treats it as known. That is what buys the
+the between-group variance and then treats it as known, and
+<code class="docutils literal notranslate"><span class="pre">compare_proportions(...,</span> <span class="pre">pool=True)</span></code> does the same with the spread of a Beta
+population of rates. That is what buys the
 closed form. It understates uncertainty slightly when the number of groups is
 small — under about five groups, prefer the unpooled estimates and say the
 smallest group is uncertain, rather than leaning on a τ² estimated from four
@@ -840,6 +843,17 @@ normal likelihood. For small samples the package adds a note telling you to
 look at a histogram. For heavy-tailed or strongly skewed data — house prices,
 for instance — consider working on a log scale and reporting the result as a
 ratio.</p>
+<p><strong>Rates assume a steady Poisson process.</strong> Events that cluster vary more than
+that allows, and the interval comes out too narrow. <code class="docutils literal notranslate"><span class="pre">rate()</span></code> checks per-period
+counts for this and says so, but a single total cannot be checked. Overdispersed
+counts need a negative-binomial model, which is outside the one-dimensional
+line.</p>
+<p><strong>Effect sizes that cannot be negative are pulled upward by noise.</strong> Cohen’s
+<em>w</em> and Cramér’s <em>V</em> add up the uncertainty in every cell or category without
+letting any of it cancel, so a small sample reports a departure even when there
+is none. <code class="docutils literal notranslate"><span class="pre">categories()</span></code> measures its headline against that noise floor by
+default; for <code class="docutils literal notranslate"><span class="pre">contingency()</span></code>, compare the interval against the same table’s
+expected counts before reading much into a small <em>V</em>.</p>
 <p><strong>The correlation posterior is grid-based.</strong> Accurate to the resolution of the
 grid, which is adaptive and fine enough that the error is far below anything
 that would change a conclusion. It is not a closed form, and the documentation

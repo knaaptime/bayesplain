@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="bayesplain.teach.precision_planning.html">
+        <link rel="prev" href="bayesplain.teach.precision_planning_mean.html">
       
       
         <link rel="next" href="bayesplain.teach.GridPosterior.html">
@@ -822,6 +822,30 @@
   
   <span class="md-ellipsis">
     <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.teach.precision_planning_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning_<wbr>mean</span>
     
   </span>
   
@@ -1983,7 +2007,7 @@
 <h1 id="bayesplain-teach-naturalfrequencies">bayesplain.teach.NaturalFrequencies<a class="headerlink" href="#bayesplain-teach-naturalfrequencies" title="Link to this heading">¶</a></h1>
 <dl class="py class objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.teach.NaturalFrequencies">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">NaturalFrequencies</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.table" title="bayesplain.teach.NaturalFrequencies.__init__.table (Python parameter) — [[true positive, false negative], [false positive, true negative]] as integers."><span class="n"><span class="pre">table</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.n" title="bayesplain.teach.NaturalFrequencies.__init__.n (Python parameter) — Total number of imagined cases."><span class="n"><span class="pre">n</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.base_rate" title="bayesplain.teach.NaturalFrequencies.__init__.base_rate (Python parameter) — The prevalence that was assumed."><span class="n"><span class="pre">base_rate</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.sensitivity" title="bayesplain.teach.NaturalFrequencies.__init__.sensitivity (Python parameter) — The detection rate that was assumed."><span class="n"><span class="pre">sensitivity</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.specificity" title="bayesplain.teach.NaturalFrequencies.__init__.specificity (Python parameter) — The correct-clearance rate that was assumed."><span class="n"><span class="pre">specificity</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.case_label" title="bayesplain.teach.NaturalFrequencies.__init__.case_label (Python parameter) — What one row of the imagined data is."><span class="n"><span class="pre">case_label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'cases'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.condition_label" title="bayesplain.teach.NaturalFrequencies.__init__.condition_label (Python parameter) — The thing being detected."><span class="n"><span class="pre">condition_label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'the condition'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.flag_label" title="bayesplain.teach.NaturalFrequencies.__init__.flag_label (Python parameter) — What the detector does when it fires."><span class="n"><span class="pre">flag_label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'flagged'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L53-L226"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">NaturalFrequencies</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.table" title="bayesplain.teach.NaturalFrequencies.__init__.table (Python parameter) — [[true positive, false negative], [false positive, true negative]] as integers."><span class="n"><span class="pre">table</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.n" title="bayesplain.teach.NaturalFrequencies.__init__.n (Python parameter) — Total number of imagined cases."><span class="n"><span class="pre">n</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.base_rate" title="bayesplain.teach.NaturalFrequencies.__init__.base_rate (Python parameter) — The prevalence that was assumed."><span class="n"><span class="pre">base_rate</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.sensitivity" title="bayesplain.teach.NaturalFrequencies.__init__.sensitivity (Python parameter) — The detection rate that was assumed."><span class="n"><span class="pre">sensitivity</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.specificity" title="bayesplain.teach.NaturalFrequencies.__init__.specificity (Python parameter) — The correct-clearance rate that was assumed."><span class="n"><span class="pre">specificity</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.case_label" title="bayesplain.teach.NaturalFrequencies.__init__.case_label (Python parameter) — What one row of the imagined data is."><span class="n"><span class="pre">case_label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'cases'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.condition_label" title="bayesplain.teach.NaturalFrequencies.__init__.condition_label (Python parameter) — The thing being detected."><span class="n"><span class="pre">condition_label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'the condition'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.NaturalFrequencies.__init__.flag_label" title="bayesplain.teach.NaturalFrequencies.__init__.flag_label (Python parameter) — What the detector does when it fires."><span class="n"><span class="pre">flag_label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'flagged'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L56-L229"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies" title="Link to this definition">¶</a></dt>
 <dd><p>A 2x2 grid of whole counts, and what it implies.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.teach.NaturalFrequencies-variables">Variables<span class="colon">:</span><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies-variables" title="Permalink to this headline">¶</a></dt>
@@ -2026,7 +2050,7 @@
 
 <dl class="py method objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.teach.NaturalFrequencies.bayes_rule_check">
-<span class="sig-name descname"><span class="pre">bayes_rule_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L122-L135"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies.bayes_rule_check" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">bayes_rule_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L125-L138"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies.bayes_rule_check" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the same answer from the formula, for comparison.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.teach.NaturalFrequencies.bayes_rule_check-returns">Returns<span class="colon">:</span><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies.bayes_rule_check-returns" title="Permalink to this headline">¶</a></dt>
@@ -2105,7 +2129,7 @@ dividing one count by another – no formula required.</p>
 
 <dl class="py method objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.teach.NaturalFrequencies.summary">
-<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L137-L190"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies.summary" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L140-L193"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies.summary" title="Link to this definition">¶</a></dt>
 <dd><p>Print the grid and read the answer off it.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.teach.NaturalFrequencies.summary-returns">Returns<span class="colon">:</span><a class="headerlink" href="#bayesplain.teach.NaturalFrequencies.summary-returns" title="Permalink to this headline">¶</a></dt>

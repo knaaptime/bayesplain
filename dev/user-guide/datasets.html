@@ -873,6 +873,8 @@ Good for
   - compare_proportions — alcohol involvement in the two counties, which is the two-group comparison the course pivots on
   - contingency — severity against road surface
   - compare_means — people injured per collision, by county
+  - compare_rates — people killed per 1,000 collisions, by county
+  - categories — each county's share of collisions against its share of population
 </code></pre></div>
 </div>
 </div>
@@ -940,7 +942,7 @@ Good for
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'San Diego is higher than Los Angeles with 100% probability; the gap is most likely 3.4 percentage points, and the data are consistent with anything from 1.9 to 4.9 percentage points (95% credible interval).'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'San Diego is higher than Los Angeles with 100% probability; the best estimate of the gap is 3.4 percentage points, and the data are consistent with anything from 1.9 to 4.9 percentage points (95% credible interval).'
 </code></pre></div>
 </div>
 </div>
@@ -1039,13 +1041,13 @@ Good for
 
  BAYESIAN — what the data say about the quantity itself
 
-   most likely value         0.035
+   best estimate (median)    0.035
    95% credible interval     0.018 to 0.062  (HDI)
    P(above 0.100)            0.001
 
-   Read: The association strength is most likely 0.035, and the data are
-         consistent with anything from 0.018 to 0.062 (95% credible
-         interval).
+   Read: The best estimate of the association strength is 0.035, and the
+         data are consistent with anything from 0.018 to 0.062 (95%
+         credible interval).
 
  FREQUENTIST — Pearson chi-square test of independence
 
@@ -1322,7 +1324,7 @@ about its true value than a large group’s is.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/103be4130ffbf88263e3ae4d1e7a2da72b42199589ed9f004a657a7674b2f565.png" src="../_images/103be4130ffbf88263e3ae4d1e7a2da72b42199589ed9f004a657a7674b2f565.png" />
+<img alt="../_images/9d6909f665908558aaf9536ca57261aa3061681de6ca41d7b53b79d310b774d1.png" src="../_images/9d6909f665908558aaf9536ca57261aa3061681de6ca41d7b53b79d310b774d1.png" />
 </div>
 </div>
 <h2 id="provenance">Provenance<a class="headerlink" href="#provenance" title="Link to this heading">¶</a></h2>

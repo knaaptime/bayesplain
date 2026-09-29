@@ -993,6 +993,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.teach.precision_planning_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
         
   
@@ -1415,7 +1439,7 @@
 <h1 id="bayesplain-teach-sequential">bayesplain.teach.sequential<a class="headerlink" href="#bayesplain-teach-sequential" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.teach.sequential">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">sequential</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.outcomes" title="bayesplain.teach.sequential.outcomes (Python parameter) — A sequence of 0/1 or boolean outcomes, in the order observed."><span class="n"><span class="pre">outcomes</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.step" title="bayesplain.teach.sequential.step (Python parameter) — Chunk size."><span class="n"><span class="pre">step</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">10</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.prior" title="bayesplain.teach.sequential.prior (Python parameter) — Prior on the rate, before any data."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'uninformed'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.level" title="bayesplain.teach.sequential.level (Python parameter) — Credible level for the reported intervals."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.label" title="bayesplain.teach.sequential.label (Python parameter) — What is being estimated, for printed output."><span class="n"><span class="pre">label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rate'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L833-L913"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.sequential" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">sequential</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.outcomes" title="bayesplain.teach.sequential.outcomes (Python parameter) — A sequence of 0/1 or boolean outcomes, in the order observed."><span class="n"><span class="pre">outcomes</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.step" title="bayesplain.teach.sequential.step (Python parameter) — Chunk size."><span class="n"><span class="pre">step</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">10</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.prior" title="bayesplain.teach.sequential.prior (Python parameter) — Prior on the rate, before any data."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'uninformed'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.level" title="bayesplain.teach.sequential.level (Python parameter) — Credible level for the reported intervals."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.label" title="bayesplain.teach.sequential.label (Python parameter) — What is being estimated, for printed output."><span class="n"><span class="pre">label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rate'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L836-L916"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.sequential" title="Link to this definition">¶</a></dt>
 <dd><p>Recompute the posterior after each chunk of incoming data.</p>
 <p>For the lesson where evidence arrives a bit at a time and the class watches
 the estimate move and the interval close. Also the cheapest way to make

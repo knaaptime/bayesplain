@@ -1,0 +1,6 @@
+﻿bayesplain.categories
+=====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: categories

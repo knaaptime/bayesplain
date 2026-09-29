@@ -1,0 +1,6 @@
+﻿bayesplain.core.gamma\_poisson.log\_marginal\_likelihood
+========================================================
+
+.. currentmodule:: bayesplain.core.gamma_poisson
+
+.. autofunction:: log_marginal_likelihood

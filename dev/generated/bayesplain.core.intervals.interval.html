@@ -625,12 +625,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../api.html#contingency-tables" class="md-nav__link">
+      <a href="../api.html#rates" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    <span>Contingency tables</span>
+    <span>Rates</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#contingency-tables-and-categories" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Contingency tables and categories</span>
     
   </span>
   
@@ -697,6 +721,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../api.html#regression" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Regression</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api.html#partial-pooling" class="md-nav__link">
         
   
@@ -730,7 +778,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_8" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -747,14 +795,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_2_8" id="__nav_3_2_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_8">
             <span class="md-nav__icon md-icon"></span>
             <span>Summarising a posterior</span>
           </label>
@@ -1295,11 +1343,12 @@
 <h1 id="bayesplain-core-intervals-interval">bayesplain.core.intervals.interval<a class="headerlink" href="#bayesplain-core-intervals-interval" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.core.intervals.interval">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.core.intervals.</span></span><span class="sig-name descname"><span class="pre">interval</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.draws" title="bayesplain.core.intervals.interval.draws (Python parameter) — Posterior draws."><span class="n"><span class="pre">draws</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.level" title="bayesplain.core.intervals.interval.level (Python parameter) — Probability the interval should contain."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.kind" title="bayesplain.core.intervals.interval.kind (Python parameter) — Highest-density or equal-tailed."><span class="n"><span class="pre">kind</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'hdi'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.dist" title="bayesplain.core.intervals.interval.dist (Python parameter) — Analytic posterior, when one exists."><span class="n"><span class="pre">dist</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/intervals.py#L102-L142"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.intervals.interval" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.core.intervals.</span></span><span class="sig-name descname"><span class="pre">interval</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.draws" title="bayesplain.core.intervals.interval.draws (Python parameter) — Posterior draws."><span class="n"><span class="pre">draws</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.level" title="bayesplain.core.intervals.interval.level (Python parameter) — Probability the interval should contain."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.kind" title="bayesplain.core.intervals.interval.kind (Python parameter) — Highest-density or equal-tailed."><span class="n"><span class="pre">kind</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'hdi'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.interval.dist" title="bayesplain.core.intervals.interval.dist (Python parameter) — Analytic posterior, when one exists."><span class="n"><span class="pre">dist</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/intervals.py#L152-L195"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.intervals.interval" title="Link to this definition">¶</a></dt>
 <dd><p>Posterior interval, taken analytically when that is possible.</p>
-<p>If a frozen scipy distribution is supplied and an equal-tailed interval is
-requested, the bounds come from its quantile function and carry no Monte
-Carlo error at all. Otherwise they are estimated from draws.</p>
+<p>If a frozen scipy distribution is supplied, the bounds come from it – the
+quantile function for an equal-tailed interval, a one-dimensional
+optimisation for a highest-density one – and carry no Monte Carlo error
+at all. Otherwise they are estimated from draws.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.core.intervals.interval-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.intervals.interval-parameters" title="Permalink to this headline">¶</a></dt>
 <dd class="field-odd"><dl class="simple api-field highlight">

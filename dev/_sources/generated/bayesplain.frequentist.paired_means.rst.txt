@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.paired\_means
+====================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: paired_means

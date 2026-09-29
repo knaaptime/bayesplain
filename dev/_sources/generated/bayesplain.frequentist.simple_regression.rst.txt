@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.simple\_regression
+=========================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: simple_regression

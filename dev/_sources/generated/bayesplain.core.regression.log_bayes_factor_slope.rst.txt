@@ -1,0 +1,6 @@
+﻿bayesplain.core.regression.log\_bayes\_factor\_slope
+====================================================
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autofunction:: log_bayes_factor_slope

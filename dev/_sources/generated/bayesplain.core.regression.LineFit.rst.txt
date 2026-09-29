@@ -1,0 +1,20 @@
+﻿bayesplain.core.regression.LineFit
+==================================
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autoclass:: LineFit
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LineFit.at
+   
+   

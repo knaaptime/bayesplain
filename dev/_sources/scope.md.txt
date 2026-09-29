@@ -6,7 +6,8 @@ degrades. Here is what `bayesplain` does not do, and why.
 ## Not implemented, on purpose
 
 **Multi-factor ANOVA, interactions, and regression with more than one
-predictor.** These require integrating over several hyperparameters at once,
+predictor.** `regression()` handles a line with one predictor, which is closed
+form. Anything more requires integrating over several hyperparameters at once,
 which means importance sampling, which means a sampler in the dependency chain.
 That would break the constraint the whole package is organised around. Use
 [Bambi](https://bambinos.github.io/bambi/), which reads much like `statsmodels`
@@ -42,7 +43,9 @@ causal, and the correlation analysis attaches a note saying so to every result.
 ## Known limitations of what is implemented
 
 **Partial pooling is empirical Bayes.** `compare_groups(pool=True)` estimates
-the between-group variance and then treats it as known. That is what buys the
+the between-group variance and then treats it as known, and
+`compare_proportions(..., pool=True)` does the same with the spread of a Beta
+population of rates. That is what buys the
 closed form. It understates uncertainty slightly when the number of groups is
 small — under about five groups, prefer the unpooled estimates and say the
 smallest group is uncertain, rather than leaning on a τ² estimated from four
@@ -53,6 +56,19 @@ normal likelihood. For small samples the package adds a note telling you to
 look at a histogram. For heavy-tailed or strongly skewed data — house prices,
 for instance — consider working on a log scale and reporting the result as a
 ratio.
+
+**Rates assume a steady Poisson process.** Events that cluster vary more than
+that allows, and the interval comes out too narrow. `rate()` checks per-period
+counts for this and says so, but a single total cannot be checked. Overdispersed
+counts need a negative-binomial model, which is outside the one-dimensional
+line.
+
+**Effect sizes that cannot be negative are pulled upward by noise.** Cohen's
+*w* and Cramér's *V* add up the uncertainty in every cell or category without
+letting any of it cancel, so a small sample reports a departure even when there
+is none. `categories()` measures its headline against that noise floor by
+default; for `contingency()`, compare the interval against the same table's
+expected counts before reading much into a small *V*.
 
 **The correlation posterior is grid-based.** Accurate to the resolution of the
 grid, which is adaptive and fine enough that the error is far below anything

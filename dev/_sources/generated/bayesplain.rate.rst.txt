@@ -1,0 +1,6 @@
+﻿bayesplain.rate
+===============
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: rate

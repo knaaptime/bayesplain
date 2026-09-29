@@ -993,6 +993,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.teach.precision_planning_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
         
   
@@ -1415,7 +1439,7 @@
 <h1 id="bayesplain-teach-grid-posterior">bayesplain.teach.grid_posterior<a class="headerlink" href="#bayesplain-teach-grid-posterior" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.teach.grid_posterior">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">grid_posterior</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.grid" title="bayesplain.teach.grid_posterior.grid (Python parameter) — The candidate values under consideration."><span class="n"><span class="pre">grid</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.prior" title="bayesplain.teach.grid_posterior.prior (Python parameter) — Relative prior weight on each candidate."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.likelihood" title="bayesplain.teach.grid_posterior.likelihood (Python parameter) — Likelihood of the observed data at each candidate."><span class="n"><span class="pre">likelihood</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.kind" title="bayesplain.teach.grid_posterior.kind (Python parameter) — Whether the grid enumerates distinct hypotheses (posterior sums to 1) or approximates a continuous parameter (posterior integrates to 1)."><span class="n"><span class="pre">kind</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'discrete'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.label" title="bayesplain.teach.grid_posterior.label (Python parameter) — What the grid is a grid of, for printed output."><span class="n"><span class="pre">label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rate'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L572-L695"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.grid_posterior" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">grid_posterior</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.grid" title="bayesplain.teach.grid_posterior.grid (Python parameter) — The candidate values under consideration."><span class="n"><span class="pre">grid</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.prior" title="bayesplain.teach.grid_posterior.prior (Python parameter) — Relative prior weight on each candidate."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.likelihood" title="bayesplain.teach.grid_posterior.likelihood (Python parameter) — Likelihood of the observed data at each candidate."><span class="n"><span class="pre">likelihood</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.kind" title="bayesplain.teach.grid_posterior.kind (Python parameter) — Whether the grid enumerates distinct hypotheses (posterior sums to 1) or approximates a continuous parameter (posterior integrates to 1)."><span class="n"><span class="pre">kind</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'discrete'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.grid_posterior.label" title="bayesplain.teach.grid_posterior.label (Python parameter) — What the grid is a grid of, for printed output."><span class="n"><span class="pre">label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rate'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L575-L698"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.grid_posterior" title="Link to this definition">¶</a></dt>
 <dd><p>Multiply prior by likelihood over a grid, then divide by the total.</p>
 <p>The whole of Bayesian updating, with nothing hidden. Every posterior this
 package produces is this operation, either done in closed form or done on a

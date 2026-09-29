@@ -1,0 +1,6 @@
+﻿bayesplain.core.gamma\_poisson.ratio\_posterior
+===============================================
+
+.. currentmodule:: bayesplain.core.gamma_poisson
+
+.. autofunction:: ratio_posterior

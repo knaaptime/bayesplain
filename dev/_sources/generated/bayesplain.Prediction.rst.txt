@@ -1,0 +1,23 @@
+﻿bayesplain.Prediction
+=====================
+
+.. currentmodule:: bayesplain
+
+.. autoclass:: Prediction
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Prediction.interval
+      ~Prediction.point
+      ~Prediction.probability
+      ~Prediction.summary
+   
+   

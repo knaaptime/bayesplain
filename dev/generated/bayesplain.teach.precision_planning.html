@@ -14,7 +14,7 @@
         <link rel="prev" href="bayesplain.teach.sequential.html">
       
       
-        <link rel="next" href="bayesplain.teach.NaturalFrequencies.html">
+        <link rel="next" href="bayesplain.teach.precision_planning_mean.html">
       
       
       <link rel="icon" href="">
@@ -993,6 +993,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.teach.precision_planning_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
         
   
@@ -1415,7 +1439,7 @@
 <h1 id="bayesplain-teach-precision-planning">bayesplain.teach.precision_planning<a class="headerlink" href="#bayesplain-teach-precision-planning" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.teach.precision_planning">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">precision_planning</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.target_width" title="bayesplain.teach.precision_planning.target_width (Python parameter) — The widest interval you could still act on, on the rate's own scale. 0.05 means five percentage points."><span class="n"><span class="pre">target_width</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.expected_rate" title="bayesplain.teach.precision_planning.expected_rate (Python parameter) — The rate to plan around."><span class="n"><span class="pre">expected_rate</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.5</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.level" title="bayesplain.teach.precision_planning.level (Python parameter) — Credible level."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.prior" title="bayesplain.teach.precision_planning.prior (Python parameter) — Prior on the rate."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'uninformed'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.max_n" title="bayesplain.teach.precision_planning.max_n (Python parameter) — Give up beyond this, rather than searching forever for an unattainable precision."><span class="n"><span class="pre">max_n</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">1000000</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L987-L1100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.precision_planning" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">precision_planning</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.target_width" title="bayesplain.teach.precision_planning.target_width (Python parameter) — The widest interval you could still act on, on the rate's own scale. 0.05 means five percentage points."><span class="n"><span class="pre">target_width</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.expected_rate" title="bayesplain.teach.precision_planning.expected_rate (Python parameter) — The rate to plan around."><span class="n"><span class="pre">expected_rate</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.5</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.level" title="bayesplain.teach.precision_planning.level (Python parameter) — Credible level."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.prior" title="bayesplain.teach.precision_planning.prior (Python parameter) — Prior on the rate."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'uninformed'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.precision_planning.max_n" title="bayesplain.teach.precision_planning.max_n (Python parameter) — Give up beyond this, rather than searching forever for an unattainable precision."><span class="n"><span class="pre">max_n</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">1000000</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L1026-L1139"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.precision_planning" title="Link to this definition">¶</a></dt>
 <dd><p>Find the sample size that makes an interval narrow enough to act on.</p>
 <p>Computed exactly rather than through a normal approximation: for each
 candidate <code class="docutils literal notranslate"><span class="pre">n</span></code> the actual Beta posterior interval is measured, and the

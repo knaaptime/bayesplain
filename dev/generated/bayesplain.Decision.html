@@ -905,6 +905,30 @@
 
               
             
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.Prediction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>Prediction</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1351,7 +1375,7 @@
 <h1 id="bayesplain-decision">bayesplain.Decision<a class="headerlink" href="#bayesplain-decision" title="Link to this heading">¶</a></h1>
 <dl class="py class objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.Decision">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.</span></span><span class="sig-name descname"><span class="pre">Decision</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.verdict" title="bayesplain.Decision.__init__.verdict (Python parameter) — One of 'practically different', 'practically equivalent', or 'too uncertain to call'."><span class="n"><span class="pre">verdict</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.rope" title="bayesplain.Decision.__init__.rope (Python parameter) — The region of practical equivalence that was supplied."><span class="n"><span class="pre">rope</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.interval" title="bayesplain.Decision.__init__.interval (Python parameter) — The credible interval it was compared against."><span class="n"><span class="pre">interval</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.probability_inside" title="bayesplain.Decision.__init__.probability_inside (Python parameter) — Posterior probability that the quantity falls inside the ROPE."><span class="n"><span class="pre">probability_inside</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.explanation" title="bayesplain.Decision.__init__.explanation (Python parameter) — Plain-English account of the verdict."><span class="n"><span class="pre">explanation</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/result.py#L94-L125"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.Decision" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.</span></span><span class="sig-name descname"><span class="pre">Decision</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.verdict" title="bayesplain.Decision.__init__.verdict (Python parameter) — One of 'practically different', 'practically equivalent', or 'too uncertain to call'."><span class="n"><span class="pre">verdict</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.rope" title="bayesplain.Decision.__init__.rope (Python parameter) — The region of practical equivalence that was supplied."><span class="n"><span class="pre">rope</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.interval" title="bayesplain.Decision.__init__.interval (Python parameter) — The credible interval it was compared against."><span class="n"><span class="pre">interval</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.probability_inside" title="bayesplain.Decision.__init__.probability_inside (Python parameter) — Posterior probability that the quantity falls inside the ROPE."><span class="n"><span class="pre">probability_inside</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.Decision.__init__.explanation" title="bayesplain.Decision.__init__.explanation (Python parameter) — Plain-English account of the verdict."><span class="n"><span class="pre">explanation</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/result.py#L129-L160"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.Decision" title="Link to this definition">¶</a></dt>
 <dd><p>The outcome of comparing a credible interval against a ROPE.</p>
 <p>“ROPE” is a region of practical equivalence: a range of values you have
 decided in advance are too small to act on. Comparing the credible

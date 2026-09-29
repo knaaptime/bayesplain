@@ -1,0 +1,6 @@
+﻿bayesplain.core.regression.fit\_line
+====================================
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autofunction:: fit_line

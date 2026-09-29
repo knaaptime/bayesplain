@@ -1,0 +1,6 @@
+﻿bayesplain.core.hierarchical.shrink\_proportions
+================================================
+
+.. currentmodule:: bayesplain.core.hierarchical
+
+.. autofunction:: shrink_proportions

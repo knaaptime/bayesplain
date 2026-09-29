@@ -1,0 +1,6 @@
+﻿bayesplain.core.regression.mean\_response\_posterior
+====================================================
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autofunction:: mean_response_posterior

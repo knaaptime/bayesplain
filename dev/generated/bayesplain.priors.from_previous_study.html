@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="bayesplain.priors.resolve_correlation.html">
+        <link rel="prev" href="bayesplain.priors.resolve_rate.html">
       
       
-        <link rel="next" href="bayesplain.priors.describe.html">
+        <link rel="next" href="bayesplain.priors.from_previous_period.html">
       
       
       <link rel="icon" href="">
@@ -768,6 +768,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.priors.RatePrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Rate<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.priors.resolve_proportion.html" class="md-nav__link">
         
   
@@ -846,6 +870,30 @@
   
   <span class="md-ellipsis">
     <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>correlation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.priors.resolve_rate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>rate</span>
     
   </span>
   
@@ -992,6 +1040,30 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.priors.from_previous_period.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>period</span>
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1391,7 +1463,7 @@
 <h1 id="bayesplain-priors-from-previous-study">bayesplain.priors.from_previous_study<a class="headerlink" href="#bayesplain-priors-from-previous-study" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.from_previous_study">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.priors.</span></span><span class="sig-name descname"><span class="pre">from_previous_study</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.from_previous_study.successes" title="bayesplain.priors.from_previous_study.successes (Python parameter) — Successes in the earlier study."><span class="n"><span class="pre">successes</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.from_previous_study.n" title="bayesplain.priors.from_previous_study.n (Python parameter) — Trials in the earlier study."><span class="n"><span class="pre">n</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L428-L462"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.from_previous_study" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.priors.</span></span><span class="sig-name descname"><span class="pre">from_previous_study</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.from_previous_study.successes" title="bayesplain.priors.from_previous_study.successes (Python parameter) — Successes in the earlier study."><span class="n"><span class="pre">successes</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.from_previous_study.n" title="bayesplain.priors.from_previous_study.n (Python parameter) — Trials in the earlier study."><span class="n"><span class="pre">n</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L433-L467"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.from_previous_study" title="Link to this definition">¶</a></dt>
 <dd><p>Build a prior from an earlier study’s counts.</p>
 <p>Treats the earlier study as data observed under a flat prior, giving
 <code class="docutils literal notranslate"><span class="pre">Beta(1</span> <span class="pre">+</span> <span class="pre">successes,</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">failures)</span></code>. This is the honest way to say “we

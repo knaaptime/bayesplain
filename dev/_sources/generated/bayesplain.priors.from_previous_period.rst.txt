@@ -1,0 +1,6 @@
+﻿bayesplain.priors.from\_previous\_period
+========================================
+
+.. currentmodule:: bayesplain.priors
+
+.. autofunction:: from_previous_period

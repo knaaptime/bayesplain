@@ -852,19 +852,31 @@ posterior but unable to read a p-value in someone else’s report.</p>
 <td><p>exact binomial test, Wilson score interval</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">compare_proportions</span></code></p></td>
-<td><p>two-proportion <em>z</em> / chi-square, Wald interval</p></td>
+<td><p>two-proportion <em>z</em> / chi-square, with a Wald interval on a difference or a log-scale interval on a ratio; chi-square test of equal proportions for three or more groups</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rate</span></code></p></td>
+<td><p>exact Poisson test, exact (Garwood) interval</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">compare_rates</span></code></p></td>
+<td><p>exact conditional test for two Poisson rates</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contingency</span></code></p></td>
 <td><p>Pearson chi-square test of independence</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
-<td><p>one-sample <em>t</em>-test</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">categories</span></code></p></td>
+<td><p>chi-square goodness-of-fit test</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">compare_means</span></code></p></td>
-<td><p>Welch’s <em>t</em>-test (or pooled Student’s)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
+<td><p>one-sample <em>t</em>-test (on the log scale with <code class="docutils literal notranslate"><span class="pre">log=True</span></code>)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">compare_means</span></code></p></td>
+<td><p>Welch’s <em>t</em>-test (or pooled Student’s, or paired)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
 <td><p>Pearson <em>r</em>, Fisher-<em>z</em> interval</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">regression</span></code></p></td>
+<td><p><em>t</em>-test on the least-squares slope</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">compare_groups</span></code></p></td>
 <td><p>one-way ANOVA</p></td>
@@ -908,7 +920,7 @@ allowed to say afterwards.</p>
 
 What the posterior says
   Given this data and the stated prior, there is a 95% probability the
-  value lies in the range 46.17 to 52.28, and a 100% probability it is
+  value lies in the range 46.22 to 52.33, and a 100% probability it is
   greater than zero. Both are statements about the quantity itself.
 
 What the one-sample t-test says
@@ -950,14 +962,14 @@ How they line up
 
  BAYESIAN — what the data say about the quantity itself
 
-   most likely value         5.7 percentage points
+   best estimate (median)    5.7 percentage points
    95% credible interval     −1.2 to 12.9 percentage points  (HDI)
    P(District B higher)      0.945
 
    Read: District B is higher than District A with 94% probability; the
-         gap is most likely 5.7 percentage points, and the data are
-         consistent with anything from −1.2 to 12.9 percentage points (95%
-         credible interval).
+         best estimate of the gap is 5.7 percentage points, and the data
+         are consistent with anything from −1.2 to 12.9 percentage points
+         (95% credible interval).
 
  FREQUENTIST — two-proportion z-test (equivalently chi-square, 1 df)
 

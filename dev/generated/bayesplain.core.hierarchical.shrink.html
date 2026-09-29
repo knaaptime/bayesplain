@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="bayesplain.core.correlation.validate_pair.html">
+        <link rel="prev" href="bayesplain.core.regression.log_bayes_factor_slope.html">
       
       
-        <link rel="next" href="bayesplain.core.hierarchical.between_group_variance.html">
+        <link rel="next" href="bayesplain.core.hierarchical.shrink_proportions.html">
       
       
       <link rel="icon" href="">
@@ -625,12 +625,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../api.html#contingency-tables" class="md-nav__link">
+      <a href="../api.html#rates" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    <span>Contingency tables</span>
+    <span>Rates</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#contingency-tables-and-categories" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Contingency tables and categories</span>
     
   </span>
   
@@ -693,6 +717,30 @@
                 
   
   
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#regression" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Regression</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -706,7 +754,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -723,14 +771,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_5">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_7">
             <span class="md-nav__icon md-icon"></span>
             <span>Partial pooling</span>
           </label>
@@ -872,6 +920,30 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.core.hierarchical.shrink_proportions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>hierarchical.<wbr>shrink_<wbr>proportions</span>
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1175,7 +1247,7 @@
 <h1 id="bayesplain-core-hierarchical-shrink">bayesplain.core.hierarchical.shrink<a class="headerlink" href="#bayesplain-core-hierarchical-shrink" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.core.hierarchical.shrink">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.core.hierarchical.</span></span><span class="sig-name descname"><span class="pre">shrink</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.means" title="bayesplain.core.hierarchical.shrink.means (Python parameter) — Observed group means."><span class="n"><span class="pre">means</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.standard_errors" title="bayesplain.core.hierarchical.shrink.standard_errors (Python parameter) — Standard error of each group mean."><span class="n"><span class="pre">standard_errors</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/hierarchical.py#L77-L123"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.hierarchical.shrink" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.core.hierarchical.</span></span><span class="sig-name descname"><span class="pre">shrink</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.means" title="bayesplain.core.hierarchical.shrink.means (Python parameter) — Observed group means."><span class="n"><span class="pre">means</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.standard_errors" title="bayesplain.core.hierarchical.shrink.standard_errors (Python parameter) — Standard error of each group mean."><span class="n"><span class="pre">standard_errors</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/hierarchical.py#L99-L145"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.hierarchical.shrink" title="Link to this definition">¶</a></dt>
 <dd><p>Pull group means toward the overall average, in proportion to noise.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.core.hierarchical.shrink-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.hierarchical.shrink-parameters" title="Permalink to this headline">¶</a></dt>

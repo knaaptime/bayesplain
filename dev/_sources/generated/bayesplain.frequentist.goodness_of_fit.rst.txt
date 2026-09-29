@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.goodness\_of\_fit
+========================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: goodness_of_fit

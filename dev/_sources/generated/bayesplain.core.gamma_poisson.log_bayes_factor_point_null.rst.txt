@@ -1,0 +1,6 @@
+﻿bayesplain.core.gamma\_poisson.log\_bayes\_factor\_point\_null
+==============================================================
+
+.. currentmodule:: bayesplain.core.gamma_poisson
+
+.. autofunction:: log_bayes_factor_point_null

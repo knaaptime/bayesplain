@@ -14,7 +14,7 @@
         <link rel="prev" href="bayesplain.priors.EffectSizePrior.html">
       
       
-        <link rel="next" href="bayesplain.priors.resolve_proportion.html">
+        <link rel="next" href="bayesplain.priors.RatePrior.html">
       
       
       <link rel="icon" href="">
@@ -937,6 +937,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.priors.RatePrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Rate<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.priors.resolve_proportion.html" class="md-nav__link">
         
   
@@ -1033,12 +1057,60 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.priors.resolve_rate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>rate</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.priors.from_previous_study.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>study</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.priors.from_previous_period.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>period</span>
     
   </span>
   
@@ -1495,7 +1567,7 @@
 <h1 id="bayesplain-priors-correlationprior">bayesplain.priors.CorrelationPrior<a class="headerlink" href="#bayesplain-priors-correlationprior" title="Link to this heading">¶</a></h1>
 <dl class="py class objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.priors.CorrelationPrior">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.priors.</span></span><span class="sig-name descname"><span class="pre">CorrelationPrior</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.CorrelationPrior.__init__.kappa" title="bayesplain.priors.CorrelationPrior.__init__.kappa (Python parameter) — Prior width."><span class="n"><span class="pre">kappa</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.CorrelationPrior.__init__.name" title="bayesplain.priors.CorrelationPrior.__init__.name (Python parameter) — Short label used in printed output."><span class="n"><span class="pre">name</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'custom'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.CorrelationPrior.__init__.rationale" title="bayesplain.priors.CorrelationPrior.__init__.rationale (Python parameter) — Plain-English statement of what this assumption commits you to."><span class="n"><span class="pre">rationale</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">''</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L551-L590"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.CorrelationPrior" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.priors.</span></span><span class="sig-name descname"><span class="pre">CorrelationPrior</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.CorrelationPrior.__init__.kappa" title="bayesplain.priors.CorrelationPrior.__init__.kappa (Python parameter) — Prior width."><span class="n"><span class="pre">kappa</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.CorrelationPrior.__init__.name" title="bayesplain.priors.CorrelationPrior.__init__.name (Python parameter) — Short label used in printed output."><span class="n"><span class="pre">name</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'custom'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.CorrelationPrior.__init__.rationale" title="bayesplain.priors.CorrelationPrior.__init__.rationale (Python parameter) — Plain-English statement of what this assumption commits you to."><span class="n"><span class="pre">rationale</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">''</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L556-L595"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.CorrelationPrior" title="Link to this definition">¶</a></dt>
 <dd><p>A stretched-beta prior on a correlation coefficient.</p>
 <p>Parameterised by a width <code class="docutils literal notranslate"><span class="pre">kappa</span></code>: the prior density is proportional to
 <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">-</span> <span class="pre">rho**2)</span> <span class="pre">**</span> <span class="pre">(1/kappa</span> <span class="pre">-</span> <span class="pre">1)</span></code> on (-1, 1). At <code class="docutils literal notranslate"><span class="pre">kappa</span> <span class="pre">=</span> <span class="pre">1</span></code> it is flat,
@@ -1524,7 +1596,7 @@ extremes.</p>
 </table>
 <dl class="py method objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.CorrelationPrior.dist">
-<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L584-L587"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.CorrelationPrior.dist" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L589-L592"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.CorrelationPrior.dist" title="Link to this definition">¶</a></dt>
 <dd><p>Return the prior as a frozen scipy distribution on (-1, 1).</p>
 </dd></dl>
 

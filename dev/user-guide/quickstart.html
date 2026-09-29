@@ -453,10 +453,66 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-other-six-analyses" class="md-nav__link">
+  <a href="#the-other-analyses" class="md-nav__link">
     
     <span class="md-ellipsis">
-      <span>The other six analyses</span>
+      <span>The other analyses</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The other analyses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rates" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Rates</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-categorical-variable" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>One categorical variable</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-line-with-one-predictor" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>A line with one predictor</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paired-data-and-skewed-data" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Paired data, and skewed data</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forecasting-the-next-one" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Forecasting the next one</span>
     </span>
   </a>
   
@@ -873,10 +929,66 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-other-six-analyses" class="md-nav__link">
+  <a href="#the-other-analyses" class="md-nav__link">
     
     <span class="md-ellipsis">
-      <span>The other six analyses</span>
+      <span>The other analyses</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The other analyses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rates" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Rates</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-categorical-variable" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>One categorical variable</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-line-with-one-predictor" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>A line with one predictor</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paired-data-and-skewed-data" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Paired data, and skewed data</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forecasting-the-next-one" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>Forecasting the next one</span>
     </span>
   </a>
   
@@ -918,7 +1030,7 @@
 
 <h1 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">¶</a></h1>
 <p>Every analysis in <code class="docutils literal notranslate"><span class="pre">bayesplain</span></code> returns the same object with the same methods,
-so what you learn here works for all seven.</p>
+so what you learn here works for all of them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bayesplain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bp</span>
@@ -928,7 +1040,7 @@ so what you learn here works for all seven.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'0.0.1.dev2+g1367a0436'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'0.1.1.dev10+g676e1d899'
 </code></pre></div>
 </div>
 </div>
@@ -1005,14 +1117,14 @@ bundled data.</p>
 
  BAYESIAN — what the data say about the quantity itself
 
-   most likely value         3.4 percentage points
+   best estimate (median)    3.4 percentage points
    95% credible interval     1.9 to 4.9 percentage points  (HDI)
    P(San Diego higher)       1.000
 
    Read: San Diego is higher than Los Angeles with 100% probability; the
-         gap is most likely 3.4 percentage points, and the data are
-         consistent with anything from 1.9 to 4.9 percentage points (95%
-         credible interval).
+         best estimate of the gap is 3.4 percentage points, and the data
+         are consistent with anything from 1.9 to 4.9 percentage points
+         (95% credible interval).
 
  FREQUENTIST — two-proportion z-test (equivalently chi-square, 1 df)
 
@@ -1085,7 +1197,7 @@ is too small to act on. Comparing the credible interval against it replaces
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'San Diego is higher than Los Angeles with 100% probability; the gap is most likely 3.4 percentage points, and the data are consistent with anything from 1.9 to 4.9 percentage points (95% credible interval).'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'San Diego is higher than Los Angeles with 100% probability; the best estimate of the gap is 3.4 percentage points, and the data are consistent with anything from 1.9 to 4.9 percentage points (95% credible interval).'
 </code></pre></div>
 </div>
 </div>
@@ -1176,7 +1288,7 @@ questions, and that asymmetry is why this package leads with the estimate.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c614646f38b2ef0d99c16ac4d08ea69e3e7f737564aaef6f0c50eef83fbb6d19.png" src="../_images/c614646f38b2ef0d99c16ac4d08ea69e3e7f737564aaef6f0c50eef83fbb6d19.png" />
+<img alt="../_images/e88102a21cec2eba4bc191be7cac3678e36122e1307fe6dd151761c37f6b137a.png" src="../_images/e88102a21cec2eba4bc191be7cac3678e36122e1307fe6dd151761c37f6b137a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1186,7 +1298,7 @@ questions, and that asymmetry is why this package leads with the estimate.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c901bc5e9b1024fc9b9ee3b6ebfbf01222c2d0377c05967790056b9689ab2142.png" src="../_images/c901bc5e9b1024fc9b9ee3b6ebfbf01222c2d0377c05967790056b9689ab2142.png" />
+<img alt="../_images/736a32ceb31c4901102337fff4b739e1c62b03ea33f988d5de752f5dd16399ff.png" src="../_images/736a32ceb31c4901102337fff4b739e1c62b03ea33f988d5de752f5dd16399ff.png" />
 </div>
 </div>
 <p>The second plot is the one that explains where a difference came from.</p>
@@ -1218,7 +1330,7 @@ Compares 'the two groups have different rates' against 'they have the same rate'
 </div>
 </div>
 <p>Deliberately a method call rather than part of the summary.</p>
-<h2 id="the-other-six-analyses">The other six analyses<a class="headerlink" href="#the-other-six-analyses" title="Link to this heading">¶</a></h2>
+<h2 id="the-other-analyses">The other analyses<a class="headerlink" href="#the-other-analyses" title="Link to this heading">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">parcels</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_parcels</span><span class="p">()</span>
@@ -1235,7 +1347,7 @@ Compares 'the two groups have different rates' against 'they have the same rate'
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'detached is higher than rowhouse with 100% probability; the gap is most likely 9362.39 dollars, and the data are consistent with anything from 3051.65 to 15752.44 dollars (95% credible interval).'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'detached is higher than rowhouse with 100% probability; the best estimate of the gap is 9362.39 dollars, and the data are consistent with anything from 3051.65 to 15752.44 dollars (95% credible interval).'
 </code></pre></div>
 </div>
 </div>
@@ -1280,7 +1392,7 @@ Note: Every row is an estimate, not a test, so no multiple-comparisons
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/663995925d769bda4aed2863459b9a57ead90f5ed5097d10a541ea85c44d3085.png" src="../_images/663995925d769bda4aed2863459b9a57ead90f5ed5097d10a541ea85c44d3085.png" />
+<img alt="../_images/aaa28128dd529d9c18d1b738024013c0b9b995a2d5ecd9fd01f72e4a3a501da9.png" src="../_images/aaa28128dd529d9c18d1b738024013c0b9b995a2d5ecd9fd01f72e4a3a501da9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1299,13 +1411,13 @@ Note: Every row is an estimate, not a test, so no multiple-comparisons
 
  BAYESIAN — what the data say about the quantity itself
 
-   most likely value         0.078
+   best estimate (median)    0.078
    95% credible interval     0.064 to 0.092  (HDI)
    P(above 0.100)            0.002
 
-   Read: The association strength is most likely 0.078, and the data are
-         consistent with anything from 0.064 to 0.092 (95% credible
-         interval).
+   Read: The best estimate of the association strength is 0.078, and the
+         data are consistent with anything from 0.064 to 0.092 (95%
+         credible interval).
 
  FREQUENTIST — Pearson chi-square test of independence
 
@@ -1353,7 +1465,146 @@ Note: Every row is an estimate, not a test, so no multiple-comparisons
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'The correlation is most likely 0.781, and the data are consistent with anything from 0.765 to 0.796 (95% credible interval).'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'The best estimate of the correlation is 0.781, and the data are consistent with anything from 0.765 to 0.796 (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="rates">Rates<a class="headerlink" href="#rates" title="Link to this heading">¶</a></h3>
+<p>A count over an exposure is a rate, not a proportion. Deaths per thousand
+collisions, by county:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">collisions</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_collisions</span><span class="p">()</span>
+<span class="n">by_county</span> <span class="o">=</span> <span class="n">collisions</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"county"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">killed</span><span class="o">=</span><span class="p">(</span><span class="s2">"killed"</span><span class="p">,</span> <span class="s2">"sum"</span><span class="p">),</span> <span class="n">crashes</span><span class="o">=</span><span class="p">(</span><span class="s2">"killed"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">deaths</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">compare_rates</span><span class="p">(</span>
+    <span class="n">events</span><span class="o">=</span><span class="n">by_county</span><span class="o">.</span><span class="n">killed</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">exposure</span><span class="o">=</span><span class="n">by_county</span><span class="o">.</span><span class="n">crashes</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">by_county</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="n">unit</span><span class="o">=</span><span class="s2">"per 1,000 collisions"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">deaths</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'San Diego is higher than Los Angeles with 99% probability; the best estimate of the ratio is 1.83 times, and the data are consistent with anything from 1.00 to 2.85 times (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>The rate ratio’s posterior is exact, so there is nothing to sample. Pass
+per-period counts to <code class="docutils literal notranslate"><span class="pre">rate()</span></code> and it also checks whether they vary more than a
+steady rate allows. These do, by a lot, and the result says so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">per_year</span> <span class="o">=</span> <span class="n">collisions</span><span class="p">[</span><span class="n">collisions</span><span class="o">.</span><span class="n">county</span> <span class="o">==</span> <span class="s2">"Los Angeles"</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"year"</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">bp</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="n">per_year</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">reference</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"per year"</span><span class="p">)</span><span class="o">.</span><span class="n">notes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'the counts vary between periods about 107.0 times as much as a steady rate would produce (dispersion test p = 2.4e-91). The rate is probably not steady, and this interval understates the uncertainty — report it as a lower bound on how uncertain you are'
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="one-categorical-variable">One categorical variable<a class="headerlink" href="#one-categorical-variable" title="Link to this heading">¶</a></h3>
+<p>Does each county’s share of collisions match its share of the two counties’
+population, roughly three to one?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">shares</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">categories</span><span class="p">(</span>
+    <span class="n">collisions</span><span class="o">.</span><span class="n">county</span><span class="p">,</span> <span class="n">expected</span><span class="o">=</span><span class="p">{</span><span class="s2">"Los Angeles"</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">"San Diego"</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shares</span><span class="o">.</span><span class="n">shares</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>EACH CATEGORY AGAINST ITS EXPECTED SHARE
+
+category            count  expected  estimate      95% interval  P(above)
+--------------------------------------------------------------------------
+Los Angeles         9,886     75.0%     82.4%    81.7% to 83.1%     1.000  *
+San Diego           2,114     25.0%     17.6%    16.9% to 18.3%     0.000  *
+
+Note: * the 95% interval excludes the expected share. P(above) is the
+      probability the category's true share is higher than expected. Each
+      row is an estimate, not a test, so no correction for looking at
+      several categories is needed.
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="a-line-with-one-predictor">A line with one predictor<a class="headerlink" href="#a-line-with-one-predictor" title="Link to this heading">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">line</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">regression</span><span class="p">(</span>
+    <span class="n">parcels</span><span class="o">.</span><span class="n">sqft</span><span class="p">,</span> <span class="n">parcels</span><span class="o">.</span><span class="n">assessed_value</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">"floor area"</span><span class="p">,</span> <span class="s2">"assessed value"</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"dollars per sq ft"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">line</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'The best estimate of the slope is 117.35 dollars per sq ft, and the data are consistent with anything from 113.75 to 120.95 dollars per sq ft (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="paired-data-and-skewed-data">Paired data, and skewed data<a class="headerlink" href="#paired-data-and-skewed-data" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">compare_means(...,</span> <span class="pre">paired=True)</span></code> compares two measurements on the same units
+and reports how much the pairing narrowed the interval.
+<code class="docutils literal notranslate"><span class="pre">compare_means(...,</span> <span class="pre">log=True)</span></code> answers in ratios of typical values, which suits
+prices and incomes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="n">bp</span><span class="o">.</span><span class="n">compare_means</span><span class="p">(</span>
+    <span class="n">rowhouses</span><span class="p">,</span> <span class="n">detached</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">"rowhouse"</span><span class="p">,</span> <span class="s2">"detached"</span><span class="p">],</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>'detached is higher than rowhouse with 70% probability; the best estimate of the ratio is 1.01 times, and the data are consistent with anything from 0.97 to 1.05 times (95% credible interval).'
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="forecasting-the-next-one">Forecasting the next one<a class="headerlink" href="#forecasting-the-next-one" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.predict()</span></code> forecasts the next observation, carrying the uncertainty in the
+estimate through. It prints the plug-in forecast next to it, which treats the
+estimate as exact and is always too narrow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">bp</span><span class="o">.</span><span class="n">proportion</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><code>==========================================================================
+ forecast: number of successes in the next 100 cases
+==========================================================================
+
+   median                    27
+   95% forecast interval     8 to 56
+   plug-in interval          17 to 34  (estimate treated as exact)
+
+   Read: The number of successes in the next 100 cases is forecast at
+         about 27 (the median), and there is a 95% probability it lands in
+         the range 8 to 56.
+
+   Why: The plug-in interval is narrower because it treats the estimate as
+        if it were known exactly, so it carries only the ordinary
+        variation in the outcome. The forecast above also carries the
+        uncertainty in the estimate itself. The gap between them shrinks
+        as the data grow; with little data it is the larger part of the
+        story.
+==========================================================================
 </code></pre></div>
 </div>
 </div>

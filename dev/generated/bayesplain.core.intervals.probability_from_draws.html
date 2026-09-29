@@ -625,12 +625,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../api.html#contingency-tables" class="md-nav__link">
+      <a href="../api.html#rates" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    <span>Contingency tables</span>
+    <span>Rates</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#contingency-tables-and-categories" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Contingency tables and categories</span>
     
   </span>
   
@@ -697,6 +721,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../api.html#regression" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Regression</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api.html#partial-pooling" class="md-nav__link">
         
   
@@ -730,7 +778,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_8" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -747,14 +795,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_2_8" id="__nav_3_2_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_8">
             <span class="md-nav__icon md-icon"></span>
             <span>Summarising a posterior</span>
           </label>
@@ -1271,7 +1319,7 @@
 <h1 id="bayesplain-core-intervals-probability-from-draws">bayesplain.core.intervals.probability_from_draws<a class="headerlink" href="#bayesplain-core-intervals-probability-from-draws" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.core.intervals.probability_from_draws">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.core.intervals.</span></span><span class="sig-name descname"><span class="pre">probability_from_draws</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.probability_from_draws.draws" title="bayesplain.core.intervals.probability_from_draws.draws (Python parameter) — Posterior draws."><span class="n"><span class="pre">draws</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.probability_from_draws.op" title="bayesplain.core.intervals.probability_from_draws.op (Python parameter) — Comparison to evaluate."><span class="n"><span class="pre">op</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.probability_from_draws.value" title="bayesplain.core.intervals.probability_from_draws.value (Python parameter) — Threshold, or a (low, high) pair for 'between' and 'outside'."><span class="n"><span class="pre">value</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/intervals.py#L150-L191"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.intervals.probability_from_draws" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.core.intervals.</span></span><span class="sig-name descname"><span class="pre">probability_from_draws</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.probability_from_draws.draws" title="bayesplain.core.intervals.probability_from_draws.draws (Python parameter) — Posterior draws."><span class="n"><span class="pre">draws</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.probability_from_draws.op" title="bayesplain.core.intervals.probability_from_draws.op (Python parameter) — Comparison to evaluate."><span class="n"><span class="pre">op</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.intervals.probability_from_draws.value" title="bayesplain.core.intervals.probability_from_draws.value (Python parameter) — Threshold, or a (low, high) pair for 'between' and 'outside'."><span class="n"><span class="pre">value</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/intervals.py#L203-L244"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.intervals.probability_from_draws" title="Link to this definition">¶</a></dt>
 <dd><p>Posterior probability that a quantity satisfies a comparison.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.core.intervals.probability_from_draws-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.intervals.probability_from_draws-parameters" title="Permalink to this headline">¶</a></dt>

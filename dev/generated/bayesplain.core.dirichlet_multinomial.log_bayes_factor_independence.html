@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="bayesplain.core.beta_binomial.validate_counts.html">
+        <link rel="prev" href="bayesplain.core.gamma_poisson.validate_events.html">
       
       
         <link rel="next" href="bayesplain.core.dirichlet_multinomial.posterior_cell_draws.html">
@@ -621,6 +621,30 @@
                 
   
   
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#rates" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Rates</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -634,16 +658,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../api.html#contingency-tables" class="md-nav__link ">
+            <a href="../api.html#contingency-tables-and-categories" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
-    <span>Contingency tables</span>
+    <span>Contingency tables and categories</span>
     
   </span>
   
@@ -651,16 +675,16 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_3">
             <span class="md-nav__icon md-icon"></span>
-            <span>Contingency tables</span>
+            <span>Contingency tables and categories</span>
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -861,12 +885,60 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.core.dirichlet_multinomial.log_bayes_factor_goodness_of_fit.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>log_<wbr>bayes_<wbr>factor_<wbr>goodness_<wbr>of_<wbr>fit</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.core.dirichlet_multinomial.cramers_v.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>cramers_<wbr>v</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.core.dirichlet_multinomial.cohens_w.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>dirichlet_<wbr>multinomial.<wbr>cohens_<wbr>w</span>
     
   </span>
   
@@ -996,6 +1068,30 @@
   
   <span class="md-ellipsis">
     <span>Correlation</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#regression" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Regression</span>
     
   </span>
   
@@ -1319,7 +1415,7 @@
 <h1 id="bayesplain-core-dirichlet-multinomial-log-bayes-factor-independence">bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence<a class="headerlink" href="#bayesplain-core-dirichlet-multinomial-log-bayes-factor-independence" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.core.dirichlet_multinomial.</span></span><span class="sig-name descname"><span class="pre">log_bayes_factor_independence</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.table" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.table (Python parameter) — Table of counts, shape (R, C)."><span class="n"><span class="pre">table</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration (Python parameter) — Dirichlet concentration a."><span class="n"><span class="pre">concentration</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">1.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme (Python parameter) — One of SCHEMES."><span class="n"><span class="pre">scheme</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'independent_multinomial'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.fixed" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.fixed (Python parameter) — Which margin was fixed, for the independent-multinomial scheme only. Rows are the groups you sampled."><span class="n"><span class="pre">fixed</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rows'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/dirichlet_multinomial.py#L343-L394"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.core.dirichlet_multinomial.</span></span><span class="sig-name descname"><span class="pre">log_bayes_factor_independence</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.table" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.table (Python parameter) — Table of counts, shape (R, C)."><span class="n"><span class="pre">table</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration (Python parameter) — Dirichlet concentration a."><span class="n"><span class="pre">concentration</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">1.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme (Python parameter) — One of SCHEMES."><span class="n"><span class="pre">scheme</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'independent_multinomial'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.fixed" title="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.fixed (Python parameter) — Which margin was fixed, for the independent-multinomial scheme only. Rows are the groups you sampled."><span class="n"><span class="pre">fixed</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rows'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/dirichlet_multinomial.py#L345-L396"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence" title="Link to this definition">¶</a></dt>
 <dd><p>Log Bayes factor for association against independence.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence-parameters" title="Permalink to this headline">¶</a></dt>

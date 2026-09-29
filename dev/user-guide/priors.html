@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#four-families-one-argument" class="md-skip">
+        <a href="#five-families-one-argument" class="md-skip">
           Skip to content
         </a>
       
@@ -456,10 +456,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#four-families-one-argument" class="md-nav__link">
+  <a href="#five-families-one-argument" class="md-nav__link">
     
     <span class="md-ellipsis">
-      <span>Four families, one argument</span>
+      <span>Five families, one argument</span>
     </span>
   </a>
   
@@ -763,10 +763,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#four-families-one-argument" class="md-nav__link">
+  <a href="#five-families-one-argument" class="md-nav__link">
     
     <span class="md-ellipsis">
-      <span>Four families, one argument</span>
+      <span>Five families, one argument</span>
     </span>
   </a>
   
@@ -860,7 +860,7 @@ skeptical    Beta(10, 10)  assumes the rate is probably near 50% and takes real 
 </div>
 <p>The names describe <em>what the assumption says</em>, not what family it belongs to.
 None of them is neutral, and the summary output says so.</p>
-<h2 id="four-families-one-argument">Four families, one argument<a class="headerlink" href="#four-families-one-argument" title="Link to this heading">¶</a></h2>
+<h2 id="five-families-one-argument">Five families, one argument<a class="headerlink" href="#five-families-one-argument" title="Link to this heading">¶</a></h2>
 <p>Each analysis takes <code class="docutils literal notranslate"><span class="pre">prior=</span></code>, and what it means depends on what is being
 estimated.</p>
 <table class="docutils data align-default">
@@ -887,8 +887,24 @@ estimated.</p>
 <td><p>the correlation, as a stretched beta</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">concentrated</span></code>, <code class="docutils literal notranslate"><span class="pre">modest</span></code>, <code class="docutils literal notranslate"><span class="pre">uninformed</span></code>, <code class="docutils literal notranslate"><span class="pre">generous</span></code></p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rate</span></code>, <code class="docutils literal notranslate"><span class="pre">compare_rates</span></code></p></td>
+<td><p>the rate, as <code class="docutils literal notranslate"><span class="pre">Gamma(shape,</span> <span class="pre">exposure)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jeffreys</span></code> (default), <code class="docutils literal notranslate"><span class="pre">uninformed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">regression</span></code></p></td>
+<td><p>standardised slope, as <code class="docutils literal notranslate"><span class="pre">Cauchy(scale)</span></code></p></td>
+<td><p>same four as means</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">categories</span></code></p></td>
+<td><p>category shares, as <code class="docutils literal notranslate"><span class="pre">Dirichlet</span></code>, centred on the expected shares</p></td>
+<td><p>same four as proportions</p></td>
+</tr>
 </tbody>
 </table>
+<p>The rate presets carry no exposure, so neither says anything about how large a
+rate is — only how much to lean when events are rare. To say something about
+size, use an earlier period:
+<code class="docutils literal notranslate"><span class="pre">bp.priors.from_previous_period(events=30,</span> <span class="pre">exposure=5)</span></code>.</p>
 <p>The first two line up exactly rather than by analogy: for a 2×2 table of
 successes and failures, concentration <code class="docutils literal notranslate"><span class="pre">a</span></code> on the columns <em>is</em> a <code class="docutils literal notranslate"><span class="pre">Beta(a,</span> <span class="pre">a)</span></code>
 prior on each group’s rate.</p>

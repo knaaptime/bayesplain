@@ -1,0 +1,6 @@
+﻿bayesplain.core.regression.predictive
+=====================================
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autofunction:: predictive

@@ -1,0 +1,6 @@
+﻿bayesplain.teach.precision\_planning\_mean
+==========================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autofunction:: precision_planning_mean
