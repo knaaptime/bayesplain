@@ -43,6 +43,11 @@ def _join_unit(text: str, unit: str) -> str:
     return f"{text}{unit}" if unit in _TIGHT_UNITS else f"{text} {unit}"
 
 
+def _pad_label(label: str, width: int) -> str:
+    """Left-justify a label, keeping a gap even when it overruns the column."""
+    return label.ljust(width) if len(label) < width else label + "  "
+
+
 def _fmt_dof(dof: float) -> str:
     """Format degrees of freedom, which Welch's correction makes fractional."""
     return f"{dof:g}" if float(dof).is_integer() else f"{dof:.1f}"
@@ -967,14 +972,18 @@ class Result:
                 "Bayes factor. The posterior and credible interval above "
                 "answer the estimation question directly."
             )
-        bf10 = float(np.exp(self.log_bf10))
+        # Past about e^709 a Bayes factor overflows a float; infinity is the
+        # honest rendering of "more evidence than the digits can hold".
+        with np.errstate(over="ignore"):
+            bf10 = float(np.exp(self.log_bf10))
+            bf01 = float(np.exp(-self.log_bf10))
         caveat = self.bf_caveat or (
             "Depends on the prior, not just the data. Run .sensitivity() before "
             "quoting it."
         )
         return BayesFactor(
             bf10=bf10,
-            bf01=float(np.exp(-self.log_bf10)),
+            bf01=bf01,
             log_bf10=float(self.log_bf10),
             interpretation=_grade_bayes_factor(bf10, self.bf_alternative),
             caveat=caveat,
@@ -1244,7 +1253,7 @@ class Result:
             f"   {'most likely value':<{pad}}{self._fmt(self.point())}",
             f"   {pct + ' credible interval':<{pad}}"
             f"{self._fmt_range(lo, hi)}  ({kind.upper()})",
-            f"   {self._direction_label():<{pad}}{prob:.3f}",
+            f"   {_pad_label(self._direction_label(), pad)}{prob:.3f}",
             "",
         ]
         lines += _wrap(self.sentence(level=level), prefix="   Read: ")
@@ -1332,7 +1341,8 @@ class Result:
         }
         if self.log_bf10 is not None:
             out["log_bf10"] = float(self.log_bf10)
-            out["bf10"] = float(np.exp(self.log_bf10))
+            with np.errstate(over="ignore"):
+                out["bf10"] = float(np.exp(self.log_bf10))
         if self.frequentist is not None:
             out["frequentist_test"] = self.frequentist.test
             out["frequentist_statistic"] = self.frequentist.statistic

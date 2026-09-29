@@ -24,6 +24,9 @@ normal_t
     Student-t posteriors for means, and the JZS Bayes factor for a t statistic.
 hierarchical
     Closed-form partial pooling for a set of group means.
+regression
+    Student-t posteriors for a line with one predictor, and the Zellner-Siow
+    Bayes factor for its slope.
 correlation
     Exact sampling density of a correlation coefficient, with the posterior and
     Bayes factor that follow from it by one-dimensional integration.
@@ -40,6 +43,7 @@ from . import (
     hierarchical,
     intervals,
     normal_t,
+    regression,
 )
 
 __all__ = [
@@ -51,4 +55,5 @@ __all__ = [
     "hierarchical",
     "intervals",
     "normal_t",
+    "regression",
 ]

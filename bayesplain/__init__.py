@@ -59,6 +59,7 @@ from ._groups import compare_groups
 from ._means import compare_means, mean
 from ._proportions import compare_proportions, proportion
 from ._rates import compare_rates, rate
+from ._regression import regression
 from .result import BayesFactor, Decision, Prediction, Result
 
 try:  # pragma: no cover - depends on install method
@@ -81,6 +82,7 @@ __all__ = [
     "mean",
     "compare_means",
     "correlation",
+    "regression",
     "compare_groups",
     # result types
     "Result",
