@@ -101,6 +101,8 @@ __all__ = [
     "log_bayes_factor_independence",
     "posterior_cell_draws",
     "cramers_v",
+    "cohens_w",
+    "log_bayes_factor_goodness_of_fit",
     "log_odds_ratio",
     "validate_table",
 ]
@@ -530,3 +532,88 @@ def log_odds_ratio(prob_tables) -> np.ndarray:
             - np.log(arr[:, 1, 0])
         )
     return out[0] if single else out
+
+
+# ---------------------------------------------------------------------------
+# One categorical variable against a fixed set of shares
+# ---------------------------------------------------------------------------
+
+
+def log_bayes_factor_goodness_of_fit(counts, expected_shares, concentration=1.0):
+    r"""Log Bayes factor for "the shares are unknown" against fixed shares.
+
+    Under the null the category probabilities are exactly ``expected_shares``;
+    under the alternative they are ``Dirichlet(a)``. Both marginal likelihoods
+    are closed form and the multinomial coefficient cancels, leaving
+
+    .. math::
+
+        \log \mathrm{BF}_{10} = \log \mathcal{D}(a + n) - \log \mathcal{D}(a)
+            - \sum_j n_j \log p_{0j}
+
+    Parameters
+    ----------
+    counts : array_like
+        Count in each category.
+    expected_shares : array_like
+        Shares under the null. Normalised to sum to one.
+    concentration : float or array_like, default 1.0
+        Dirichlet concentration under the alternative.
+
+    Returns
+    -------
+    float
+        ``log(BF10)``.
+
+    Examples
+    --------
+    With two categories this is the Beta-binomial point-null Bayes factor:
+
+    >>> from bayesplain.core import beta_binomial
+    >>> a = log_bayes_factor_goodness_of_fit([34, 186], [0.1, 0.9])
+    >>> b = beta_binomial.log_bayes_factor_point_null(34, 220, 0.1, 1.0, 1.0)
+    >>> bool(abs(a - b) < 1e-9)
+    True
+    """
+    counts = np.asarray(counts, dtype=float).ravel()
+    shares = np.asarray(expected_shares, dtype=float).ravel()
+    if counts.shape != shares.shape:
+        raise ValueError("counts and expected_shares must have the same length.")
+    if np.any(shares <= 0):
+        raise ValueError("every expected share must be positive.")
+    shares = shares / shares.sum()
+    a_vec = _concentration_vector(concentration, counts.size)
+    return (
+        log_multivariate_beta(a_vec + counts)
+        - log_multivariate_beta(a_vec)
+        - float((counts * np.log(shares)).sum())
+    )
+
+
+def cohens_w(share_draws, expected_shares) -> np.ndarray:
+    r"""Cohen's w for one or many vectors of category shares.
+
+    .. math::
+
+        w = \sqrt{\sum_j (p_j - p_{0j})^2 / p_{0j}}
+
+    The goodness-of-fit counterpart of Cramer's V: zero when the shares match
+    the expected ones exactly, with 0.1, 0.3 and 0.5 the conventional bars for
+    small, medium and large departures.
+
+    Parameters
+    ----------
+    share_draws : array_like
+        Shares, shape ``(K,)`` or ``(draws, K)``.
+    expected_shares : array_like
+        Expected shares, length ``K``. Normalised to sum to one.
+
+    Returns
+    -------
+    ndarray
+        One value per row of ``share_draws``.
+    """
+    shares = np.atleast_2d(np.asarray(share_draws, dtype=float))
+    expected = np.asarray(expected_shares, dtype=float).ravel()
+    expected = expected / expected.sum()
+    return np.sqrt(((shares - expected) ** 2 / expected).sum(axis=1))

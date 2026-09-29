@@ -1,7 +1,10 @@
 ---
 name: Build Docs
+# Read-only by default: pull requests build the docs but must not be able to
+# write to the repository. Only the publish job, which runs on pushes to main
+# and on tags, is granted write access.
 permissions:
-  contents: write
+  contents: read
 
 on:
   push:
@@ -23,15 +26,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  docs:
-    name: Build & push docs
-    runs-on: ${{ matrix.os }}
+  build:
+    name: Build docs
+    runs-on: ubuntu-latest
     timeout-minutes: 90
-    strategy:
-      matrix:
-        os: ["ubuntu-latest"]
-        environment-file: [ci/314.yml]
-        experimental: [false]
     defaults:
       run:
         shell: bash -l {0}
@@ -45,7 +43,7 @@ jobs:
       - name: Setup micromamba
         uses: mamba-org/setup-micromamba@v3
         with:
-          environment-file: ${{ matrix.environment-file }}
+          environment-file: docs/docs_env.yml
           micromamba-version: "latest"
 
       - name: Install package
@@ -54,16 +52,37 @@ jobs:
       - name: Make docs
         run: cd docs; make html
 
-      - name: Zip documentation
-        if: ${{ github.event_name == 'pull_request' }}
-        run: zip docs_artifact.zip docs/build/html -r
-
-      - name: Upload artifact
-        if: ${{ github.event_name == 'pull_request' }}
+      - name: Upload built docs
         uses: actions/upload-artifact@v7
         with:
-          name: docs_artifact
-          path: docs_artifact.zip
+          name: docs_html
+          path: docs/build/html
+
+  publish:
+    name: Publish docs
+    needs: build
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Download built docs
+        uses: actions/download-artifact@v7
+        with:
+          name: docs_html
+          path: docs/build/html
+
+      - name: Set up python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
 
       - name: Publish to Github Pages on main (dev)
         if: ${{ github.ref == 'refs/heads/main' }}

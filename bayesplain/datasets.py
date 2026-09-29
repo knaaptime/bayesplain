@@ -97,6 +97,9 @@ DATASETS: dict[str, DatasetInfo] = {
             "which is the two-group comparison the course pivots on",
             "contingency — severity against road surface",
             "compare_means — people injured per collision, by county",
+            "compare_rates — people killed per 1,000 collisions, by county",
+            "categories — each county's share of collisions against its "
+            "share of population",
         ],
     ),
     "la_tracts": DatasetInfo(
@@ -179,6 +182,8 @@ DATASETS: dict[str, DatasetInfo] = {
             "compare_groups — assessed value across construction types, "
             "where the rarest type looks extreme until it is pooled",
             "correlation — square footage against assessed value",
+            "regression — dollars of assessed value per square foot",
+            "compare_means(log=True) — skewed values compared as a ratio",
             "contingency — construction type against condition",
         ],
     ),

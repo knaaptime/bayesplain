@@ -16,7 +16,31 @@ on:
        default: test
        required: false
 
+permissions:
+  contents: read
+
 jobs:
+  lint:
+    name: ruff
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+
+      - name: set up python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: lint and format check
+        run: |
+          # Pinned: a new ruff release can change formatting rules, and CI
+          # should only go red for changes made in this repository.
+          python -m pip install ruff==0.16.9
+          ruff check .
+          ruff format --check .
+
   tests:
     name: ${{ matrix.os }}, ${{ matrix.environment-file }}
     runs-on: ${{ matrix.os }}
@@ -25,9 +49,12 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         environment-file: [
+           ci/310.yml,
+           ci/311.yml,
            ci/312.yml,
            ci/313.yml,
            ci/314.yml,
+           ci/minimal.yml,
         ]
         include:
           - environment-file: ci/314.yml
@@ -62,9 +89,12 @@ jobs:
       - name: install package
         run: "pip install -e . --no-deps"
 
+      # The whole package, not just bayesplain/tests: pyproject's
+      # --doctest-modules then runs every docstring example too, so the
+      # numbers printed in the documentation are assertions.
       - name: run tests
         run: |
-          pytest bayesplain/tests \
+          pytest bayesplain \
           -v \
           -r a \
           -n auto \

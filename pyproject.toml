@@ -41,7 +41,7 @@ Repository = "https://github.com/knaaptime/bayesplain"
 [project.optional-dependencies]
 plot = ["matplotlib"]
 data = ["pandas"]
-tests = ["pytest", "pytest-cov", "hypothesis", "matplotlib", "pandas"]
+tests = ["pytest", "pytest-cov", "pytest-xdist", "matplotlib", "pandas"]
 # Cross-validation against independent implementations of the same integrals.
 validate = ["pingouin"]
 docs = [
@@ -85,6 +85,11 @@ omit = ["bayesplain/tests/*"]
 line-length = 88
 target-version = "py310"
 extend-exclude = ["docs/_build", "bayesplain.egg-info"]
+
+[tool.ruff.format]
+# Code blocks in the README and docs use hand-aligned comments, which read
+# better as documentation than formatted code does.
+exclude = ["*.md"]
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "D", "UP"]

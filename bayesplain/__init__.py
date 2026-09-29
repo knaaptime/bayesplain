@@ -1,9 +1,10 @@
 """Bayesian answers to the questions frequentist tests are usually asked.
 
 ``bayesplain`` gives you the Bayesian version of the handful of tests an
-introductory statistics course is built around -- proportions, means,
-contingency tables, correlation, group comparisons -- and prints the
-conventional test alongside it every time.
+introductory statistics course is built around -- proportions, rates,
+means, contingency tables, goodness of fit, correlation, a line with one
+predictor, group comparisons -- and prints the conventional test alongside it
+every time.
 
 Three design commitments
 ------------------------
@@ -24,8 +25,8 @@ with no compiler and no convergence warnings, ever.
 
 Getting started
 ---------------
->>> import bayesplain as bf
->>> res = bf.compare_proportions(
+>>> import bayesplain as bp
+>>> res = bp.compare_proportions(
 ...     successes=[34, 51],
 ...     n=[220, 240],
 ...     labels=["District A", "District B"],
@@ -44,6 +45,7 @@ bayesplain.core : The mathematics, as pure functions.
 from __future__ import annotations
 
 from . import core, datasets, frequentist, priors, teach
+from ._categories import SMALL_EFFECT_W, categories
 from ._config import (
     DEFAULT_DRAWS,
     DEFAULT_SEED,
@@ -57,7 +59,9 @@ from ._correlation import correlation
 from ._groups import compare_groups
 from ._means import compare_means, mean
 from ._proportions import compare_proportions, proportion
-from .result import BayesFactor, Decision, Result
+from ._rates import compare_rates, rate
+from ._regression import regression
+from .result import BayesFactor, Decision, Prediction, Result
 
 try:  # pragma: no cover - depends on install method
     from importlib.metadata import PackageNotFoundError, version
@@ -70,16 +74,22 @@ __all__ = [
     # analyses
     "proportion",
     "compare_proportions",
+    "rate",
+    "compare_rates",
     "contingency",
     "SMALL_EFFECT_V",
+    "categories",
+    "SMALL_EFFECT_W",
     "mean",
     "compare_means",
     "correlation",
+    "regression",
     "compare_groups",
     # result types
     "Result",
     "Decision",
     "BayesFactor",
+    "Prediction",
     # sub-packages
     "priors",
     "frequentist",

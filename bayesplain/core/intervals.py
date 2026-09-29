@@ -19,9 +19,11 @@ Pure functions only.
 from __future__ import annotations
 
 import numpy as np
+from scipy import optimize
 
 __all__ = [
     "eti_from_draws",
+    "hdi_from_dist",
     "hdi_from_draws",
     "interval",
     "monte_carlo_se",
@@ -99,6 +101,54 @@ def hdi_from_draws(draws, level: float = 0.95) -> tuple[float, float]:
     return float(arr[start]), float(arr[start + n_included - 1])
 
 
+def hdi_from_dist(dist, level: float = 0.95) -> tuple[float, float]:
+    """Highest-density interval of an analytic, unimodal distribution.
+
+    The shortest interval holding ``level`` of the mass, found by choosing how
+    much probability to leave in the lower tail. Exact up to the optimiser's
+    tolerance, with no Monte Carlo error -- and when the density piles up
+    against a boundary, as a rate posterior does after zero successes, the
+    interval starts exactly at that boundary rather than a hair above it.
+
+    Parameters
+    ----------
+    dist : scipy.stats frozen distribution
+        Continuous and unimodal (or monotone).
+    level : float, default 0.95
+        Probability the interval should contain.
+
+    Returns
+    -------
+    tuple of float
+        Lower and upper bounds.
+
+    Examples
+    --------
+    >>> from scipy import stats
+    >>> hdi_from_dist(stats.beta(1, 21))[0]
+    0.0
+    """
+    level = _validate_level(level)
+    spare = 1.0 - level
+
+    def width(lower_tail: float) -> float:
+        return float(dist.ppf(lower_tail + level) - dist.ppf(lower_tail))
+
+    candidates = [0.0, spare]
+    found = optimize.minimize_scalar(
+        width, bounds=(0.0, spare), method="bounded", options={"xatol": 1e-10}
+    )
+    if found.success:
+        candidates.append(float(found.x))
+    widths = [width(c) for c in candidates]
+    finite = [(w, c) for w, c in zip(widths, candidates) if np.isfinite(w)]
+    if not finite:
+        # An unbounded tail with no finite interval; fall back to equal tails.
+        return float(dist.ppf(spare / 2)), float(dist.ppf(1 - spare / 2))
+    best = min(finite)[1]
+    return float(dist.ppf(best)), float(dist.ppf(best + level))
+
+
 def interval(
     draws=None,
     level: float = 0.95,
@@ -107,9 +157,10 @@ def interval(
 ) -> tuple[float, float]:
     """Posterior interval, taken analytically when that is possible.
 
-    If a frozen scipy distribution is supplied and an equal-tailed interval is
-    requested, the bounds come from its quantile function and carry no Monte
-    Carlo error at all. Otherwise they are estimated from draws.
+    If a frozen scipy distribution is supplied, the bounds come from it -- the
+    quantile function for an equal-tailed interval, a one-dimensional
+    optimisation for a highest-density one -- and carry no Monte Carlo error
+    at all. Otherwise they are estimated from draws.
 
     Parameters
     ----------
@@ -132,7 +183,9 @@ def interval(
     if kind not in {"hdi", "eti"}:
         raise ValueError(f"kind must be 'hdi' or 'eti', got {kind!r}.")
 
-    if kind == "eti" and dist is not None:
+    if dist is not None:
+        if kind == "hdi":
+            return hdi_from_dist(dist, level)
         tail = (1.0 - level) / 2.0
         return float(dist.ppf(tail)), float(dist.ppf(1.0 - tail))
     if draws is None:

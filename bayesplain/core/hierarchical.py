@@ -28,13 +28,35 @@ correct behaviour, not a failure to shrink.
 No sampler, no hierarchy of priors to specify. An empirical-Bayes shortcut,
 and honest about being one: it treats the estimated :math:`\tau^2` as known,
 which understates uncertainty slightly when the number of groups is small.
+
+Proportions
+-----------
+For rates the same idea runs through a Beta population distribution instead
+of a normal one. The group rates are treated as draws from
+:math:`\mathrm{Beta}(\mu\kappa, (1-\mu)\kappa)`, where :math:`\mu` is the
+typical rate and :math:`\kappa` says how tightly the groups cluster around
+it. Both are estimated by maximising the beta-binomial marginal likelihood --
+an optimisation over two numbers, not a sampler -- and each group's posterior
+is then the exact conjugate update
+:math:`\mathrm{Beta}(\mu\kappa + x_i,\; (1-\mu)\kappa + n_i - x_i)`. Its mean
+is :math:`w_i \hat p_i + (1 - w_i)\mu` with :math:`w_i = n_i/(n_i + \kappa)`:
+a small group keeps less of its own rate.
 """
 
 from __future__ import annotations
 
 import numpy as np
+from scipy import optimize, special
 
-__all__ = ["between_group_variance", "shrink"]
+__all__ = ["between_group_variance", "shrink", "shrink_proportions"]
+
+#: Past this concentration the groups are indistinguishable from one shared
+#: rate, and pooling is reported as complete.
+_FULL_POOLING_KAPPA = 1e7
+
+#: Log-likelihood gap, in nats, below which one shared rate is judged to fit
+#: as well as separate ones. A likelihood ratio of exp(1e-4) is invisible.
+_FULL_POOLING_TOLERANCE = 1e-4
 
 
 def between_group_variance(means, standard_errors) -> float:
@@ -120,4 +142,88 @@ def shrink(means, standard_errors):
         "weights": weights,
         "tau2": tau2,
         "grand_mean": grand_mean,
+    }
+
+
+def shrink_proportions(successes, n):
+    r"""Pull group rates toward the typical rate, by empirical-Bayes beta-binomial.
+
+    Parameters
+    ----------
+    successes : array_like
+        Success count in each group.
+    n : array_like
+        Trial count in each group.
+
+    Returns
+    -------
+    dict
+        With keys ``'alpha'`` and ``'beta'`` for each group's posterior Beta
+        parameters, ``'weights'`` for each group's :math:`w_i` (1 means no
+        shrinkage, 0 means full pooling), ``'kappa'`` for the estimated
+        concentration, ``'grand_mean'`` for the typical rate :math:`\mu`, and
+        ``'full'`` for whether the groups collapsed onto one shared rate.
+
+    Examples
+    --------
+    A small group with an extreme rate is pulled the furthest:
+
+    >>> out = shrink_proportions([10, 45, 80, 9], [100, 100, 100, 12])
+    >>> bool(out["weights"][3] < out["weights"][0])
+    True
+    >>> bool(out["alpha"][3] / (out["alpha"][3] + out["beta"][3]) < 9 / 12)
+    True
+    """
+    x = np.asarray(successes, dtype=float)
+    t = np.asarray(n, dtype=float)
+    if x.shape != t.shape or x.size < 2:
+        raise ValueError("need matching success and trial counts for 2+ groups.")
+
+    def negative_log_likelihood(params):
+        mu = special.expit(params[0])
+        kappa = np.exp(params[1])
+        a, b = mu * kappa, (1.0 - mu) * kappa
+        return -float((special.betaln(a + x, b + t - x) - special.betaln(a, b)).sum())
+
+    pooled = (x.sum() + 0.5) / (t.sum() + 1.0)
+    upper = np.log(_FULL_POOLING_KAPPA)
+    bounds = [(-30.0, 30.0), (np.log(1e-3), upper)]
+    best = None
+    # Several starting concentrations, one of them at the full-pooling
+    # bound, because the likelihood in kappa is often nearly flat on one
+    # side and a single start can stall anywhere along that ridge.
+    for start in (1.0, 10.0, 100.0, 1e4, _FULL_POOLING_KAPPA):
+        fit = optimize.minimize(
+            negative_log_likelihood,
+            x0=[special.logit(pooled), np.log(start)],
+            method="L-BFGS-B",
+            bounds=bounds,
+            options={"ftol": 1e-13, "gtol": 1e-10},
+        )
+        if best is None or fit.fun < best.fun:
+            best = fit
+
+    # Full pooling is a verdict about the data, not about where the optimiser
+    # happened to stop: if one shared rate fits as well as the best fit, to
+    # within a likelihood difference no data could detect, the groups are
+    # indistinguishable. Deciding this from the optimum's position alone made
+    # the answer depend on floating-point details of the platform.
+    shared = optimize.minimize_scalar(
+        lambda m: negative_log_likelihood([m, upper]),
+        bounds=(-30.0, 30.0),
+        method="bounded",
+    )
+    full = bool(shared.fun <= best.fun + _FULL_POOLING_TOLERANCE)
+    if full:
+        mu, kappa = float(special.expit(shared.x)), _FULL_POOLING_KAPPA
+    else:
+        mu = float(special.expit(best.x[0]))
+        kappa = float(np.exp(best.x[1]))
+    return {
+        "alpha": mu * kappa + x,
+        "beta": (1.0 - mu) * kappa + t - x,
+        "weights": t / (t + kappa),
+        "kappa": kappa,
+        "grand_mean": mu,
+        "full": full,
     }

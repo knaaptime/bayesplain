@@ -31,8 +31,9 @@ from scipy import stats
 
 from . import frequentist
 from ._config import get_draws, make_rng
+from ._frame import column, split_by
 from .core import hierarchical, normal_t
-from .result import Result, _Report, _wrap
+from .result import Result, _missing_note, _Report, _wrap
 
 __all__ = ["compare_groups"]
 
@@ -46,6 +47,7 @@ def compare_groups(
     unit: str = "",
     n_draws: int | None = None,
     seed="unset",
+    values: str | None = None,
 ) -> Result:
     """Compare the averages of three or more groups.
 
@@ -55,8 +57,10 @@ def compare_groups(
         The observations. Accepts a ``{name: values}`` mapping, a sequence of
         arrays (one per group), or a flat array of values paired with ``by``.
         A pandas Series or DataFrame column works with ``by`` as well.
-    by : array_like, optional
-        Group label for each observation, when ``data`` is a flat array.
+    by : array_like or str, optional
+        Group label for each observation, when ``data`` is a flat array; or,
+        when ``data`` is a data frame, the name of the column holding the
+        labels.
     labels : sequence of str, optional
         Group names, when they cannot be read from ``data``.
     pool : bool, default False
@@ -72,6 +76,9 @@ def compare_groups(
         Number of draws. Defaults to the package setting.
     seed : int or None, optional
         Seed for the draws.
+    values : str, optional
+        With a data frame as ``data``, the column holding the observations:
+        ``compare_groups(df, by="district", values="rent")``.
 
     Returns
     -------
@@ -95,7 +102,18 @@ def compare_groups(
     3
     >>> print(res.pairwise())          # doctest: +SKIP
     """
-    names, samples = _read_groups(data, by, labels)
+    if values is not None or isinstance(by, str):
+        if values is None or not isinstance(by, str):
+            raise ValueError(
+                "with a data frame, name both columns: "
+                "compare_groups(df, by='group column', values='value column')."
+            )
+        observations, _ = column(values, data, "values")
+        keys, by_name = column(by, data, "by")
+        names, samples = split_by(observations, keys, by_name)
+        samples = [np.asarray(s, dtype=float) for s in samples]
+    else:
+        names, samples = _read_groups(data, by, labels)
     n_groups = len(names)
     if n_groups < 3:
         raise ValueError(
@@ -124,6 +142,12 @@ def compare_groups(
     twin = frequentist.one_way_anova(samples)
 
     notes = _build_notes(names, sizes, pooling, threshold)
+    missing = _missing_note(
+        int(sum(np.asarray(s, dtype=float).size for s in samples) - sizes.sum()),
+        int(sizes.sum()),
+    )
+    if missing:
+        notes.append(missing)
 
     result = Result(
         quantity="spread between the highest and lowest group average",
@@ -408,9 +432,10 @@ def _forest_plot(result):
 
     def draw(ax):
         names = result.group_names
+        scale = getattr(result, "group_scale", 1.0)
         order = sorted(names, key=lambda n: np.median(result.group_draws[n]))
         for row, name in enumerate(order):
-            sample = result.group_draws[name]
+            sample = result.group_draws[name] * scale
             lo, hi = np.quantile(sample, [0.025, 0.975])
             inner = np.quantile(sample, [0.25, 0.75])
             ax.plot([lo, hi], [row, row], color="#4a4e69", lw=1.6, zorder=2)
@@ -426,7 +451,7 @@ def _forest_plot(result):
             )
         if result.pooling is not None:
             ax.axvline(
-                result.pooling["grand_mean"],
+                result.pooling["grand_mean"] * scale,
                 color="#c9184a",
                 ls="--",
                 lw=1.2,
@@ -452,13 +477,14 @@ def _pairwise_plot(result):
 
     def draw(ax):
         names = result.group_names
+        scale = getattr(result, "group_scale", 1.0)
         pairs = [
             (names[i], names[j])
             for i in range(len(names))
             for j in range(i + 1, len(names))
         ]
         for row, (a, b) in enumerate(pairs):
-            diff = result.group_draws[a] - result.group_draws[b]
+            diff = (result.group_draws[a] - result.group_draws[b]) * scale
             lo, hi = np.quantile(diff, [0.025, 0.975])
             crosses = lo < 0 < hi
             colour = "#9a8c98" if crosses else "#22223b"

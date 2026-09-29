@@ -1,6 +1,6 @@
 """The object every analysis returns.
 
-One class for all seven analyses, so that the methods a student learns in week
+One class for every analysis, so that the methods a student learns in week
 2 are the same methods they use in week 9. The muscle memory transfers; only
 the question changes.
 
@@ -11,8 +11,8 @@ factor is a method call rather than a printed default, because "BF = 4.2" is
 not a sentence anyone puts in a memo, and because it is prior-sensitive in a
 way that is genuinely hard to explain honestly to a non-technical audience.
 
-Nothing here is specific to proportions -- the seven analysis functions all
-assemble one of these.
+Nothing here is specific to proportions -- every analysis function assembles
+one of these.
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ import numpy as np
 from .core import intervals
 from .frequentist import FrequentistTwin
 
-__all__ = ["Result", "Decision", "BayesFactor"]
+__all__ = ["Result", "Decision", "BayesFactor", "Prediction"]
 
 _RULE = "=" * 74
 _THIN = "-" * 74
@@ -41,6 +41,41 @@ def _join_unit(text: str, unit: str) -> str:
     if not unit:
         return text
     return f"{text}{unit}" if unit in _TIGHT_UNITS else f"{text} {unit}"
+
+
+def _missing_note(dropped: int, kept: int, unit: str = "missing values") -> str | None:
+    """Say how many missing values were dropped, when any were.
+
+    Dropping them is the only thing a closed-form analysis can do, but doing it
+    silently hides an assumption: that the missing cases look like the rest.
+
+    Parameters
+    ----------
+    dropped : int
+        How many were removed.
+    kept : int
+        How many remain.
+    unit : str, default 'missing values'
+        What was dropped, plural, e.g. ``'incomplete pairs'``.
+
+    Returns
+    -------
+    str or None
+        The note, or ``None`` when nothing was dropped.
+    """
+    if dropped <= 0:
+        return None
+    noun = unit[:-1] if dropped == 1 and unit.endswith("s") else unit
+    return (
+        f"{dropped:,} {noun} {'was' if dropped == 1 else 'were'} dropped, "
+        f"leaving {kept:,}. That assumes the missing cases look like the rest; "
+        "if they differ systematically, so will the answer"
+    )
+
+
+def _pad_label(label: str, width: int) -> str:
+    """Left-justify a label, keeping a gap even when it overruns the column."""
+    return label.ljust(width) if len(label) < width else label + "  "
 
 
 def _fmt_dof(dof: float) -> str:
@@ -193,6 +228,219 @@ def _grade_bayes_factor(bf10: float, alternative: str = "a difference") -> str:
 
 
 # ---------------------------------------------------------------------------
+# Forecasts
+# ---------------------------------------------------------------------------
+
+
+class Prediction:
+    """A forecast of the next observation, with the parameter uncertainty in it.
+
+    What :meth:`Result.predict` returns. The posterior answers "what is the
+    rate?"; this answers "what will next year's count be?", which is the
+    question a budget or a staffing plan actually turns on. It averages the
+    ordinary sampling variation over every value of the parameter the
+    posterior still allows, so it is always wider than the interval you would
+    get by plugging in a single best estimate -- and the gap between the two
+    is exactly the uncertainty the plug-in pretends away.
+
+    Parameters
+    ----------
+    what : str
+        What is being forecast, e.g. ``"successes in the next 100 cases"``.
+    dist : scipy frozen distribution
+        The posterior predictive distribution, discrete or continuous.
+    plug_in : scipy frozen distribution, optional
+        The same forecast with the parameter fixed at its best estimate.
+    frequentist_interval : tuple of float, optional
+        The textbook frequentist prediction interval, where one exists.
+    frequentist_method : str
+        What that interval is called.
+    unit : str
+        Display unit.
+    decimals : int, default 0
+        Decimal places for display. Counts use 0.
+    discrete : bool, default False
+        Whether the forecast is a count.
+    transform, inverse : callable, optional
+        A monotone increasing map applied to the draws of ``dist`` and its
+        inverse, for forecasts computed on a log scale and reported on the
+        original one. Quantiles and tail probabilities survive a monotone map
+        exactly, so nothing is approximated.
+    """
+
+    def __init__(
+        self,
+        *,
+        what: str,
+        dist: Any,
+        plug_in: Any = None,
+        frequentist_interval: tuple[float, float] | None = None,
+        frequentist_method: str = "",
+        unit: str = "",
+        decimals: int = 0,
+        discrete: bool = False,
+        transform: Callable[[Any], Any] | None = None,
+        inverse: Callable[[Any], Any] | None = None,
+    ) -> None:
+        self.what = what
+        self.dist = dist
+        self.plug_in = plug_in
+        self.frequentist_interval = frequentist_interval
+        self.frequentist_method = frequentist_method
+        self.unit = unit
+        self.decimals = int(decimals)
+        self.discrete = bool(discrete)
+        self._transform = transform or (lambda v: v)
+        self._inverse = inverse or (lambda v: v)
+
+    def point(self) -> float:
+        """Median of the forecast."""
+        return float(self._transform(self.dist.median()))
+
+    def interval(self, level: float = 0.95) -> tuple[float, float]:
+        """Equal-tailed forecast interval.
+
+        Parameters
+        ----------
+        level : float, default 0.95
+            Probability the next observation lands inside. For a count the
+            coverage is at least ``level``, since a count cannot be split.
+
+        Returns
+        -------
+        tuple of float
+            Lower and upper bounds.
+        """
+        return self._interval_of(self.dist, level)
+
+    def _interval_of(self, dist, level: float) -> tuple[float, float]:
+        intervals._validate_level(level)
+        tail = (1.0 - level) / 2.0
+        lo, hi = dist.ppf(tail), dist.ppf(1.0 - tail)
+        return float(self._transform(lo)), float(self._transform(hi))
+
+    def probability(self, op: str = ">", value: float = 0.0) -> float:
+        """Probability the next observation satisfies a comparison.
+
+        Parameters
+        ----------
+        op : {'>', '>=', '<', '<='}, default '>'
+            Comparison to evaluate.
+        value : float
+            Threshold, on the reported scale.
+
+        Returns
+        -------
+        float
+            Exact predictive probability.
+
+        Examples
+        --------
+        >>> import bayesplain as bp
+        >>> fc = bp.proportion(34, 220).predict(n=100)
+        >>> round(fc.probability(">=", 20), 3)
+        0.193
+        """
+        if op not in {">", ">=", "<", "<="}:
+            raise ValueError(f"op must be one of '>', '>=', '<', '<=', got {op!r}.")
+        cut = float(self._inverse(value))
+        dist = self.dist
+        if self.discrete:
+            if op == ">":
+                return float(dist.sf(np.floor(cut)))
+            if op == ">=":
+                return float(dist.sf(np.ceil(cut) - 1))
+            if op == "<":
+                return float(dist.cdf(np.ceil(cut) - 1))
+            return float(dist.cdf(np.floor(cut)))
+        if op in {">", ">="}:
+            return float(dist.sf(cut))
+        return float(dist.cdf(cut))
+
+    def _fmt(self, value: float) -> str:
+        if np.isinf(value):
+            return "∞"
+        text = f"{value:,.{self.decimals}f}".replace("-", "−")
+        return text
+
+    def _fmt_range(self, low: float, high: float) -> str:
+        return _join_unit(f"{self._fmt(low)} to {self._fmt(high)}", self.unit)
+
+    def summary(self, level: float = 0.95) -> _Report:
+        """Report the forecast next to the plug-in forecast it improves on.
+
+        Parameters
+        ----------
+        level : float, default 0.95
+            Forecast level.
+
+        Returns
+        -------
+        _Report
+            Printable text.
+        """
+        pct = f"{level:.0%}"
+        lo, hi = self.interval(level)
+        pad = 26
+        lines = [_RULE, *_wrap(f"forecast: {self.what}", prefix=" "), _RULE, ""]
+        lines += [
+            f"   {'median':<{pad}}{_join_unit(self._fmt(self.point()), self.unit)}",
+            f"   {pct + ' forecast interval':<{pad}}{self._fmt_range(lo, hi)}",
+        ]
+        if self.plug_in is not None:
+            plo, phi = self._interval_of(self.plug_in, level)
+            lines += [
+                f"   {'plug-in interval':<{pad}}{self._fmt_range(plo, phi)}"
+                "  (estimate treated as exact)"
+            ]
+        if self.frequentist_interval is not None:
+            flo, fhi = self.frequentist_interval
+            lines += [
+                f"   {'frequentist interval':<{pad}}{self._fmt_range(flo, fhi)}"
+                f"  ({self.frequentist_method})"
+            ]
+        lines += [""]
+        lines += _wrap(
+            f"The {self.what} is forecast at about "
+            f"{_join_unit(self._fmt(self.point()), self.unit)} (the median), and "
+            "there is a "
+            f"{pct} probability it lands in the range {self._fmt_range(lo, hi)}.",
+            prefix="   Read: ",
+        )
+        if self.plug_in is not None:
+            plo, phi = self._interval_of(self.plug_in, level)
+            if (phi - plo) < (hi - lo):
+                why = (
+                    "The plug-in interval is narrower because it treats the "
+                    "estimate as if it were known exactly, so it carries only "
+                    "the ordinary variation in the outcome. The "
+                    "forecast above also carries the uncertainty in the "
+                    "estimate itself. The gap between them shrinks as the data "
+                    "grow; with little data it is the larger part of the story."
+                )
+            else:
+                why = (
+                    "Here the plug-in interval is no narrower, because the "
+                    "estimate is already pinned down well enough that its "
+                    "uncertainty adds almost nothing to ordinary variation."
+                )
+            lines += [""] + _wrap(why, prefix="   Why: ")
+        if self.frequentist_interval is not None:
+            lines += [""] + _wrap(
+                "The textbook prediction interval gives the same numbers here: "
+                "under the reference prior the arithmetic is identical. What "
+                "differs is the sentence. Only the Bayesian version licenses a "
+                f"{pct} probability statement about this next observation.",
+                prefix="   Note: ",
+            )
+        lines += [_RULE]
+        return _Report("\n".join(lines))
+
+    def __repr__(self) -> str:
+        return self.summary().text
+
+
+# ---------------------------------------------------------------------------
 # The Result
 # ---------------------------------------------------------------------------
 
@@ -277,6 +525,12 @@ class Result:
         that there is no prior to vary rather than that nobody wrote the code.
     no_bayes_factor_reason : str, optional
         Why :meth:`bayes_factor` is unavailable, when it is.
+    predictor : callable, optional
+        Builds the :class:`Prediction` returned by :meth:`predict`. Its
+        arguments are whatever that analysis's forecast needs: a number of
+        future trials, a future exposure, a value of the predictor.
+    no_predict_reason : str, optional
+        Why :meth:`predict` is unavailable, when it is.
     next_steps : str, optional
         The suggestions printed at the foot of a summary. Defaults to the
         methods every result supports.
@@ -317,6 +571,8 @@ class Result:
         custom_plots: Mapping[str, Callable[[Any], Any]] | None = None,
         no_sensitivity_reason: str = "",
         no_bayes_factor_reason: str = "",
+        predictor: Callable[..., Prediction] | None = None,
+        no_predict_reason: str = "",
         next_steps: str = "",
         refit: Callable[[Any], Result] | None = None,
         prior_ladder: Sequence[str] | None = None,
@@ -348,6 +604,8 @@ class Result:
         self.custom_plots = dict(custom_plots) if custom_plots else {}
         self.no_sensitivity_reason = no_sensitivity_reason
         self.no_bayes_factor_reason = no_bayes_factor_reason
+        self._predictor = predictor
+        self.no_predict_reason = no_predict_reason
         self.next_steps = next_steps
         self._refit = refit
         self.prior_ladder = tuple(prior_ladder) if prior_ladder else ()
@@ -437,8 +695,8 @@ class Result:
 
         Examples
         --------
-        >>> import bayesplain as bf
-        >>> res = bf.compare_proportions([34, 51], [220, 240])
+        >>> import bayesplain as bp
+        >>> res = bp.compare_proportions([34, 51], [220, 240])
         >>> round(res.probability(">", 0), 2)
         0.94
         """
@@ -573,14 +831,18 @@ class Result:
                 higher, lower, p = self.higher_label, self.lower_label, prob
             else:
                 higher, lower, p = self.lower_label, self.higher_label, 1.0 - prob
+            # A ratio's reference is 1, and "the gap is 0.59 times" does not
+            # parse; name the quantity for what it is.
+            size = "ratio" if self.direction_reference == 1.0 else "gap"
             return (
                 f"{higher} is higher than {lower} with {p:.0%} probability; the "
-                f"gap is most likely {point}, and the data are consistent with "
-                f"anything from {span} ({pct} credible interval)."
+                f"best estimate of the {size} is {point}, and the data are "
+                f"consistent with anything from {span} ({pct} credible interval)."
             )
         return (
-            f"The {self.subject} is most likely {point}, and the data are "
-            f"consistent with anything from {span} ({pct} credible interval)."
+            f"The best estimate of the {self.subject} is {point}, and the data "
+            f"are consistent with anything from {span} ({pct} credible "
+            "interval)."
         )
 
     def translate(self, level: float = 0.95) -> _Report:
@@ -742,18 +1004,54 @@ class Result:
                 "Bayes factor. The posterior and credible interval above "
                 "answer the estimation question directly."
             )
-        bf10 = float(np.exp(self.log_bf10))
+        # Past about e^709 a Bayes factor overflows a float; infinity is the
+        # honest rendering of "more evidence than the digits can hold".
+        with np.errstate(over="ignore"):
+            bf10 = float(np.exp(self.log_bf10))
+            bf01 = float(np.exp(-self.log_bf10))
         caveat = self.bf_caveat or (
             "Depends on the prior, not just the data. Run .sensitivity() before "
             "quoting it."
         )
         return BayesFactor(
             bf10=bf10,
-            bf01=float(np.exp(-self.log_bf10)),
+            bf01=bf01,
             log_bf10=float(self.log_bf10),
             interpretation=_grade_bayes_factor(bf10, self.bf_alternative),
             caveat=caveat,
         )
+
+    # -- forecasting -------------------------------------------------------
+
+    def predict(self, *args, **kwargs) -> Prediction:
+        """Forecast the next observation, carrying the uncertainty through.
+
+        The arguments depend on the analysis: ``proportion(...).predict(n=100)``
+        forecasts successes in the next 100 cases, ``rate(...).predict(
+        exposure=1)`` the count over the next unit of exposure,
+        ``mean(...).predict()`` one new observation, and
+        ``regression(...).predict(x=...)`` the outcome at a new value of the
+        predictor.
+
+        Returns
+        -------
+        Prediction
+            The forecast, next to the plug-in forecast that ignores the
+            uncertainty in the estimate.
+
+        Raises
+        ------
+        NotImplementedError
+            If this analysis does not forecast a single quantity.
+        """
+        if self._predictor is None:
+            raise NotImplementedError(
+                self.no_predict_reason
+                or f"{self.analysis or 'this analysis'} has no single next "
+                "observation to forecast. Call .predict() on proportion(), "
+                "rate(), mean(), or regression() for one group at a time."
+            )
+        return self._predictor(*args, **kwargs)
 
     # -- sensitivity -------------------------------------------------------
 
@@ -984,10 +1282,12 @@ class Result:
         lines += [
             " BAYESIAN — what the data say about the quantity itself",
             "",
-            f"   {'most likely value':<{pad}}{self._fmt(self.point())}",
+            # The median, which is not the most likely value (the mode) --
+            # for a skewed posterior the two differ, so the label says which.
+            f"   {'best estimate (median)':<{pad}}{self._fmt(self.point())}",
             f"   {pct + ' credible interval':<{pad}}"
             f"{self._fmt_range(lo, hi)}  ({kind.upper()})",
-            f"   {self._direction_label():<{pad}}{prob:.3f}",
+            f"   {_pad_label(self._direction_label(), pad)}{prob:.3f}",
             "",
         ]
         lines += _wrap(self.sentence(level=level), prefix="   Read: ")
@@ -1075,7 +1375,8 @@ class Result:
         }
         if self.log_bf10 is not None:
             out["log_bf10"] = float(self.log_bf10)
-            out["bf10"] = float(np.exp(self.log_bf10))
+            with np.errstate(over="ignore"):
+                out["bf10"] = float(np.exp(self.log_bf10))
         if self.frequentist is not None:
             out["frequentist_test"] = self.frequentist.test
             out["frequentist_statistic"] = self.frequentist.statistic

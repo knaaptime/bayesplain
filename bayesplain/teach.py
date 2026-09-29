@@ -4,7 +4,7 @@ Nothing in this module belongs in a research package. Each function here shows a
 mechanism that the analysis functions deliberately hide, so that a class can see
 it work once before trusting a one-liner that does it for them.
 
-Four things:
+Five things:
 
 :func:`natural_frequencies`
     Bayes' rule as a grid of whole numbers, with no probability anywhere in the
@@ -18,6 +18,8 @@ Four things:
 :func:`precision_planning`
     How many observations until the interval is narrow enough to act on. The
     honest replacement for a power calculation.
+:func:`precision_planning_mean`
+    The same question for an average, or a difference between two averages.
 """
 
 from __future__ import annotations
@@ -38,6 +40,7 @@ __all__ = [
     "grid_posterior",
     "sequential",
     "precision_planning",
+    "precision_planning_mean",
     "NaturalFrequencies",
     "GridPosterior",
     "SequentialUpdate",
@@ -922,20 +925,39 @@ def sequential(
 class PrecisionPlan:
     """How much data a target precision requires.
 
-    :ivar required_n: Observations needed to reach the target width.
+    :ivar required_n: Observations needed to reach the target width -- per
+        group, when planning a comparison of two groups.
     :ivar target_width: The interval width that was asked for.
-    :ivar expected_rate: The rate the calculation assumed.
+    :ivar expected_rate: The rate the calculation assumed, or ``None`` when
+        planning for an average.
     :ivar level: Credible level.
     :ivar schedule: ``(n, width)`` pairs along the way.
     :ivar prior: The prior assumed.
+    :ivar sd: The standard deviation assumed, when planning for an average.
+    :ivar groups: 1 for a single estimate, 2 for a difference between groups.
+    :ivar unit: Display unit for widths, when planning for an average.
     """
 
     required_n: int
     target_width: float
-    expected_rate: float
+    expected_rate: float | None
     level: float
     schedule: np.ndarray
     prior: object = None
+    sd: float | None = None
+    groups: int = 1
+    unit: str = ""
+
+    def _width_text(self, width: float) -> str:
+        if self.sd is None:
+            return f"{width:.3f} ({width * 100:.1f} percentage points)"
+        text = f"{width:.3g}"
+        return f"{text} {self.unit}".strip()
+
+    def _target_text(self) -> str:
+        if self.sd is None:
+            return f"assuming the true rate is near {self.expected_rate:.0%}"
+        return f"assuming a standard deviation of {self.sd:g} {self.unit}".rstrip()
 
     def summary(self) -> _Report:
         """Report the required sample size and the trade-off around it.
@@ -950,18 +972,24 @@ class PrecisionPlan:
             "HOW MUCH DATA IS ENOUGH?",
             "",
         ]
+        if self.groups == 2:
+            what = " on the difference between two groups' averages"
+        elif self.sd is not None:
+            what = " on an average"
+        else:
+            what = ""
+        per_group = " in each group" if self.groups == 2 else ""
         lines += _wrap(
-            f"To get a {pct} credible interval no wider than "
-            f"{self.target_width:.3f} ({self.target_width * 100:.1f} "
-            f"percentage points), assuming the true rate is near "
-            f"{self.expected_rate:.0%}, you need about "
-            f"{self.required_n:,} observations.",
+            f"To get a {pct} credible interval{what} no wider than "
+            f"{self._width_text(self.target_width)}, {self._target_text()}, "
+            f"you need about {self.required_n:,} observations{per_group}.",
             prefix="  ",
         )
-        lines += ["", f"{'n':>10}{'interval width':>18}", "-" * 30]
+        n_label = "n per group" if self.groups == 2 else "n"
+        lines += ["", f"{n_label:>12}{'interval width':>18}", "-" * 32]
         for n, width in self.schedule:
             marker = "  <- target" if n >= self.required_n else ""
-            lines.append(f"{int(n):>10,}{width:>18.4f}{marker}")
+            lines.append(f"{int(n):>12,}{width:>18.4g}{marker}")
         lines += [""]
         lines += _wrap(
             "This is the question a power calculation is usually reaching for, "
@@ -973,13 +1001,24 @@ class PrecisionPlan:
             "always a point past which more data stops being worth its cost.",
             prefix="  ",
         )
+        if self.sd is not None:
+            lines += [""]
+            lines += _wrap(
+                "The answer is only as good as the standard deviation you "
+                "assumed, and it scales with its square: plan with twice the "
+                "spread and you need four times the data. Take it from a pilot "
+                "or an earlier study, and when in doubt plan with a pessimistic "
+                "value.",
+                prefix="  ",
+            )
         return _Report("\n".join(lines))
 
     def __repr__(self) -> str:
+        per_group = " per group" if self.groups == 2 else ""
         return (
-            f"<PrecisionPlan: about {self.required_n:,} observations for a "
-            f"{self.level:.0%} interval of width {self.target_width:.3f} "
-            f"near a rate of {self.expected_rate:.0%}>"
+            f"<PrecisionPlan: about {self.required_n:,} observations{per_group} "
+            f"for a {self.level:.0%} interval of width "
+            f"{self._width_text(self.target_width)}, {self._target_text()}>"
             "\nCall .summary() for the schedule."
         )
 
@@ -1097,4 +1136,114 @@ def precision_planning(
         level=float(level),
         schedule=schedule,
         prior=resolved,
+    )
+
+
+def precision_planning_mean(
+    target_width: float,
+    sd: float,
+    groups: int = 1,
+    level: float = 0.95,
+    unit: str = "",
+    max_n: int = 10_000_000,
+) -> PrecisionPlan:
+    """Find the sample size that pins down an average, or a difference.
+
+    Exact under the reference prior used by :func:`bayesplain.mean` and
+    :func:`bayesplain.compare_means`: the credible interval for a mean is
+    ``mean +/- t * sd / sqrt(n)`` with ``n - 1`` degrees of freedom, so its
+    width at any ``n`` can be written down, given the standard deviation you
+    expect to see. For two groups the plan assumes equal sizes and equal
+    spreads, which is the design that makes the difference most precise.
+
+    Parameters
+    ----------
+    target_width : float
+        The widest interval you could still act on, in the data's own units.
+        ``4`` with ``unit="minutes"`` means an interval four minutes wide,
+        i.e. plus or minus two.
+    sd : float
+        The standard deviation you expect in the data -- from a pilot, an
+        earlier study, or a published figure.
+    groups : {1, 2}, default 1
+        Plan for one average, or for the difference between two.
+    level : float, default 0.95
+        Credible level.
+    unit : str, optional
+        Display unit.
+    max_n : int, default 10_000_000
+        Give up beyond this.
+
+    Returns
+    -------
+    PrecisionPlan
+        ``required_n`` is per group when ``groups=2``. Call ``.summary()``.
+
+    Examples
+    --------
+    Commute times vary with a standard deviation of about 12 minutes. To know
+    the average to within plus or minus two minutes:
+
+    >>> import bayesplain as bp
+    >>> bp.teach.precision_planning_mean(target_width=4, sd=12).required_n
+    141
+
+    Comparing two routes to the same precision takes more than twice as many
+    observations in total, because both averages are uncertain:
+
+    >>> bp.teach.precision_planning_mean(target_width=4, sd=12, groups=2).required_n
+    278
+    """
+    if not target_width > 0:
+        raise ValueError(f"target_width must be positive, got {target_width}.")
+    if not sd > 0:
+        raise ValueError(f"sd must be positive, got {sd}.")
+    if groups not in (1, 2):
+        raise ValueError(f"groups must be 1 or 2, got {groups}.")
+    level = intervals._validate_level(level)
+    tail = 0.5 + level / 2.0
+
+    def width_at(n: int) -> float:
+        if groups == 1:
+            return float(2.0 * stats.t.ppf(tail, n - 1) * sd / np.sqrt(n))
+        return float(2.0 * stats.t.ppf(tail, 2 * n - 2) * sd * np.sqrt(2.0 / n))
+
+    low, high = 2, 4
+    while width_at(high) > target_width:
+        low, high = high, high * 2
+        if high > max_n:
+            raise ValueError(
+                f"an interval of width {target_width} with a standard deviation "
+                f"of {sd} needs more than {max_n:,} observations. The target is "
+                "too demanding for data this variable."
+            )
+    while low + 1 < high:
+        middle = (low + high) // 2
+        if width_at(middle) > target_width:
+            low = middle
+        else:
+            high = middle
+    required = high
+
+    marks = sorted(
+        {
+            max(2, required // 8),
+            max(2, required // 4),
+            max(2, required // 2),
+            required,
+            required * 2,
+        }
+    )
+    schedule = np.array([[n, width_at(n)] for n in marks], dtype=float)
+
+    return PrecisionPlan(
+        required_n=int(required),
+        target_width=float(target_width),
+        expected_rate=None,
+        level=float(level),
+        schedule=schedule,
+        prior=None,
+        sd=float(sd),
+        groups=int(groups),
+        unit=unit,
     )

@@ -1,0 +1,13 @@
+# The package's promise is "numpy and scipy, full stop". This environment
+# holds it to that: nothing optional is installed, and every test that needs
+# pandas or matplotlib must skip rather than fail.
+name: test
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - scipy
+  - pytest
+  - pytest-cov
+  - pytest-xdist

@@ -11,7 +11,7 @@ kernelspec:
 # Quickstart
 
 Every analysis in `bayesplain` returns the same object with the same methods,
-so what you learn here works for all seven.
+so what you learn here works for all of them.
 
 ```{code-cell} ipython3
 import bayesplain as bp
@@ -107,7 +107,7 @@ print(res.bayes_factor())
 
 Deliberately a method call rather than part of the summary.
 
-## The other six analyses
+## The other analyses
 
 ```{code-cell} ipython3
 parcels = bp.datasets.load_parcels()
@@ -149,6 +149,79 @@ corr = bp.correlation(
     labels=["median income", "median rent"], aggregated=True,
 )
 corr.sentence()
+```
+
+### Rates
+
+A count over an exposure is a rate, not a proportion. Deaths per thousand
+collisions, by county:
+
+```{code-cell} ipython3
+collisions = bp.datasets.load_collisions()
+by_county = collisions.groupby("county").agg(
+    killed=("killed", "sum"), crashes=("killed", "size")
+)
+deaths = bp.compare_rates(
+    events=by_county.killed.to_numpy(),
+    exposure=by_county.crashes.to_numpy() / 1000,
+    labels=list(by_county.index),
+    unit="per 1,000 collisions",
+)
+deaths.sentence()
+```
+
+The rate ratio's posterior is exact, so there is nothing to sample. Pass
+per-period counts to `rate()` and it also checks whether they vary more than a
+steady rate allows. These do, by a lot, and the result says so:
+
+```{code-cell} ipython3
+per_year = collisions[collisions.county == "Los Angeles"].groupby("year").size()
+bp.rate(per_year.to_numpy(), reference=2000, unit="per year").notes[0]
+```
+
+### One categorical variable
+
+Does each county's share of collisions match its share of the two counties'
+population, roughly three to one?
+
+```{code-cell} ipython3
+shares = bp.categories(
+    collisions.county, expected={"Los Angeles": 0.75, "San Diego": 0.25}
+)
+print(shares.shares())
+```
+
+### A line with one predictor
+
+```{code-cell} ipython3
+line = bp.regression(
+    parcels.sqft, parcels.assessed_value,
+    labels=["floor area", "assessed value"], unit="dollars per sq ft",
+)
+line.sentence()
+```
+
+### Paired data, and skewed data
+
+`compare_means(..., paired=True)` compares two measurements on the same units
+and reports how much the pairing narrowed the interval.
+`compare_means(..., log=True)` answers in ratios of typical values, which suits
+prices and incomes:
+
+```{code-cell} ipython3
+bp.compare_means(
+    rowhouses, detached, labels=["rowhouse", "detached"], log=True
+).sentence()
+```
+
+## Forecasting the next one
+
+`.predict()` forecasts the next observation, carrying the uncertainty in the
+estimate through. It prints the plug-in forecast next to it, which treats the
+estimate as exact and is always too narrow:
+
+```{code-cell} ipython3
+print(bp.proportion(3, 12).predict(n=100))
 ```
 
 ## Reproducibility in a classroom

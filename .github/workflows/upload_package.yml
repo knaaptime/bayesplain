@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
+        with:
+          # setuptools_scm reads the version from tags; a shallow clone can
+          # build a package with the wrong version number.
+          fetch-depth: 0
       
       - name: Set up python
         uses: actions/setup-python@v6

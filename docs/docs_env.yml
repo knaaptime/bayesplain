@@ -9,7 +9,6 @@ dependencies:
   - matplotlib
   - pytest
   - pytest-cov
-  - hypothesis
   - ruff
   # docs
   - sphinx
