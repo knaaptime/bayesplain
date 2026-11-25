@@ -1,0 +1,6 @@
+﻿bayesplain.core.correlation.validate\_pair
+==========================================
+
+.. currentmodule:: bayesplain.core.correlation
+
+.. autofunction:: validate_pair

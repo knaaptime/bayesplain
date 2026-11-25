@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.load
+========================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: load

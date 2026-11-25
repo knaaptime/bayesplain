@@ -1,0 +1,20 @@
+﻿bayesplain.priors.ConcentrationPrior
+====================================
+
+.. currentmodule:: bayesplain.priors
+
+.. autoclass:: ConcentrationPrior
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ConcentrationPrior.dist
+   
+   

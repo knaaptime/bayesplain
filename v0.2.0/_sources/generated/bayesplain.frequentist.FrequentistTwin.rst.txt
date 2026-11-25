@@ -1,0 +1,23 @@
+﻿bayesplain.frequentist.FrequentistTwin
+======================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autoclass:: FrequentistTwin
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FrequentistTwin.claims
+      ~FrequentistTwin.disclaims
+      ~FrequentistTwin.interval_claims
+      ~FrequentistTwin.rate_in_words
+   
+   

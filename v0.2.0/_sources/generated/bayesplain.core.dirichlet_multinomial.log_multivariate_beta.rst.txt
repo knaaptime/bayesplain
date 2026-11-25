@@ -1,0 +1,6 @@
+﻿bayesplain.core.dirichlet\_multinomial.log\_multivariate\_beta
+==============================================================
+
+.. currentmodule:: bayesplain.core.dirichlet_multinomial
+
+.. autofunction:: log_multivariate_beta

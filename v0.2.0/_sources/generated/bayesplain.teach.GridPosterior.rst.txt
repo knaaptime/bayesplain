@@ -1,0 +1,23 @@
+﻿bayesplain.teach.GridPosterior
+==============================
+
+.. currentmodule:: bayesplain.teach
+
+.. autoclass:: GridPosterior
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GridPosterior.interval
+      ~GridPosterior.mean
+      ~GridPosterior.plot
+      ~GridPosterior.table
+   
+   

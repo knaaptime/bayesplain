@@ -1,0 +1,14 @@
+﻿bayesplain.BayesFactor
+======================
+
+.. currentmodule:: bayesplain
+
+.. autoclass:: BayesFactor
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   

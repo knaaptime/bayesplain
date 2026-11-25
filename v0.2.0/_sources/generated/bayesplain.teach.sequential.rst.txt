@@ -1,0 +1,6 @@
+﻿bayesplain.teach.sequential
+===========================
+
+.. currentmodule:: bayesplain.teach
+
+.. autofunction:: sequential

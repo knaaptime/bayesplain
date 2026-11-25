@@ -1,0 +1,6 @@
+﻿bayesplain.datasets.load\_blockgroups
+=====================================
+
+.. currentmodule:: bayesplain.datasets
+
+.. autofunction:: load_blockgroups

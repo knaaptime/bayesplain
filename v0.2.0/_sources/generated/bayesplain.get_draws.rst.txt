@@ -1,0 +1,6 @@
+﻿bayesplain.get\_draws
+=====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: get_draws

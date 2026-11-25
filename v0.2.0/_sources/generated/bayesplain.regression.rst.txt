@@ -1,0 +1,6 @@
+﻿bayesplain.regression
+=====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: regression

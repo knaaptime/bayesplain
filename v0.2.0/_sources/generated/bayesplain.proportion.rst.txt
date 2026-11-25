@@ -1,0 +1,6 @@
+﻿bayesplain.proportion
+=====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: proportion

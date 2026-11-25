@@ -1,0 +1,6 @@
+﻿bayesplain.teach.natural\_frequencies
+=====================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autofunction:: natural_frequencies

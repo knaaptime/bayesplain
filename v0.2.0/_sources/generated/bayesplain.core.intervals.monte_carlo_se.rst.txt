@@ -1,0 +1,6 @@
+﻿bayesplain.core.intervals.monte\_carlo\_se
+==========================================
+
+.. currentmodule:: bayesplain.core.intervals
+
+.. autofunction:: monte_carlo_se

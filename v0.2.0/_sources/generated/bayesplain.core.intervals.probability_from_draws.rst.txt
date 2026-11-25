@@ -1,0 +1,6 @@
+﻿bayesplain.core.intervals.probability\_from\_draws
+==================================================
+
+.. currentmodule:: bayesplain.core.intervals
+
+.. autofunction:: probability_from_draws

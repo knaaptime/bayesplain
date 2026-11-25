@@ -1,0 +1,20 @@
+﻿bayesplain.priors.CorrelationPrior
+==================================
+
+.. currentmodule:: bayesplain.priors
+
+.. autoclass:: CorrelationPrior
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CorrelationPrior.dist
+   
+   

@@ -1,0 +1,6 @@
+﻿bayesplain.core.normal\_t.difference\_draws
+===========================================
+
+.. currentmodule:: bayesplain.core.normal_t
+
+.. autofunction:: difference_draws

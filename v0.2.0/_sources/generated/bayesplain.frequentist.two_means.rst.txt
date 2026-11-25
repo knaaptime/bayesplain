@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.two\_means
+=================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: two_means

@@ -1,0 +1,6 @@
+﻿bayesplain.contingency
+======================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: contingency

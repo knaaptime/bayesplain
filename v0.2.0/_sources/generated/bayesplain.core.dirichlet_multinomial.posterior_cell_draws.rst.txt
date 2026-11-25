@@ -1,0 +1,6 @@
+﻿bayesplain.core.dirichlet\_multinomial.posterior\_cell\_draws
+=============================================================
+
+.. currentmodule:: bayesplain.core.dirichlet_multinomial
+
+.. autofunction:: posterior_cell_draws

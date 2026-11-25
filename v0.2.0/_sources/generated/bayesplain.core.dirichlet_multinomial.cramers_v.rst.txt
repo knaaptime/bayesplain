@@ -1,0 +1,6 @@
+﻿bayesplain.core.dirichlet\_multinomial.cramers\_v
+=================================================
+
+.. currentmodule:: bayesplain.core.dirichlet_multinomial
+
+.. autofunction:: cramers_v

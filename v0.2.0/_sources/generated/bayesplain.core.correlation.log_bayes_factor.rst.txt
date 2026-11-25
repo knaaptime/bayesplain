@@ -1,0 +1,6 @@
+﻿bayesplain.core.correlation.log\_bayes\_factor
+==============================================
+
+.. currentmodule:: bayesplain.core.correlation
+
+.. autofunction:: log_bayes_factor

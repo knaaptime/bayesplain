@@ -1,0 +1,20 @@
+﻿bayesplain.priors.RatePrior
+===========================
+
+.. currentmodule:: bayesplain.priors
+
+.. autoclass:: RatePrior
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RatePrior.dist
+   
+   

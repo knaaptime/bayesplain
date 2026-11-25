@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.two\_rates
+=================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: two_rates

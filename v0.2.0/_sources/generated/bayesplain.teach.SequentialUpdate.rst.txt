@@ -1,0 +1,21 @@
+﻿bayesplain.teach.SequentialUpdate
+=================================
+
+.. currentmodule:: bayesplain.teach
+
+.. autoclass:: SequentialUpdate
+   :members:
+   :inherited-members:
+   :exclude-members: __init__, __new__
+
+   
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SequentialUpdate.plot
+      ~SequentialUpdate.table
+   
+   

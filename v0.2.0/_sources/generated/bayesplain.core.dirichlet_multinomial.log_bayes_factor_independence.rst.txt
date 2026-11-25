@@ -1,0 +1,6 @@
+﻿bayesplain.core.dirichlet\_multinomial.log\_bayes\_factor\_independence
+=======================================================================
+
+.. currentmodule:: bayesplain.core.dirichlet_multinomial
+
+.. autofunction:: log_bayes_factor_independence

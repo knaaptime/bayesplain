@@ -1,0 +1,6 @@
+﻿bayesplain.frequentist.correlation
+==================================
+
+.. currentmodule:: bayesplain.frequentist
+
+.. autofunction:: correlation

@@ -1,0 +1,6 @@
+﻿bayesplain.set\_draws
+=====================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: set_draws
