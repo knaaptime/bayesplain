@@ -3,6 +3,7 @@
 
 [![Continuous Integration](https://github.com/knaaptime/bayesplain/actions/workflows/unittests.yml/badge.svg)](https://github.com/knaaptime/bayesplain/actions/workflows/unittests.yml)
 [![codecov](https://codecov.io/gh/knaaptime/bayesplain/branch/main/graph/badge.svg?token=XO4SilfBEb)](https://codecov.io/gh/knaaptime/bayesplain)
+[![DOI](https://zenodo.org/badge/1337661857.svg)](https://doi.org/10.5281/zenodo.22801019)
 
 **Bayesian answers to the questions frequentist tests are usually asked.**
 
