@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -1525,14 +1525,14 @@ label per case, which are tallied for you.</p>
 Given as shares or as counts (it is normalised), in the same order as
 the categories, or as a <code class="docutils literal notranslate"><span class="pre">{category:</span> <span class="pre">share}</span></code> mapping.</p>
 </dd>
-<dt id="bayesplain.categories.prior"><span class="sig-name descname">prior</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a>, or <a class="reference internal" href="bayesplain.priors.ConcentrationPrior.html#bayesplain.priors.ConcentrationPrior" title="bayesplain.priors.ConcentrationPrior (Python class) — A symmetric Dirichlet prior over the cells of a contingency table.">ConcentrationPrior</a>, default 'uninformed'</span></span><a class="headerlink" href="#bayesplain.categories.prior" title="Permalink to this definition">¶</a></dt><dd><p>Dirichlet concentration over the category shares, centred on the
+<dt id="bayesplain.categories.prior"><span class="sig-name descname">prior</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>, or <a class="reference internal" href="bayesplain.priors.ConcentrationPrior.html#bayesplain.priors.ConcentrationPrior" title="bayesplain.priors.ConcentrationPrior (Python class) — A symmetric Dirichlet prior over the cells of a contingency table.">ConcentrationPrior</a>, default 'uninformed'</span></span><a class="headerlink" href="#bayesplain.categories.prior" title="Permalink to this definition">¶</a></dt><dd><p>Dirichlet concentration over the category shares, centred on the
 expected shares: <code class="docutils literal notranslate"><span class="pre">'uninformed'</span></code> is worth one observation per
 category, spread in the expected proportions. See
 <a class="reference internal" href="bayesplain.priors.describe.html#bayesplain.priors.describe" title="bayesplain.priors.describe (Python function) — Explain in one line what a prior assumes."><code class="xref py py-func docutils literal notranslate"><span class="pre">bayesplain.priors.describe()</span></code></a>.</p>
 </dd>
-<dt id="bayesplain.categories.labels"><span class="sig-name descname">labels</span><span class="p"> : </span><span class="desctype"><span class="desctype">sequence of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, optional</span></span><a class="headerlink" href="#bayesplain.categories.labels" title="Permalink to this definition">¶</a></dt><dd><p>Category names, when they cannot be read from <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<dt id="bayesplain.categories.labels"><span class="sig-name descname">labels</span><span class="p"> : </span><span class="desctype"><span class="desctype">sequence of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, optional</span></span><a class="headerlink" href="#bayesplain.categories.labels" title="Permalink to this definition">¶</a></dt><dd><p>Category names, when they cannot be read from <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 </dd>
-<dt id="bayesplain.categories.threshold"><span class="sig-name descname">threshold</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a>, optional</span></span><a class="headerlink" href="#bayesplain.categories.threshold" title="Permalink to this definition">¶</a></dt><dd><p>The value of Cohen’s w the reported probability is measured against.
+<dt id="bayesplain.categories.threshold"><span class="sig-name descname">threshold</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>, optional</span></span><a class="headerlink" href="#bayesplain.categories.threshold" title="Permalink to this definition">¶</a></dt><dd><p>The value of Cohen’s w the reported probability is measured against.
 Defaults to the larger of Cohen’s “small” bar, 0.1, and the <em>noise
 floor</em>: the w that data matching the expected shares exactly would
 still produce at this sample size. Without the floor, a modest sample
@@ -1540,9 +1540,9 @@ spread over many categories reports a confident departure from pure
 noise, because w adds up the uncertainty in every share and nothing
 cancels.</p>
 </dd>
-<dt id="bayesplain.categories.n_draws"><span class="sig-name descname">n_draws</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a>, optional</span></span><a class="headerlink" href="#bayesplain.categories.n_draws" title="Permalink to this definition">¶</a></dt><dd><p>Number of draws. Defaults to the package setting.</p>
+<dt id="bayesplain.categories.n_draws"><span class="sig-name descname">n_draws</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, optional</span></span><a class="headerlink" href="#bayesplain.categories.n_draws" title="Permalink to this definition">¶</a></dt><dd><p>Number of draws. Defaults to the package setting.</p>
 </dd>
-<dt id="bayesplain.categories.seed"><span class="sig-name descname">seed</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a> or None, optional</span></span><a class="headerlink" href="#bayesplain.categories.seed" title="Permalink to this definition">¶</a></dt><dd><p>Seed for the draws.</p>
+<dt id="bayesplain.categories.seed"><span class="sig-name descname">seed</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a> or None, optional</span></span><a class="headerlink" href="#bayesplain.categories.seed" title="Permalink to this definition">¶</a></dt><dd><p>Seed for the draws.</p>
 </dd>
 </dl>
 </dd>
@@ -1616,7 +1616,7 @@ which is what <code class="docutils literal notranslate"><span class="pre">.shar
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -1636,7 +1636,7 @@ which is what <code class="docutils literal notranslate"><span class="pre">.shar
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
     

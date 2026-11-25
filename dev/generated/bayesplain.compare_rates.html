@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -1549,19 +1549,19 @@ drawn from the two exact Gamma posteriors and subtracted.</p>
 the whole reason to compare rates rather than counts: 40 crashes in
 ten years is a lower rate than 12 in two.</p>
 </dd>
-<dt id="bayesplain.compare_rates.prior"><span class="sig-name descname">prior</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>, or <a class="reference internal" href="bayesplain.priors.RatePrior.html#bayesplain.priors.RatePrior" title="bayesplain.priors.RatePrior (Python class) — A Gamma prior on a rate of events per unit of exposure.">RatePrior</a>, default 'jeffreys'</span></span><a class="headerlink" href="#bayesplain.compare_rates.prior" title="Permalink to this definition">¶</a></dt><dd><p>Prior applied to each group’s rate.</p>
+<dt id="bayesplain.compare_rates.prior"><span class="sig-name descname">prior</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>, or <a class="reference internal" href="bayesplain.priors.RatePrior.html#bayesplain.priors.RatePrior" title="bayesplain.priors.RatePrior (Python class) — A Gamma prior on a rate of events per unit of exposure.">RatePrior</a>, default 'jeffreys'</span></span><a class="headerlink" href="#bayesplain.compare_rates.prior" title="Permalink to this definition">¶</a></dt><dd><p>Prior applied to each group’s rate.</p>
 </dd>
-<dt id="bayesplain.compare_rates.labels"><span class="sig-name descname">labels</span><span class="p"> : </span><span class="desctype"><span class="desctype">sequence of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.labels" title="Permalink to this definition">¶</a></dt><dd><p>Group names. Defaults to <code class="docutils literal notranslate"><span class="pre">('group</span> <span class="pre">1',</span> <span class="pre">'group</span> <span class="pre">2')</span></code>.</p>
+<dt id="bayesplain.compare_rates.labels"><span class="sig-name descname">labels</span><span class="p"> : </span><span class="desctype"><span class="desctype">sequence of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.labels" title="Permalink to this definition">¶</a></dt><dd><p>Group names. Defaults to <code class="docutils literal notranslate"><span class="pre">('group</span> <span class="pre">1',</span> <span class="pre">'group</span> <span class="pre">2')</span></code>.</p>
 </dd>
 <dt id="bayesplain.compare_rates.estimand"><span class="sig-name descname">estimand</span><span class="p"> : </span><span class="desctype"><span class="desctype">{'ratio', 'difference'}, default 'ratio'</span></span><a class="headerlink" href="#bayesplain.compare_rates.estimand" title="Permalink to this definition">¶</a></dt><dd><p>Which comparison to report, oriented as group 2 relative to group 1.
 The ratio is the conventional one for rates, and is exact.</p>
 </dd>
-<dt id="bayesplain.compare_rates.unit"><span class="sig-name descname">unit</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.unit" title="Permalink to this definition">¶</a></dt><dd><p>How to print a rate, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;per</span> <span class="pre">year&quot;</span></code>. Used for the difference and
+<dt id="bayesplain.compare_rates.unit"><span class="sig-name descname">unit</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.unit" title="Permalink to this definition">¶</a></dt><dd><p>How to print a rate, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;per</span> <span class="pre">year&quot;</span></code>. Used for the difference and
 for each group’s own rate.</p>
 </dd>
-<dt id="bayesplain.compare_rates.n_draws"><span class="sig-name descname">n_draws</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a>, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.n_draws" title="Permalink to this definition">¶</a></dt><dd><p>Number of draws. Defaults to the package setting.</p>
+<dt id="bayesplain.compare_rates.n_draws"><span class="sig-name descname">n_draws</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.n_draws" title="Permalink to this definition">¶</a></dt><dd><p>Number of draws. Defaults to the package setting.</p>
 </dd>
-<dt id="bayesplain.compare_rates.seed"><span class="sig-name descname">seed</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a> or None, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.seed" title="Permalink to this definition">¶</a></dt><dd><p>Seed for the draws.</p>
+<dt id="bayesplain.compare_rates.seed"><span class="sig-name descname">seed</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a> or None, optional</span></span><a class="headerlink" href="#bayesplain.compare_rates.seed" title="Permalink to this definition">¶</a></dt><dd><p>Seed for the draws.</p>
 </dd>
 </dl>
 </dd>
@@ -1633,7 +1633,7 @@ before, 9 in the two years since.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -1653,7 +1653,7 @@ before, 9 in the two years since.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
     

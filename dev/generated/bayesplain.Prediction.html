@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -1831,21 +1831,21 @@ is exactly the uncertainty the plug-in pretends away.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.Prediction-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.Prediction-parameters" title="Permalink to this headline">¶</a></dt>
 <dd class="field-odd"><dl class="simple api-field highlight">
-<dt id="bayesplain.Prediction.__init__.what"><span class="sig-name descname">what</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a></span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.what" title="Permalink to this definition">¶</a></dt><dd><p>What is being forecast, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;successes</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">100</span> <span class="pre">cases&quot;</span></code>.</p>
+<dt id="bayesplain.Prediction.__init__.what"><span class="sig-name descname">what</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.what" title="Permalink to this definition">¶</a></dt><dd><p>What is being forecast, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;successes</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">100</span> <span class="pre">cases&quot;</span></code>.</p>
 </dd>
 <dt id="bayesplain.Prediction.__init__.dist"><span class="sig-name descname">dist</span><span class="p"> : </span><span class="desctype"><span class="desctype">scipy frozen distribution</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.dist" title="Permalink to this definition">¶</a></dt><dd><p>The posterior predictive distribution, discrete or continuous.</p>
 </dd>
 <dt id="bayesplain.Prediction.__init__.plug_in"><span class="sig-name descname">plug_in</span><span class="p"> : </span><span class="desctype"><span class="desctype">scipy frozen distribution, optional</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.plug_in" title="Permalink to this definition">¶</a></dt><dd><p>The same forecast with the parameter fixed at its best estimate.</p>
 </dd>
-<dt id="bayesplain.Prediction.__init__.frequentist_interval"><span class="sig-name descname">frequentist_interval</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a> of <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a>, optional</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.frequentist_interval" title="Permalink to this definition">¶</a></dt><dd><p>The textbook frequentist prediction interval, where one exists.</p>
+<dt id="bayesplain.Prediction.__init__.frequentist_interval"><span class="sig-name descname">frequentist_interval</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a> of <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>, optional</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.frequentist_interval" title="Permalink to this definition">¶</a></dt><dd><p>The textbook frequentist prediction interval, where one exists.</p>
 </dd>
-<dt id="bayesplain.Prediction.__init__.frequentist_method"><span class="sig-name descname">frequentist_method</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a></span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.frequentist_method" title="Permalink to this definition">¶</a></dt><dd><p>What that interval is called.</p>
+<dt id="bayesplain.Prediction.__init__.frequentist_method"><span class="sig-name descname">frequentist_method</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.frequentist_method" title="Permalink to this definition">¶</a></dt><dd><p>What that interval is called.</p>
 </dd>
-<dt id="bayesplain.Prediction.__init__.unit"><span class="sig-name descname">unit</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a></span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.unit" title="Permalink to this definition">¶</a></dt><dd><p>Display unit.</p>
+<dt id="bayesplain.Prediction.__init__.unit"><span class="sig-name descname">unit</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.unit" title="Permalink to this definition">¶</a></dt><dd><p>Display unit.</p>
 </dd>
-<dt id="bayesplain.Prediction.__init__.decimals"><span class="sig-name descname">decimals</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a>, default 0</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.decimals" title="Permalink to this definition">¶</a></dt><dd><p>Decimal places for display. Counts use 0.</p>
+<dt id="bayesplain.Prediction.__init__.decimals"><span class="sig-name descname">decimals</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, default 0</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.decimals" title="Permalink to this definition">¶</a></dt><dd><p>Decimal places for display. Counts use 0.</p>
 </dd>
-<dt id="bayesplain.Prediction.__init__.discrete"><span class="sig-name descname">discrete</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)">bool</a>, default False</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.discrete" title="Permalink to this definition">¶</a></dt><dd><p>Whether the forecast is a count.</p>
+<dt id="bayesplain.Prediction.__init__.discrete"><span class="sig-name descname">discrete</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)">bool</a>, default False</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.discrete" title="Permalink to this definition">¶</a></dt><dd><p>Whether the forecast is a count.</p>
 </dd>
 <dt id="bayesplain.Prediction.__init__.transform"><span class="sig-name descname">transform</span><span class="p"> : </span><span class="desctype"><span class="desctype">callable, optional</span></span><a class="headerlink" href="#bayesplain.Prediction.__init__.transform" title="Permalink to this definition">¶</a></dt><dd><p>A monotone increasing map applied to the draws of <code class="docutils literal notranslate"><span class="pre">dist</span></code> and its
 inverse, for forecasts computed on a log scale and reported on the
@@ -1884,7 +1884,7 @@ exactly, so nothing is approximated.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.Prediction.interval-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.Prediction.interval-parameters" title="Permalink to this headline">¶</a></dt>
 <dd class="field-odd"><dl class="simple api-field highlight">
-<dt id="bayesplain.Prediction.interval.level"><span class="sig-name descname">level</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a>, default 0.95</span></span><a class="headerlink" href="#bayesplain.Prediction.interval.level" title="Permalink to this definition">¶</a></dt><dd><p>Probability the next observation lands inside. For a count the
+<dt id="bayesplain.Prediction.interval.level"><span class="sig-name descname">level</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>, default 0.95</span></span><a class="headerlink" href="#bayesplain.Prediction.interval.level" title="Permalink to this definition">¶</a></dt><dd><p>Probability the next observation lands inside. For a count the
 coverage is at least <code class="docutils literal notranslate"><span class="pre">level</span></code>, since a count cannot be split.</p>
 </dd>
 </dl>
@@ -1893,7 +1893,7 @@ coverage is at least <code class="docutils literal notranslate"><span class="pre
 <dd class="field-even"><p>Lower and upper bounds.</p>
 </dd>
 <dt class="field-odd" id="bayesplain.Prediction.interval-return-type">Return type<span class="colon">:</span><a class="headerlink" href="#bayesplain.Prediction.interval-return-type" title="Permalink to this headline">¶</a></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a> of <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a> of <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1913,7 +1913,7 @@ coverage is at least <code class="docutils literal notranslate"><span class="pre
 <dd class="field-odd"><dl class="simple api-field highlight">
 <dt id="bayesplain.Prediction.probability.op"><span class="sig-name descname">op</span><span class="p"> : </span><span class="desctype"><span class="desctype">{'&gt;', '&gt;=', '&lt;', '&lt;='}, default '&gt;'</span></span><a class="headerlink" href="#bayesplain.Prediction.probability.op" title="Permalink to this definition">¶</a></dt><dd><p>Comparison to evaluate.</p>
 </dd>
-<dt id="bayesplain.Prediction.probability.value"><span class="sig-name descname">value</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a></span></span><a class="headerlink" href="#bayesplain.Prediction.probability.value" title="Permalink to this definition">¶</a></dt><dd><p>Threshold, on the reported scale.</p>
+<dt id="bayesplain.Prediction.probability.value"><span class="sig-name descname">value</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></span></span><a class="headerlink" href="#bayesplain.Prediction.probability.value" title="Permalink to this definition">¶</a></dt><dd><p>Threshold, on the reported scale.</p>
 </dd>
 </dl>
 </dd>
@@ -1921,7 +1921,7 @@ coverage is at least <code class="docutils literal notranslate"><span class="pre
 <dd class="field-even"><p>Exact predictive probability.</p>
 </dd>
 <dt class="field-odd" id="bayesplain.Prediction.probability-return-type">Return type<span class="colon">:</span><a class="headerlink" href="#bayesplain.Prediction.probability-return-type" title="Permalink to this headline">¶</a></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
 </dd>
 </dl>
 <p class="example rubric">Examples</p>
@@ -1940,7 +1940,7 @@ coverage is at least <code class="docutils literal notranslate"><span class="pre
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.Prediction.summary-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.Prediction.summary-parameters" title="Permalink to this headline">¶</a></dt>
 <dd class="field-odd"><dl class="simple api-field highlight">
-<dt id="bayesplain.Prediction.summary.level"><span class="sig-name descname">level</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a>, default 0.95</span></span><a class="headerlink" href="#bayesplain.Prediction.summary.level" title="Permalink to this definition">¶</a></dt><dd><p>Forecast level.</p>
+<dt id="bayesplain.Prediction.summary.level"><span class="sig-name descname">level</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>, default 0.95</span></span><a class="headerlink" href="#bayesplain.Prediction.summary.level" title="Permalink to this definition">¶</a></dt><dd><p>Forecast level.</p>
 </dd>
 </dl>
 </dd>
@@ -2000,7 +2000,7 @@ coverage is at least <code class="docutils literal notranslate"><span class="pre
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -2020,7 +2020,7 @@ coverage is at least <code class="docutils literal notranslate"><span class="pre
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
     

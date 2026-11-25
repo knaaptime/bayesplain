@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -1422,7 +1422,7 @@
 <dd class="field-odd"><dl class="simple api-field highlight">
 <dt id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.table"><span class="sig-name descname">table</span><span class="p"> : </span><span class="desctype"><span class="desctype">array_like</span></span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.table" title="Permalink to this definition">¶</a></dt><dd><p>Table of counts, shape <code class="docutils literal notranslate"><span class="pre">(R,</span> <span class="pre">C)</span></code>.</p>
 </dd>
-<dt id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration"><span class="sig-name descname">concentration</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a> or array_like, default 1.0</span></span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration" title="Permalink to this definition">¶</a></dt><dd><p>Dirichlet concentration <code class="docutils literal notranslate"><span class="pre">a</span></code>. <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1</span></code> makes every combination of
+<dt id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration"><span class="sig-name descname">concentration</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a> or array_like, default 1.0</span></span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.concentration" title="Permalink to this definition">¶</a></dt><dd><p>Dirichlet concentration <code class="docutils literal notranslate"><span class="pre">a</span></code>. <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1</span></code> makes every combination of
 parameter values equally likely a priori; larger values pull the
 alternative’s predictions toward the null, so <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">10</span></code> behaves like
 a flat prior already updated with nine hypothetical observations per
@@ -1430,7 +1430,7 @@ cell. For <code class="docutils literal notranslate"><span class="pre">scheme='i
 also accepted, which is how a <code class="docutils literal notranslate"><span class="pre">Beta(a,</span> <span class="pre">b)</span></code> prior on a rate is carried
 into the Bayes factor unchanged.</p>
 </dd>
-<dt id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme"><span class="sig-name descname">scheme</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, default 'independent_multinomial'</span></span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme" title="Permalink to this definition">¶</a></dt><dd><p>One of <code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMES</span></code>. Pick the one matching what the study design
+<dt id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme"><span class="sig-name descname">scheme</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, default 'independent_multinomial'</span></span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.scheme" title="Permalink to this definition">¶</a></dt><dd><p>One of <code class="xref py py-data docutils literal notranslate"><span class="pre">SCHEMES</span></code>. Pick the one matching what the study design
 fixed in advance; see the module docstring.</p>
 </dd>
 <dt id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.fixed"><span class="sig-name descname">fixed</span><span class="p"> : </span><span class="desctype"><span class="desctype">{'rows', 'columns'}, default 'rows'</span></span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence.fixed" title="Permalink to this definition">¶</a></dt><dd><p>Which margin was fixed, for the independent-multinomial scheme only.
@@ -1443,7 +1443,7 @@ Rows are the groups you sampled.</p>
 columns; negative values favour independence.</p>
 </dd>
 <dt class="field-odd" id="bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence-return-type">Return type<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.dirichlet_multinomial.log_bayes_factor_independence-return-type" title="Permalink to this headline">¶</a></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -1497,7 +1497,7 @@ published values in Jamil et al. (2017); see
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -1517,7 +1517,7 @@ published values in Jamil et al. (2017); see
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
     
