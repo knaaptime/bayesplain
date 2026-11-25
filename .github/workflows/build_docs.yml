@@ -79,11 +79,6 @@ jobs:
           name: docs_html
           path: docs/build/html
 
-      - name: Set up python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.x"
-
       - name: Publish to Github Pages on main (dev)
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: peaceiris/actions-gh-pages@v4
@@ -109,17 +104,3 @@ jobs:
           publish_dir: docs/build/html/
           destination_dir: stable
           keep_files: false
-
-      - name: Update the versions switcher
-        if: ${{ github.ref_type == 'tag' }}
-        run: |
-          git checkout gh-pages
-          git fetch
-          git pull
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          python update_version_json.py --version ${{ github.ref_name }}
-          git add versions.json
-          git commit -m "Update versions switcher"
-          git push
-          git checkout main
