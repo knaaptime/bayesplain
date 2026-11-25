@@ -18,11 +18,15 @@ posterior but unable to read a p-value in someone else's report.
 | Analysis | Counterpart it prints |
 | --- | --- |
 | `proportion` | exact binomial test, Wilson score interval |
-| `compare_proportions` | two-proportion *z* / chi-square, Wald interval |
+| `compare_proportions` | two-proportion *z* / chi-square, with a Wald interval on a difference or a log-scale interval on a ratio; chi-square test of equal proportions for three or more groups |
+| `rate` | exact Poisson test, exact (Garwood) interval |
+| `compare_rates` | exact conditional test for two Poisson rates |
 | `contingency` | Pearson chi-square test of independence |
-| `mean` | one-sample *t*-test |
-| `compare_means` | Welch's *t*-test (or pooled Student's) |
+| `categories` | chi-square goodness-of-fit test |
+| `mean` | one-sample *t*-test (on the log scale with `log=True`) |
+| `compare_means` | Welch's *t*-test (or pooled Student's, or paired) |
 | `correlation` | Pearson *r*, Fisher-*z* interval |
+| `regression` | *t*-test on the least-squares slope |
 | `compare_groups` | one-way ANOVA |
 
 ## They usually agree on the numbers

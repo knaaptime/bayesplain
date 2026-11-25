@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f4867036" />
@@ -801,7 +801,8 @@
 degrades. Here is what <code class="docutils literal notranslate"><span class="pre">bayesplain</span></code> does not do, and why.</p>
 <h2 id="not-implemented-on-purpose">Not implemented, on purpose<a class="headerlink" href="#not-implemented-on-purpose" title="Link to this heading">¶</a></h2>
 <p><strong>Multi-factor ANOVA, interactions, and regression with more than one
-predictor.</strong> These require integrating over several hyperparameters at once,
+predictor.</strong> <code class="docutils literal notranslate"><span class="pre">regression()</span></code> handles a line with one predictor, which is closed
+form. Anything more requires integrating over several hyperparameters at once,
 which means importance sampling, which means a sampler in the dependency chain.
 That would break the constraint the whole package is organised around. Use
 <a class="reference external" href="https://bambinos.github.io/bambi/">Bambi</a>, which reads much like <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>
@@ -830,7 +831,9 @@ independent-multinomial scheme.</p>
 causal, and the correlation analysis attaches a note saying so to every result.</p>
 <h2 id="known-limitations-of-what-is-implemented">Known limitations of what is implemented<a class="headerlink" href="#known-limitations-of-what-is-implemented" title="Link to this heading">¶</a></h2>
 <p><strong>Partial pooling is empirical Bayes.</strong> <code class="docutils literal notranslate"><span class="pre">compare_groups(pool=True)</span></code> estimates
-the between-group variance and then treats it as known. That is what buys the
+the between-group variance and then treats it as known, and
+<code class="docutils literal notranslate"><span class="pre">compare_proportions(...,</span> <span class="pre">pool=True)</span></code> does the same with the spread of a Beta
+population of rates. That is what buys the
 closed form. It understates uncertainty slightly when the number of groups is
 small — under about five groups, prefer the unpooled estimates and say the
 smallest group is uncertain, rather than leaning on a τ² estimated from four
@@ -840,6 +843,17 @@ normal likelihood. For small samples the package adds a note telling you to
 look at a histogram. For heavy-tailed or strongly skewed data — house prices,
 for instance — consider working on a log scale and reporting the result as a
 ratio.</p>
+<p><strong>Rates assume a steady Poisson process.</strong> Events that cluster vary more than
+that allows, and the interval comes out too narrow. <code class="docutils literal notranslate"><span class="pre">rate()</span></code> checks per-period
+counts for this and says so, but a single total cannot be checked. Overdispersed
+counts need a negative-binomial model, which is outside the one-dimensional
+line.</p>
+<p><strong>Effect sizes that cannot be negative are pulled upward by noise.</strong> Cohen’s
+<em>w</em> and Cramér’s <em>V</em> add up the uncertainty in every cell or category without
+letting any of it cancel, so a small sample reports a departure even when there
+is none. <code class="docutils literal notranslate"><span class="pre">categories()</span></code> measures its headline against that noise floor by
+default; for <code class="docutils literal notranslate"><span class="pre">contingency()</span></code>, compare the interval against the same table’s
+expected counts before reading much into a small <em>V</em>.</p>
 <p><strong>The correlation posterior is grid-based.</strong> Accurate to the resolution of the
 grid, which is adaptive and fine enough that the error is far below anything
 that would change a conclusion. It is not a closed form, and the documentation
@@ -901,7 +915,7 @@ growing a worse version of one.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -921,7 +935,7 @@ growing a worse version of one.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
     

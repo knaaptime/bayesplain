@@ -1,0 +1,6 @@
+﻿bayesplain.core.regression.slope\_posterior
+===========================================
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autofunction:: slope_posterior

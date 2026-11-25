@@ -3,9 +3,9 @@
 **Bayesian answers to the questions frequentist tests are usually asked.**
 
 `bayesplain` gives you the Bayesian version of the handful of tests an
-introductory statistics course is built around — proportions, means,
-contingency tables, correlation, group comparisons — and prints the
-conventional test alongside it every time.
+introductory statistics course is built around — proportions, rates, means,
+contingency tables, goodness of fit, correlation, a line with one predictor,
+group comparisons — and prints the conventional test alongside it every time.
 
 It exists to fill a real gap. [`pingouin`](https://pingouin-stats.org) gives you
 Bayes factors for t-tests and correlations; [`PyMC`](https://www.pymc.io) and
@@ -32,7 +32,7 @@ print(res.summary())
 
  BAYESIAN — what the data say about the quantity itself
 
-   most likely value         5.7 percentage points
+   best estimate (median)    5.7 percentage points
    95% credible interval     −1.2 to 12.9 percentage points  (HDI)
    P(District B higher)      0.945
 

@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="bayesplain.BayesFactor.html">
+        <link rel="prev" href="bayesplain.Prediction.html">
       
       
         <link rel="next" href="bayesplain.priors.ConcentrationPrior.html">
@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -973,6 +973,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.priors.RatePrior.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>Rate<wbr>Prior</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.priors.resolve_proportion.html" class="md-nav__link">
         
   
@@ -1069,12 +1093,60 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.priors.resolve_rate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>resolve_<wbr>rate</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.priors.from_previous_study.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>study</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.priors.from_previous_period.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>priors.<wbr>from_<wbr>previous_<wbr>period</span>
     
   </span>
   
@@ -1567,7 +1639,7 @@
 <h1 id="bayesplain-priors-betaprior">bayesplain.priors.BetaPrior<a class="headerlink" href="#bayesplain-priors-betaprior" title="Link to this heading">¶</a></h1>
 <dl class="py class objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.BetaPrior">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.priors.</span></span><span class="sig-name descname"><span class="pre">BetaPrior</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior" title="bayesplain.priors.BetaPrior.__init__.a (Python parameter)"><span class="n"><span class="pre">a</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior.__init__.b" title="bayesplain.priors.BetaPrior.__init__.b (Python parameter) — Shape parameters."><span class="n"><span class="pre">b</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior.__init__.name" title="bayesplain.priors.BetaPrior.__init__.name (Python parameter) — Short label used in printed output."><span class="n"><span class="pre">name</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'custom'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior.__init__.rationale" title="bayesplain.priors.BetaPrior.__init__.rationale (Python parameter) — Plain-English statement of what assuming this prior commits you to."><span class="n"><span class="pre">rationale</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">''</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L58-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">bayesplain.priors.</span></span><span class="sig-name descname"><span class="pre">BetaPrior</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior" title="bayesplain.priors.BetaPrior.__init__.a (Python parameter)"><span class="n"><span class="pre">a</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior.__init__.b" title="bayesplain.priors.BetaPrior.__init__.b (Python parameter) — Shape parameters."><span class="n"><span class="pre">b</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior.__init__.name" title="bayesplain.priors.BetaPrior.__init__.name (Python parameter) — Short label used in printed output."><span class="n"><span class="pre">name</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'custom'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.priors.BetaPrior.__init__.rationale" title="bayesplain.priors.BetaPrior.__init__.rationale (Python parameter) — Plain-English statement of what assuming this prior commits you to."><span class="n"><span class="pre">rationale</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">''</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L63-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior" title="Link to this definition">¶</a></dt>
 <dd><p>A Beta prior over a proportion, carrying its own explanation.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.priors.BetaPrior-variables">Variables<span class="colon">:</span><a class="headerlink" href="#bayesplain.priors.BetaPrior-variables" title="Permalink to this headline">¶</a></dt>
@@ -1576,9 +1648,9 @@
 <code class="docutils literal notranslate"><span class="pre">Beta(2,</span> <span class="pre">2)</span></code> behaves like having already seen one success and one
 failure before the study began.</p>
 </dd>
-<dt id="bayesplain.priors.BetaPrior.__init__.name"><span class="sig-name descname">name</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a></span></span><a class="headerlink" href="#bayesplain.priors.BetaPrior.__init__.name" title="Permalink to this definition">¶</a></dt><dd><p>Short label used in printed output.</p>
+<dt id="bayesplain.priors.BetaPrior.__init__.name"><span class="sig-name descname">name</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></span></span><a class="headerlink" href="#bayesplain.priors.BetaPrior.__init__.name" title="Permalink to this definition">¶</a></dt><dd><p>Short label used in printed output.</p>
 </dd>
-<dt id="bayesplain.priors.BetaPrior.__init__.rationale"><span class="sig-name descname">rationale</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a></span></span><a class="headerlink" href="#bayesplain.priors.BetaPrior.__init__.rationale" title="Permalink to this definition">¶</a></dt><dd><p>Plain-English statement of what assuming this prior commits you to.</p>
+<dt id="bayesplain.priors.BetaPrior.__init__.rationale"><span class="sig-name descname">rationale</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></span></span><a class="headerlink" href="#bayesplain.priors.BetaPrior.__init__.rationale" title="Permalink to this definition">¶</a></dt><dd><p>Plain-English statement of what assuming this prior commits you to.</p>
 </dd>
 </dl>
 </dd>
@@ -1603,13 +1675,13 @@ failure before the study began.</p>
 
 <dl class="py method objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.BetaPrior.dist">
-<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L100-L102"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.dist" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py#L105-L107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.dist" title="Link to this definition">¶</a></dt>
 <dd><p>Return the prior as a frozen scipy distribution.</p>
 </dd></dl>
 
 <dl class="py property objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.BetaPrior.label">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">label</span></span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.label" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">label</span></span><span class="p"> <span class="pre">:</span> </span><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.label" title="Link to this definition">¶</a></dt>
 <dd><p>Name and parameters together, for printing in a summary table.</p>
 </dd></dl>
 
@@ -1620,13 +1692,13 @@ failure before the study began.</p>
 
 <dl class="py property objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.BetaPrior.prior_mean">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">prior_mean</span></span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.prior_mean" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">prior_mean</span></span><span class="p"> <span class="pre">:</span> </span><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.prior_mean" title="Link to this definition">¶</a></dt>
 <dd><p>The rate this prior expects before seeing any data.</p>
 </dd></dl>
 
 <dl class="py property objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.priors.BetaPrior.prior_weight">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">prior_weight</span></span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.prior_weight" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">prior_weight</span></span><span class="p"> <span class="pre">:</span> </span><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/priors.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.priors.BetaPrior.prior_weight" title="Link to this definition">¶</a></dt>
 <dd><p>Roughly how many observations of data this prior is worth.</p>
 </dd></dl>
 
@@ -1682,7 +1754,7 @@ failure before the study began.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -1702,7 +1774,7 @@ failure before the study began.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
     

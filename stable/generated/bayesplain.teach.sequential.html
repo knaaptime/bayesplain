@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -993,6 +993,30 @@
   
   
     <li class="md-nav__item">
+      <a href="bayesplain.teach.precision_planning_mean.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>teach.<wbr>precision_<wbr>planning_<wbr>mean</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="bayesplain.teach.NaturalFrequencies.html" class="md-nav__link">
         
   
@@ -1415,7 +1439,7 @@
 <h1 id="bayesplain-teach-sequential">bayesplain.teach.sequential<a class="headerlink" href="#bayesplain-teach-sequential" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight sig-wrap py" id="bayesplain.teach.sequential">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">sequential</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.outcomes" title="bayesplain.teach.sequential.outcomes (Python parameter) — A sequence of 0/1 or boolean outcomes, in the order observed."><span class="n"><span class="pre">outcomes</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.step" title="bayesplain.teach.sequential.step (Python parameter) — Chunk size."><span class="n"><span class="pre">step</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">10</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.prior" title="bayesplain.teach.sequential.prior (Python parameter) — Prior on the rate, before any data."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'uninformed'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.level" title="bayesplain.teach.sequential.level (Python parameter) — Credible level for the reported intervals."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.label" title="bayesplain.teach.sequential.label (Python parameter) — What is being estimated, for printed output."><span class="n"><span class="pre">label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rate'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L833-L913"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.sequential" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.teach.</span></span><span class="sig-name descname"><span class="pre">sequential</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.outcomes" title="bayesplain.teach.sequential.outcomes (Python parameter) — A sequence of 0/1 or boolean outcomes, in the order observed."><span class="n"><span class="pre">outcomes</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.step" title="bayesplain.teach.sequential.step (Python parameter) — Chunk size."><span class="n"><span class="pre">step</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">10</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.prior" title="bayesplain.teach.sequential.prior (Python parameter) — Prior on the rate, before any data."><span class="n"><span class="pre">prior</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'uninformed'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.level" title="bayesplain.teach.sequential.level (Python parameter) — Credible level for the reported intervals."><span class="n"><span class="pre">level</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.95</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.teach.sequential.label" title="bayesplain.teach.sequential.label (Python parameter) — What is being estimated, for printed output."><span class="n"><span class="pre">label</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'rate'</span></code></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/teach.py#L836-L916"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.teach.sequential" title="Link to this definition">¶</a></dt>
 <dd><p>Recompute the posterior after each chunk of incoming data.</p>
 <p>For the lesson where evidence arrives a bit at a time and the class watches
 the estimate move and the interval close. Also the cheapest way to make
@@ -1428,14 +1452,14 @@ the sample rather than in proportion to it.</p>
 <dt id="bayesplain.teach.sequential.outcomes"><span class="sig-name descname">outcomes</span><span class="p"> : </span><span class="desctype"><span class="desctype">array_like</span></span><a class="headerlink" href="#bayesplain.teach.sequential.outcomes" title="Permalink to this definition">¶</a></dt><dd><p>A sequence of 0/1 or boolean outcomes, <strong>in the order observed</strong>. A
 boolean pandas column works directly.</p>
 </dd>
-<dt id="bayesplain.teach.sequential.step"><span class="sig-name descname">step</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)">int</a>, default 10</span></span><a class="headerlink" href="#bayesplain.teach.sequential.step" title="Permalink to this definition">¶</a></dt><dd><p>Chunk size. Ten is a good classroom pace: enough steps to see a trend,
+<dt id="bayesplain.teach.sequential.step"><span class="sig-name descname">step</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, default 10</span></span><a class="headerlink" href="#bayesplain.teach.sequential.step" title="Permalink to this definition">¶</a></dt><dd><p>Chunk size. Ten is a good classroom pace: enough steps to see a trend,
 few enough to read the table aloud.</p>
 </dd>
-<dt id="bayesplain.teach.sequential.prior"><span class="sig-name descname">prior</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>, or <a class="reference internal" href="bayesplain.priors.BetaPrior.html#bayesplain.priors.BetaPrior" title="bayesplain.priors.BetaPrior (Python class) — A Beta prior over a proportion, carrying its own explanation.">BetaPrior</a>, default 'uninformed'</span></span><a class="headerlink" href="#bayesplain.teach.sequential.prior" title="Permalink to this definition">¶</a></dt><dd><p>Prior on the rate, before any data.</p>
+<dt id="bayesplain.teach.sequential.prior"><span class="sig-name descname">prior</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>, or <a class="reference internal" href="bayesplain.priors.BetaPrior.html#bayesplain.priors.BetaPrior" title="bayesplain.priors.BetaPrior (Python class) — A Beta prior over a proportion, carrying its own explanation.">BetaPrior</a>, default 'uninformed'</span></span><a class="headerlink" href="#bayesplain.teach.sequential.prior" title="Permalink to this definition">¶</a></dt><dd><p>Prior on the rate, before any data.</p>
 </dd>
-<dt id="bayesplain.teach.sequential.level"><span class="sig-name descname">level</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)">float</a>, default 0.95</span></span><a class="headerlink" href="#bayesplain.teach.sequential.level" title="Permalink to this definition">¶</a></dt><dd><p>Credible level for the reported intervals.</p>
+<dt id="bayesplain.teach.sequential.level"><span class="sig-name descname">level</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>, default 0.95</span></span><a class="headerlink" href="#bayesplain.teach.sequential.level" title="Permalink to this definition">¶</a></dt><dd><p>Credible level for the reported intervals.</p>
 </dd>
-<dt id="bayesplain.teach.sequential.label"><span class="sig-name descname">label</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)">str</a>, default 'rate'</span></span><a class="headerlink" href="#bayesplain.teach.sequential.label" title="Permalink to this definition">¶</a></dt><dd><p>What is being estimated, for printed output.</p>
+<dt id="bayesplain.teach.sequential.label"><span class="sig-name descname">label</span><span class="p"> : </span><span class="desctype"><span class="desctype"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, default 'rate'</span></span><a class="headerlink" href="#bayesplain.teach.sequential.label" title="Permalink to this definition">¶</a></dt><dd><p>What is being estimated, for printed output.</p>
 </dd>
 </dl>
 </dd>
@@ -1503,7 +1527,7 @@ few enough to read the table aloud.</p>
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -1523,7 +1547,7 @@ few enough to read the table aloud.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
     

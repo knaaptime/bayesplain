@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="bayesplain.core.correlation.validate_pair.html">
+        <link rel="prev" href="bayesplain.core.regression.log_bayes_factor_slope.html">
       
       
-        <link rel="next" href="bayesplain.core.hierarchical.between_group_variance.html">
+        <link rel="next" href="bayesplain.core.hierarchical.shrink_proportions.html">
       
       
       <link rel="icon" href="">
@@ -42,7 +42,7 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
-        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.74c816e3f9967dd6e.min.css?v=6cfe2491" />
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.6efbe22605a23fcd6.min.css?v=b2ceb110" />
         <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
         <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
         <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f4867036" />
@@ -625,12 +625,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../api.html#contingency-tables" class="md-nav__link">
+      <a href="../api.html#rates" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    <span>Contingency tables</span>
+    <span>Rates</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#contingency-tables-and-categories" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Contingency tables and categories</span>
     
   </span>
   
@@ -693,6 +717,30 @@
                 
   
   
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html#regression" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Regression</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -706,7 +754,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -723,14 +771,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_5">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_7">
             <span class="md-nav__icon md-icon"></span>
             <span>Partial pooling</span>
           </label>
@@ -872,6 +920,30 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bayesplain.core.hierarchical.shrink_proportions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>bayesplain.<wbr>core.<wbr>hierarchical.<wbr>shrink_<wbr>proportions</span>
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1175,7 +1247,7 @@
 <h1 id="bayesplain-core-hierarchical-shrink">bayesplain.core.hierarchical.shrink<a class="headerlink" href="#bayesplain-core-hierarchical-shrink" title="Link to this heading">¶</a></h1>
 <dl class="py function objdesc">
 <dt class="sig sig-object highlight py" id="bayesplain.core.hierarchical.shrink">
-<span class="sig-prename descclassname"><span class="pre">bayesplain.core.hierarchical.</span></span><span class="sig-name descname"><span class="pre">shrink</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.means" title="bayesplain.core.hierarchical.shrink.means (Python parameter) — Observed group means."><span class="n"><span class="pre">means</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.standard_errors" title="bayesplain.core.hierarchical.shrink.standard_errors (Python parameter) — Standard error of each group mean."><span class="n"><span class="pre">standard_errors</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/hierarchical.py#L77-L123"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.hierarchical.shrink" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesplain.core.hierarchical.</span></span><span class="sig-name descname"><span class="pre">shrink</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.means" title="bayesplain.core.hierarchical.shrink.means (Python parameter) — Observed group means."><span class="n"><span class="pre">means</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#bayesplain.core.hierarchical.shrink.standard_errors" title="bayesplain.core.hierarchical.shrink.standard_errors (Python parameter) — Standard error of each group mean."><span class="n"><span class="pre">standard_errors</span></span></a></em></span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/knaaptime/bayesplain/blob/main/bayesplain/core/hierarchical.py#L99-L145"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesplain.core.hierarchical.shrink" title="Link to this definition">¶</a></dt>
 <dd><p>Pull group means toward the overall average, in proportion to noise.</p>
 <dl class="field-list simple">
 <dt class="field-odd" id="bayesplain.core.hierarchical.shrink-parameters">Parameters<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.hierarchical.shrink-parameters" title="Permalink to this headline">¶</a></dt>
@@ -1193,7 +1265,7 @@ shrinkage, 0 means full pooling), <code class="docutils literal notranslate"><sp
 between-group variance, and <code class="docutils literal notranslate"><span class="pre">'grand_mean'</span></code>.</p>
 </dd>
 <dt class="field-odd" id="bayesplain.core.hierarchical.shrink-return-type">Return type<span class="colon">:</span><a class="headerlink" href="#bayesplain.core.hierarchical.shrink-return-type" title="Permalink to this headline">¶</a></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)">dict</a></p>
 </dd>
 </dl>
 <p class="example rubric">Examples</p>
@@ -1252,7 +1324,7 @@ between-group variance, and <code class="docutils literal notranslate"><span cla
   
     Created using
     <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
-    9.1.0.
+    9.1.1.
      and
     <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
   
@@ -1272,7 +1344,7 @@ between-group variance, and <code class="docutils literal notranslate"><span cla
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "search.share", "search.suggest", "toc.follow", "toc.sticky", "content.code.copy", "content.action.edit"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
       
-        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/sphinx_immaterial_theme.ce3f826234c1e494c.min.js?v=6917d573"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
         <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>

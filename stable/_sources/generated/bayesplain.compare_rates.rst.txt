@@ -1,0 +1,6 @@
+﻿bayesplain.compare\_rates
+=========================
+
+.. currentmodule:: bayesplain
+
+.. autofunction:: compare_rates

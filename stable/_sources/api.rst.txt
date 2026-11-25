@@ -8,18 +8,22 @@ API reference
 The analyses
 ------------
 
-Seven functions, each returning a :class:`Result`. The frequentist counterpart
-each one is paired with is named in its own documentation.
+Eleven functions, each returning a :class:`Result`. The frequentist
+counterpart each one is paired with is named in its own documentation.
 
 .. autosummary::
    :toctree: generated/
 
    proportion
    compare_proportions
+   rate
+   compare_rates
    contingency
+   categories
    mean
    compare_means
    correlation
+   regression
    compare_groups
 
 
@@ -35,6 +39,7 @@ interface learned for one carries over to all of them.
    Result
    Decision
    BayesFactor
+   Prediction
 
 
 Priors
@@ -52,11 +57,14 @@ nobody can hide which assumption they used.
    ConcentrationPrior
    EffectSizePrior
    CorrelationPrior
+   RatePrior
    resolve_proportion
    resolve_table
    resolve_effect_size
    resolve_correlation
+   resolve_rate
    from_previous_study
+   from_previous_period
    describe
    available
 
@@ -75,10 +83,16 @@ Usable on their own when you only want the classical answer.
    FrequentistTwin
    one_proportion
    two_proportions
+   several_proportions
+   one_rate
+   two_rates
    chi_square_independence
+   goodness_of_fit
    one_mean
    two_means
+   paired_means
    correlation
+   simple_regression
    one_way_anova
 
 
@@ -99,6 +113,7 @@ course.
    binomial_likelihood
    sequential
    precision_planning
+   precision_planning_mean
    NaturalFrequencies
    GridPosterior
    SequentialUpdate
@@ -159,8 +174,25 @@ Proportions
    validate_counts
 
 
-Contingency tables
-------------------
+Rates
+-----
+
+.. currentmodule:: bayesplain.core.gamma_poisson
+
+.. autosummary::
+   :toctree: generated/
+
+   posterior
+   ratio_posterior
+   predictive
+   log_marginal_likelihood
+   log_bayes_factor_point_null
+   log_bayes_factor_equal_rates
+   validate_events
+
+
+Contingency tables and categories
+---------------------------------
 
 .. currentmodule:: bayesplain.core.dirichlet_multinomial
 
@@ -169,7 +201,9 @@ Contingency tables
 
    log_bayes_factor_independence
    posterior_cell_draws
+   log_bayes_factor_goodness_of_fit
    cramers_v
+   cohens_w
    log_odds_ratio
    log_multivariate_beta
    validate_table
@@ -207,6 +241,22 @@ Correlation
    validate_pair
 
 
+Regression
+----------
+
+.. currentmodule:: bayesplain.core.regression
+
+.. autosummary::
+   :toctree: generated/
+
+   fit_line
+   LineFit
+   slope_posterior
+   mean_response_posterior
+   predictive
+   log_bayes_factor_slope
+
+
 Partial pooling
 ---------------
 
@@ -216,6 +266,7 @@ Partial pooling
    :toctree: generated/
 
    shrink
+   shrink_proportions
    between_group_variance
 
 

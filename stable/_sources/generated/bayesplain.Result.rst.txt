@@ -22,6 +22,7 @@
       ~Result.plot
       ~Result.plot_kinds
       ~Result.point
+      ~Result.predict
       ~Result.probability
       ~Result.probability_of_direction
       ~Result.sensitivity
