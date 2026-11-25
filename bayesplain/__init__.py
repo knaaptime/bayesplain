@@ -68,7 +68,7 @@ try:  # pragma: no cover - depends on install method
 
     __version__ = version("bayesplain")
 except (ImportError, PackageNotFoundError):  # pragma: no cover
-    __version__ = "0.0.0.dev0"
+    __version__ = "0.1.dev0"  # matches setuptools_scm fallback_version
 
 __all__ = [
     # analyses
